@@ -651,6 +651,13 @@
   background: url("../images/icon50.png") no-repeat center;
   background-size: contain;
 }
+.download-icon{
+  width: 0.15rem;
+  height: 0.15rem;
+  display: block;
+  background: url("../images/download.png") no-repeat center;
+  background-size: contain;
+}
 //底部的导航-end
 //彩票大厅
 .header-box{
@@ -4982,7 +4989,7 @@ line-height: 0.3rem;
   top: 0;
   line-height: 0.44rem;
 }
-.index-login-try{
+.index-login-try,.down-load-app{
   width: 0.5rem;
   height: 0.44rem;
   text-align: center;
@@ -4990,8 +4997,15 @@ line-height: 0.3rem;
   right: 0;
   top: 0;
   line-height: 0.44rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+.down-load-app a{
+  font-size: 0.13rem;
+  margin-right: 1px;
+  color: @index-login-to-font;
+}
 .index-login-try a{
   font-size: 0.12rem;
   color: @index-login-to-font;

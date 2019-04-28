@@ -53,7 +53,6 @@
             }
         },
         created(){
-            debugger
             this.isWeiXin();
             var _this = this;
             var device = this.$route.query.device;

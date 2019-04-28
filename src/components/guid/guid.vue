@@ -43,8 +43,8 @@
             this.platformSetting=platformData.setting;
         },
         methods:{
-            toDownloadBanner(){ debugger
-                // this.$refs.downloadBanner.openApp()
+            toDownloadBanner(){ 
+                 this.$refs.downloadBanner.openApp()
                 var os = this.getOS();
                  this.$router.push({path:'download',query:{device:os}});
             },

@@ -7,6 +7,10 @@
             <h1>{{titleName}}</h1>
             <div class="index-login-to" v-if="user.apiReqFinish==true&&user.init==false"><a @click="toLogin">登录</a></div>
             <div class="index-login-try" v-if="user.apiReqFinish==true&&user.init==false"><a href="javascript:void(0);" @click="loginShiWan">试玩</a></div>
+            <div class="down-load-app" v-if="user.init==true">
+                <a href="javascript:void(0);" @click="toDownloadBanner">APP</a>
+                <i class="download-icon"></i>
+            </div>
         </section>
     </header>
 </template>
@@ -100,7 +104,23 @@
                     });
                 }
             },
-           
+            toDownloadBanner(){ 
+                // this.$refs.downloadBanner.openApp()
+                var os = this.getOS();
+                this.$router.push({path:'download',query:{device:os}});
+            },
+            getOS(){
+                var u = navigator.userAgent;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+                var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                if(isAndroid){
+                    return 'android';
+                }else if(isiOS){
+                    return 'ios';
+                }else {
+                    return false;
+                }
+            },
             toLogin(){
               viewUtil.toLoginView();
             },
