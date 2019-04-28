@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <title>PT游戏跳转中...</title>
+</head>
+<body>
+<span>游戏跳转中...</span>
+</body>
+</html>
+<script>
+
+    //加入PT白名单的域名
+    //var lotteryUrl = "";
+    var lotteryUrl = "http://jh.gamept.cc";
+
+    var url = window.location.href;
+    var paramStr = url.substring(url.lastIndexOf("/") + 1).split("?")[1];
+    var jumpUrl = lotteryUrl + "/h5app/static/html/PTHtml5GameJump.html?" + paramStr;
+   
+    window.location = jumpUrl;
+
+</script>

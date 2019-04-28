@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      "es2015"
+
+    ]
+  ],
+  "plugins": [
+    [
+      "component",
+      [
+        {
+          "libraryName": "mint-ui",
+          "style": true
+        },
+        {
+          "libraryName": "element-ui",
+          "styleLibraryName": "theme-default"
+        }
+      ]
+    ]
+  ]
+}

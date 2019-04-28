@@ -1,0 +1,81 @@
+import apiUtil  from './common/apiUtil';
+
+export default  {
+    //个人投注记录
+    findBetRecord(params,callbakc){
+        apiUtil.doPost('/betRecord/search.mvc',params,callbakc);
+    },
+    //团队投注记录报表
+    getTeamLoss(params,callback){
+        apiUtil.doPost('/termsProfitStatistics/list.mvc',params,callback);
+    },
+    //追号记录
+    zhRecord(params,callback){
+        apiUtil.doPost('/zhuiHao/search.mvc',params,callback);
+    },
+    //撤单
+    cancelBet(params,callback){
+        apiUtil.doPost('/betRecord/delete.mvc',params,callback);
+    },
+    //停止追号
+    stopZhuihao(params,callback){
+        apiUtil.doPost('/zhuiHao/shopZhuihao.mvc',params,callback);
+    },
+    //投注详情
+    view(params,callback){
+        apiUtil.doPost('/betRecord/view.mvc?',params,callback);
+    },
+    //追号详情
+    zhuihaoView(params,callback){
+        apiUtil.doPost('/zhuiHao/view.mvc?',params,callback);
+    },
+    zhuiBetRecord(params,callback){
+        apiUtil.doPost('/betRecord/zhuihaoview.mvc',params,callback);
+    },
+    //取消当前追号
+    zhuihaoCancel(params,callback){
+        apiUtil.doPost('/zhuiHao/cancel.mvc',params,callback);
+    },
+    //KG个人投注记录
+    findKGBetRecord(params,callbakc){
+        apiUtil.doPost('/kjbetRecord/search.mvc',params,callbakc);
+    },
+    //KG追号记录
+    zhKGRecord(params,callback){
+        apiUtil.doPost('/kjzhuiHao/search.mvc',params,callback);
+    },
+    //KG停止追号
+    kgStopZhuihao(params,callback){
+        apiUtil.doPost('/kjzhuiHao/shopZhuihao.mvc',params,callback);
+    },
+    //KG撤单
+    kgCancelBet(params,callback){
+        apiUtil.doPost('/kjbetRecord/delete.mvc',params,callback);
+    },
+    kgZhuiBetRecord(params,callback){
+        apiUtil.doPost('/kjbetRecord/zhuihaoview.mvc',params,callback);
+    },
+    //KG追号详情
+    kgZhuihaoView(params,callback){
+        apiUtil.doPost('/kjzhuiHao/view.mvc?',params,callback);
+    },
+    //KG追号
+    //取消当前追号
+    kgZhuihaoCancel(params,callback){
+        apiUtil.doPost('/kjzhuiHao/cancel.mvc',params,callback);
+    },
+    //kg投注详情
+    kgView(params,callback){
+        apiUtil.doPost('/kjbetRecord/view.mvc?',params,callback);
+    },
+
+    //等级介绍
+    getLevelName(callback){
+        apiUtil.doPost('/betRecord/getWZRanking.mvc',null,function (resp) {
+            if(callback){
+                callback(resp);
+            }
+        });
+    },
+
+}

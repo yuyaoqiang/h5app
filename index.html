@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="renderer" content="webkit">
+    <meta name="robots" content="index,follow" />
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <link rel="shortcut icon" href="../pcapp/static/img/favicon.ico">
+    <style>
+        .lock {
+            height: 100%;
+            overflow: hidden;
+            touch-action: none;
+        }
+        
+        .lock body {
+            height: 100%;
+            overflow: hidden;
+            touch-action: none;
+        }
+        
+        #app {
+            min-height: 100%;
+            position: relative;
+        }
+    </style>
+
+
+
+    <script>
+        $L_appSetting = {
+            //禁止显示
+            disableDomain:['678bdb.com'],
+            recharge: {
+                online: {
+                    //是否支持小数
+                    supportDecimal: true,
+                },
+                offline: {
+                    supportDecimal: true,
+                },
+                scan: {
+                    supportDecimal: true,
+                },
+
+            },
+            staticResourceUrl: "https://555n9.com",
+
+        }
+
+        var SEND_RED_PACKETS_DATA = null;
+        var REC_RED_PACKETS_DATA = null;
+
+        function sendRedPacketsCompelete(result) {
+            SEND_RED_PACKETS_DATA = JSON.parse(result);
+        }
+
+        function recRedPacketsCompelete(result) {
+            REC_RED_PACKETS_DATA = JSON.parse(result);
+        }
+
+        var methodsScroll = {
+            /** 禁用滚动 */
+            forbidScroll: function() {
+                document.querySelector("html").classList.add("lock");
+                window.addEventListener("mousewheel", this.forbidScroll);
+                window.addEventListener("touchmove", this.forbidScroll, {
+                    passive: false
+                });
+            },
+            /** 启用滚动*/
+            enabledScroll: function() {
+                document.querySelector("html").classList.remove("lock");
+                window.removeEventListener("mousewheel", this.forbidScroll);
+                window.removeEventListener("touchmove", this.forbidScroll, {
+                    passive: false
+                });
+            }
+        }
+
+        function getScrollTop() {
+            var scrollTop = 0;
+            if (document.documentElement && document.documentElement.scrollTop) {
+                scrollTop = document.documentElement.scrollTop;
+            } else if (document.body) {
+                scrollTop = document.body.scrollTop;
+            }
+            return scrollTop;
+        }
+
+        function setScrollTop(scrollTop) {
+            return document.body.scrollTop = scrollTop
+        }
+        window.onload = function() {
+
+            //console.log(666)
+        }
+    </script>
+
+    <title></title>
+</head>
+
+<body>
+
+    <section id="app"></section>
+
+    <script src="/h5app/static/js/jquery-3.1.1.min.js"></script>
+    <!-- <script src="/h5app/static/js/mlink.min.js"></script> -->
+    <script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
+    <script src="/h5app/static/js/amq/amq_jquery_adapter.js"></script>
+    <script src="/h5app/static/js/amq/amq.js"></script>
+</body>
+
+</html>
