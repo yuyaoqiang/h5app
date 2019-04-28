@@ -77,8 +77,7 @@ export default {
             lottery.id = tmpLottery.id;
             lottery.type = tmpLottery.type;
             lottery.name = tmpLottery.name;
-
-
+            _this.initZeroNumber(lottery);
             lottery.localDate = new Date();
 
             lottery.data = resp.data;
@@ -107,18 +106,40 @@ export default {
             //倒计时开始
             lotteryCountdown.start(lottery);
 
-
             lottery.init = true;
             _this.lottery = lottery;
 
             _this.initGameMenu();
 
             _this.initPlayType();
-
             action(lottery);
-
+            appContext.current.startLotteryNumAnim();
         });
 
+    },
+    initZeroNumber(lottery){
+        var zeroNums = "";
+        var emptyNums = "";
+        var eNumLen = lottery.type.fullNums[0].length;
+        for (var i = 0; i < lottery.type.numLen; i++) {
+            emptyNums += "- ";
+            for (var j = 0; j < eNumLen; j++) {
+                zeroNums += "0"
+            }
+            zeroNums += " ";
+        }
+        zeroNums = zeroNums.substr(0, zeroNums.length - 1);
+        lottery.ballClass = "bigNum";
+        lottery.ballWidth = 0.25;
+        if (lottery.type.numLen > 5 && lottery.type.numLen <= 8) {
+            lottery.ballClass = "middleNum";
+            lottery.ballWidth = 0.15;
+        }
+        if (lottery.type.numLen > 8) {
+            lottery.ballClass = "smallNum";
+            lottery.ballWidth = 0.15;
+        }
+        lottery.zeroNums = zeroNums;
     },
     initGameMenu() {
 

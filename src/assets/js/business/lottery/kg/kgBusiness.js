@@ -65,17 +65,15 @@ export default {
         initLottery.firstHistory.nums = emptyNums;
 
         initLottery.ballClass = "bigNum";
-        initLottery.ballWidth = 52;
+        initLottery.ballWidth = 0.25;
         if (initLottery.type.numLen > 5 && initLottery.type.numLen <= 8) {
             initLottery.ballClass = "middleNum";
-            initLottery.ballWidth = 30;
+            initLottery.ballWidth = 0.15;
         }
         if (initLottery.type.numLen > 8) {
             initLottery.ballClass = "smallNum";
-            initLottery.ballWidth = 30;
+            initLottery.ballWidth = 0.15;
         }
-
-
         if (kgLottery.init == false) {
             objectUtil.fillProperties(kgLottery, initLottery);
         }
@@ -256,7 +254,7 @@ export default {
 
             _this.kgLottery.init = true;
             compeleted(true);
-
+            appContext.current.startLotteryNumAnim();
         })
     },
 

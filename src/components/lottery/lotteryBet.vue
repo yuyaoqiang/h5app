@@ -46,12 +46,16 @@
                 </ul>
                 <div class="last-history-issue clearfix" :class="[lottery.currentLottery.nums.split(' ').length > 8?'long':'',lottery.currentLottery.nums.split(' ').length == 8?'min':'']">
                     <div class="last-issue fl">第{{lottery.currentLottery.issueno}}期</div>
-                    <div class="last-nums">
-                        <span v-for="(item,index) in lottery.currentLottery.nums.split(' ')" :key="index">
-                            {{item}}
-                        </span>
+                    <div id="prevEmptyHistory" v-show="historyBallAnim==false"
+                                     :class="['resultNums',lottery.ballClass]">
+                                    <dl v-for="n in lottery.zeroNums.split(' ')">
+                                        <dd style="top: 0px">
+                                            <div>{{n}}</div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                    <div v-show="historyBallAnim==true" id="prevHistory" :class="['resultNums',lottery.ballClass]"></div>
                     </div>
-                </div>
             </header>
             <nav class="lottery-tab-box">
                 <ul class="display-box">
@@ -188,6 +192,7 @@
 
         data() {
             return{
+                historyBallAnim:false,
                 showNumberHis:{
                     issueno:'',
                     nums:''
@@ -220,7 +225,8 @@
                     currentLottery:{
                     issueno:"0000-00-00",
                     nums: "- - - - -"
-                    }
+                    },
+                    zeroNums:""
                 },
                 lotteryTitle: null,
                 lotteryHistoryList: [],
@@ -261,7 +267,6 @@
             this.loadUser();
             this.lotteryCountdown();
             this.showHistory()
-            
             this.pcddBallColor = baseData.pcddBallColor;
             this.heightHtml = document.documentElement.clientHeight;
         },
@@ -279,8 +284,77 @@
                     lottery.currentLottery.issueno = data.issueno;
                     lottery.currentLottery.nums = data.nums;
                     //lottery.history.unshift({issueno: data.issueno, nums: data.nums});
-                    // this.startLotteryNumAnim();
+                    this.startLotteryNumAnim();
                 }
+            },
+            startLotteryNumAnim() {
+                var _this = this;
+                var $historyBall = $("#prevHistory");
+                var nums = _this.lottery.zeroNums.split(' ');
+                var dlsHtml = "";
+                arrayUtil.findFirst(nums, n => {
+                    var dlHtml = "<dl><dd style='top:0px'><div class='prev-history-num'>" + n + "</div></dd></dl>";
+                    dlsHtml += dlHtml;
+                });
+                $historyBall.html(dlsHtml);
+                _this.historyBallAnim = false;
+                setTimeout(function () {
+                    _this.historyBallAnim = true;
+                    _this.lotteryNumAnim();
+                }, 200)
+            },
+            lotteryNumAnim() {
+                var _this = this;
+                var lotteryNumAnims = _this.lotteryNumAnims;
+                if (_this.lotteryNumAnims) {
+                    for (var i = 0; i < lotteryNumAnims.length; i++) {
+                        var anim = lotteryNumAnims[i];
+                        anim.num.stop();
+                        clearTimeout(anim.time);
+                    }
+                }
+                _this.lotteryNumAnims = [];
+                var nums = _this.lottery.currentLottery.nums.split(' ');
+                var fullNums = _this.lottery.type.fullNums;
+                var groupQty = 5;
+                var numH = _this.lottery.ballWidth;//$("#prevHistory dd").eq(0).find("div").eq(0).height();
+                var domArr = $("#prevHistory dd");
+                var arr = [].slice.call(domArr).reverse();
+                var arrLen = arr.length - 1;
+                $.each(arr, function (index) {
+                    var $this = $(this);
+                    var numQty = 0;
+                    $this.empty();
+                    var currentNum = nums[arrLen];
+                    for (var i = 0; i < groupQty; i++) {
+                        for (var j = 0; j < fullNums.length; j++) {
+                            var cn = fullNums[j];
+                            var isBreak = false;
+                            if (i == (groupQty - 1) && cn.trim() == currentNum) {
+                                isBreak = true;
+                            }
+                            $this.prepend("<div>" + cn + "</div>")
+                            numQty++;
+
+                            if (isBreak) {
+                                break;
+                            }
+                        }
+                    }
+                    //  $this.append("<div>"+_this.lottery.zeroNums.split(' ')[0]+"</div>")
+                    var top = 0 - (numQty - 1) * numH;
+                    $this.css("top", top + "rem");
+                    var setTimeOut = setTimeout(function () {
+                        $this.stop().css("top", top + "rem").animate({"top": "0rem"}, 3000, "swing", function () {
+                            $this.empty();
+                            $this.append("<div class='prev-history-num'>" + currentNum + "</div>");
+                        })
+                    }, index * 300)
+                    _this.lotteryNumAnims.push({num: $this, time: setTimeOut})
+                    arrLen = arrLen - 1;
+                });
+
+
             },
             toChatroom(){
                 if (this.user.init === false){
@@ -752,7 +826,7 @@
     line-height: 0.15rem;
 }
 .last-history-issue.long .last-issue {
-   margin-left: 0.02rem;
+   margin-left: 0.17rem;
 }
 .last-history-issue.min .last-nums span {
     width: 0.2rem;
@@ -760,11 +834,11 @@
     line-height: 0.2rem;
 }
 .last-history-issue.min .last-issue {
-   margin-left: 0.02rem;
+   margin-left: 0.23rem;
 }
 .last-issue{
     text-align:center;
-    margin-left: 0.17rem;
+    margin-left: 0.23rem;
 }
 .last-nums{
     text-align:center;
@@ -783,5 +857,73 @@
     border-radius: 50%;
     font-weight: bold;
     border: 1px solid #ddd;
+}
+.resultNums {
+    text-align: center;
+}
+
+.resultNums dl {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.resultNums dd {
+    position: relative;
+}
+
+.smallNum dl {
+    display: inline-block;
+    width: .15rem;
+    height: .15rem;
+    line-height: .15rem;
+    text-align: center;
+    font-size: .1rem;
+    color: #4e4e4e;
+    margin: 0.06rem 0.01rem 0 0;
+    background: #f8f7f7;
+    border-radius: 50%;
+    font-weight: 700;
+    border: 1px solid #ddd;
+}
+
+.middleNum dl:last-child {
+    margin-right: 0;
+}
+.middleNum dl {
+    display: inline-block;
+    width: .15rem;
+    height: .15rem;
+    line-height: .15rem;
+    text-align: center;
+    font-size: .1rem;
+    color: #4e4e4e;
+    margin: 1px;
+    background: #f8f7f7;
+    border-radius: 50%;
+    font-weight: 700;
+    border: 1px solid #ddd;
+}
+
+.middleNum dl:last-child {
+    margin-right: 0;
+}
+
+.bigNum dl {
+    display: inline-block;
+    width: .24rem;
+    height: .24rem;
+    line-height: .24rem;
+    text-align: center;
+    font-size: .1rem;
+    color: #4e4e4e;
+    margin: 1px;
+    background: #f8f7f7;
+    border-radius: 50%;
+    font-weight: 700;
+    border: 1px solid #ddd;
+}
+
+.bigNum dl:last-child {
+    margin-right: 0;
 }
 </style>

@@ -445,7 +445,6 @@
             }
         },
         created() {
-            appContext.current=this;
             this.initGame();
             this.loadUser();
             this.mixins = window.outerHeight;
