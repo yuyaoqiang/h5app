@@ -1,9 +1,8 @@
 <template>
     <div>
 
-        
         <v-header :titleName="titleName" v-show="showTitle"></v-header>
-        
+        <!-- <v-suspension></v-suspension> -->
         <div class="lottery-slide-left">
             <v-slippery :user="user" ref="tagIndex"></v-slippery>
         </div>
@@ -80,6 +79,7 @@
     import arrayUtil  from '../../assets/js/util/arrayUtil';
     import platformData from '../../assets/platform/main/platformData.js';
     import userInfo from  "../../assets/js/api/userInfo";
+    import suspension from  "../suspension/suspension.vue";
     export default {
         data () {
             return {
@@ -388,7 +388,7 @@
             userBusiness.getUser(this,function (user) {
                 _this.user=user;
             });
-            this.getDividendAvailable()
+            //this.getDividendAvailable()
             _this.titleName = platformData.setting.name;
             let route = this.$route;
             let meta = route.meta || {};
@@ -432,6 +432,7 @@
             'v-footer': footer,
             'v-slippery': slippery,
             'v-header':header,
+            "v-suspension":suspension
         }
     }
 </script>

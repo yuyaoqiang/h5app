@@ -93,6 +93,9 @@ import newCreateUser from './components/trdPlatform/newCreateUser.vue'; //注册
 //trends 页面
 import basicTrend from './components/trends/basicTrend.vue';
 import sxzxTrend from './components/trends/ssc/sxzxTrend.vue';
+import qsTrend from './components/trends/ssc/qsTrend.vue';
+import zsTrend from './components/trends/ssc/zsTrend.vue';
+import hsTrend from './components/trends/ssc/hsTrend.vue';
 import exzxTrend from './components/trends/ssc/exzxTrend.vue';
 import wxhzTrend from './components/trends/ssc/wxhzTrend.vue';
 import sxhzTrend from './components/trends/ssc/sxhzTrend.vue';
@@ -200,6 +203,9 @@ const routes = [
             { path: '/jumpIndex', component: jumpIndex },
             { path: '/basicTrend', component: basicTrend },
             { path: '/sxzxTrend', component: sxzxTrend },
+            { path: '/qsTrend', component: qsTrend },
+            { path: '/zsTrend', component: zsTrend },
+            { path: '/hsTrend', component: hsTrend },
             { path: '/exzxTrend', component: exzxTrend },
             { path: '/wxhzTrend', component: wxhzTrend },
             { path: '/sxhzTrend', component: sxhzTrend },

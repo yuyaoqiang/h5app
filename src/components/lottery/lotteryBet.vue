@@ -2,7 +2,7 @@
     <div>
         <div class="bet-chatroom-icon" @click="toChatroom" v-if="user.isChatroom"></div>
 
-
+        <!-- <v-suspension></v-suspension> -->
         <div class="index-header-box lottery-box-header">
             <header class="header-box betting-header">
                 <div class="column-icon-box" @click="leftSlide">
@@ -177,6 +177,7 @@
     import lotteryBetting from "./lottery_betting.vue";
     import kgBetting from "../kggame/kgGameBet.vue";
     import chatroom from "../chatroom/chatroom.vue";
+    import suspension from "../suspension/suspension.vue";
 
     import userBusiness from  "../../assets/js/business/user/userBusiness";
     import lotteryBusiness from '../../assets/js/business/lottery/lotteryBusiness';
@@ -731,7 +732,8 @@
             'v-slippery': slippery,
             "v-lottery-betting":lotteryBetting,
             "v-kg-betting":kgBetting,
-            "v-chatroom":chatroom
+            "v-chatroom":chatroom,
+            "v-suspension":suspension
         },
         computed: {
         },
