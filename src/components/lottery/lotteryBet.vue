@@ -2,7 +2,7 @@
     <div>
         <div class="bet-chatroom-icon" @click="toChatroom" v-if="user.isChatroom"></div>
 
-        <!-- <v-suspension></v-suspension> -->
+        <v-suspension></v-suspension>
         <div class="index-header-box lottery-box-header">
             <header class="header-box betting-header">
                 <div class="column-icon-box" @click="leftSlide">

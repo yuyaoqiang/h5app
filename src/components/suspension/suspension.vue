@@ -1,46 +1,69 @@
 <template>
-    <div class="info-nr" id="info-nr" v-if="this.isShow === true" @tap.stop="search()">
+    <div class="info-nr" id="info-nr" v-show="this.isShow === true" @tap.stop="search()">
         <div id="info-nr-phone" class="info-nr-phone">
-            <section id="toMenu"></section>
-            <div class="menu_01"> </div>
-            <div class="menu_02"> </div>
-            <div class="menu_03"> </div>
-            <div class="menu_04" @click="this.closeBall"> </div>  
+            <section id="toMenu" @click="addListnerClass"></section>
+            <div :class="'menu_'+index" v-for="(item,index) in lines"  @click="changeDomain(item)">{{names[index]}}</div>
+            <div :class="'menu_3'" @click="this.closeBall"> </div>  
         </div>
     </div>
 </template>
 
 <script>
+    import userBusiness  from '../../assets/js/business/user/userBusiness';
+    import cacheUtil from "../../assets/js/util/cacheUtil"
     export default {
         data () {
             return {
-                isShow:true
+                isShow:false,
+                lines:[],
+                names:["线路一","线路二","线路三"]
             }
         },
         created(){
+            this.onAndOff();
         },
         mounted () {
-            this.addListnerClass();
+            var _this = this;
+            userBusiness.getUser(this,function (user) {
+            _this.lines=user.lines;
+            });
         },
         methods: {
+            onAndOff(){
+                let isOn = cacheUtil.getSessionStorage("suspensionBall");
+                if(isOn==="on"){
+                    this.isShow = true;
+                }
+                if(!isOn){
+                    this.isShow = true;
+                    cacheUtil.setSessionStorage("suspensionBall", "on");
+                }
+            },
+            changeDomain(item){
+                window.location.replace("http://"+item);
+            },
             addListnerClass(){
-                window.addEventListener("DOMContentLoaded", function () {
-                    $("#toMenu").click(function(){
-                        $(".info-nr-phone").toggleClass("info-nr-phone2");
-                        $(".menu_01").toggleClass("to_01");
-                        $(".menu_02").toggleClass("to_02");
-                        $(".menu_03").toggleClass("to_03");
-                        $(".menu_04").toggleClass("to_04");
-                    });
-                }, false);
+                $(".info-nr-phone").toggleClass("info-nr-phone2");
+                $(".menu_0").toggleClass("to_01");
+                $(".menu_1").toggleClass("to_02");
+                $(".menu_2").toggleClass("to_03");
+                switch(this.lines.length){
+                    case 1: $(".menu_3").toggleClass("to_06")
+                    break;
+                    case 2: $(".menu_3").toggleClass("to_05")
+                    break;
+                    case 3: $(".menu_3").toggleClass("to_04")
+                    break;
+                }
             },
             closeBall(){
                 this.isShow = false;
+                 cacheUtil.setSessionStorage("suspensionBall", "off");
             },
             search:function(e){ 
                 e.preventDefault();
             }
-        }
+        },
     }
 </script>
 <style>
@@ -81,37 +104,36 @@
     -webkit-transition: -webkit-transform 300ms;
     -ms-transition: transform 300ms;
 }
+.to_01,.to_02,.to_03,.to_04{
+    font-size: 12px;
+    line-height: 43px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+        background: #7d7979;
+    background-size: auto 100%;
+}
 .info-nr-phone>.to_01 {
-    -webkit-transform: translate(-14px, -120px) rotate(720deg); 
-    -moz-transform: translate(-14px, -120px) rotate(720deg);
-    -ms-transform: translate(-14px, -120px) rotate(720deg); 
-    -o-transform: translate(-14px, -120px) rotate(720deg);
-        transform: translate(-14px, -65px) rotate(720deg);
-        background:url('../../assets/images/dice-2.png') 50% 50% no-repeat rgb(153, 152, 152);
-        background-size:auto 100%;}
+    transform: translate(-4px, -50px) rotate(720deg);
+}
 .info-nr-phone>.to_02 {
-    -webkit-transform: translate(-78px, -108px) rotate(720deg); 
-    -moz-transform: translate(-78px, -108px) rotate(720deg);
-    -ms-transform: translate(-78px, -108px) rotate(720deg); 
-    -o-transform: translate(-78px, -108px) rotate(720deg); 
-        transform: translate(-71px, -31px) rotate(720deg);
-        background:url('../../assets/images/dice-3.png') 50% 50% no-repeat #fff;
-        background-size:auto 100%;}
+        transform: translate(-45px, -21px) rotate(720deg);
+}
 .info-nr-phone>.to_03 {
-    -webkit-transform: translate(-85px, -80px) rotate(720deg); 
-    -moz-transform: translate(-85px, -80px) rotate(720deg);
-    -ms-transform: translate(-85px, -80px) rotate(720deg); 
-    -o-transform: translate(-85px, -80px) rotate(720deg);
-        transform: translate(-67px, 28px) rotate(720deg);
-        background:url('../../assets/images/dice-4.png') 50% 50% no-repeat #fff;
-        background-size:auto 100%;
+        transform: translate(-45px, 28px) rotate(720deg);
     }
 .info-nr-phone> .to_04{
-    -webkit-transform: translate(-79px, -36px) rotate(720deg);
-    -moz-transform: translate(-79px, -36px) rotate(720deg);
-    -ms-transform: translate(-79px, -36px) rotate(720deg);
-    -o-transform: translate(-79px, -36px) rotate(720deg); 
-        transform: translate(-15px, 62px) rotate(720deg);
+        transform: translate(-4px, 50px) rotate(720deg);
+        background:url('../../assets/images/closeBall.png') 50% 50% no-repeat #fff;
+        background-size:auto 100%;
+}     
+.info-nr-phone> .to_05{
+        transform: translate(-45px, 28px) rotate(720deg);
+        background:url('../../assets/images/closeBall.png') 50% 50% no-repeat #fff;
+        background-size:auto 100%;
+}
+.info-nr-phone> .to_06{
+        transform: translate(-45px, -21px) rotate(720deg);
         background:url('../../assets/images/closeBall.png') 50% 50% no-repeat #fff;
         background-size:auto 100%;
 } 

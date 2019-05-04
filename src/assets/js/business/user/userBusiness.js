@@ -31,7 +31,8 @@ export default {
         kgBal: 0,
         kjlotteryBal: 0,
         platformThird: null,
-        gameType: []
+        gameType: [],
+        lines:[],
     },
     initMenu: true,
     enableCache: false,
@@ -420,8 +421,8 @@ export default {
         }
 
         systemConfigApi.getConfig(function (resp) {
-
             if (resp.code == 200) {
+                _this.updateLines(resp.data);
                 objectUtil.fillProperties(_this.sysConfig, resp.data);
                 _this.user.configInitFinish = true;
             } else {
@@ -515,7 +516,7 @@ export default {
         }
         return false;
     },
-
+    
 
     toWyczPage(path) {
         if (this.checkIsNotLoginPlayer()) {
@@ -650,5 +651,11 @@ export default {
         if (user.traditionInitFinsh == true && user.kgInitFinish == true) {
             user.lotteryInitFinish = true;
         }
+    },
+    updateLines(data){
+        let list = data.pcAppDownloadUrl.split(",");
+        list.forEach(element => {
+            this.user.lines.push(element);
+        });
     }
 }
