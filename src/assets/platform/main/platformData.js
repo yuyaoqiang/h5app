@@ -26,7 +26,7 @@ export default {
     lotteryGames: [
         { id: 63, name: "腾讯分分彩", logo: "icon_txffc.png", type: "sscrules" },
         { id: 202, name: "五分PK10", logo: "bdb5fpk10.png", type: "pk10rules", displayType: "klc", },
-        { id: 70, name: "新腾讯分分彩", logo: "icon_xtxffc.png", type: "sscrules" },
+        // { id: 70, name: "新腾讯分分彩", logo: "icon_xtxffc.png", type: "sscrules" },
         { id: 1, name: "重庆时时彩", logo: "icon_cqssc.png", type: "sscrules", },
         { id: 9, name: "新疆时时彩", logo: "icon_xjssc.png", type: "sscrules", },
         { id: 10, name: "天津时时彩", logo: "icon_tjssc.png", type: "sscrules", },
@@ -82,8 +82,8 @@ export default {
 
         { id: 32, name: "北京5分彩", logo: "icon_bjwfc.png", type: "sscrules", displayType: "keno", },
         { id: 35, name: "台湾5分彩", logo: "icon_twwfc.png", type: "sscrules", displayType: "keno", },
-        { id: 41, name: "加纳1.5分彩", logo: "icon_jn1.5f.png", type: "sscrules", displayType: "keno", },
-        { id: 45, name: "菲律宾1.5分彩", logo: "icon_flb1.5f.png", type: "sscrules", displayType: "keno", },
+        // { id: 41, name: "加纳1.5分彩", logo: "icon_jn1.5f.png", type: "sscrules", displayType: "keno", },
+        // { id: 45, name: "菲律宾1.5分彩", logo: "icon_flb1.5f.png", type: "sscrules", displayType: "keno", },
 
         { id: 66, name: "香港六合彩", logo: "icon_xglhc.png", type: "xglhc", displayType: "kxc" },
         { id: 203, name: "极速六合彩", logo: "203.png", type: "xglhc", displayType: "kxc" },

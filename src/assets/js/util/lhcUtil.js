@@ -71,7 +71,7 @@ export default {
         secondColumn:['01-02-03-04-05','06-07-08-09-10','11-12-13-14-15','16-17-18-19-20','21-22-23-24-25','26-27-28-29-30','31-32-33-34-35','36-37-38-39-40','41-42-43-44-45','46-47-48-49'],
     },
     setJiayeData(yearTime){
-        this.countAnimalNumber(yearTime);
+        // this.countAnimalNumber(yearTime);
         var jiaye = this.jiaye;
         var animalList = this.shenxiao.animal;
         for(var i  in animalList){
@@ -135,7 +135,7 @@ export default {
 
         var yeartime = new Date().getTime()>new Date(2020,1,24).getTime()?2020:2019
 
-        this.countAnimalNumber(yeartime);
+        // this.countAnimalNumber(yeartime);
         var animalList = this.shenxiao.animal;
         var list = objectUtil.extendDeepCopy(animalList);
         var concatList = [];
@@ -154,7 +154,7 @@ export default {
         return concatList;
     },
     morkAnimalNums2(){
-        this.countAnimalNumber(2018);
+        // this.countAnimalNumber(2018);
         var animalList = this.shenxiao.animal;
         var list = objectUtil.extendDeepCopy(animalList);
         var concatList = [];
@@ -196,6 +196,7 @@ export default {
         arrayUtil.forEach(this.animals,(item,index)=>{
             newAnimal[index] = arr[index];
         })
+        debugger;
         this.currentCache[year] = newAnimal;
     },
     getListLastNumber(numberList){
@@ -204,12 +205,12 @@ export default {
     },
     getAnimal(yeartime,item){
         var ruslut ="";
-        this.countAnimalNumber(yeartime);
+        // this.countAnimalNumber(yeartime);
         var animal = this.shenxiao.animal;
         for(var i in animal){
             arrayUtil.forEach(animal[i],a=>{
                 if(item == a){
-                    ruslut = this.animals[i];
+                    ruslut = i;
                 }
             })
         }
