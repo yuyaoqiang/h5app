@@ -196,7 +196,6 @@ export default {
         arrayUtil.forEach(this.animals,(item,index)=>{
             newAnimal[index] = arr[index];
         })
-        debugger;
         this.currentCache[year] = newAnimal;
     },
     getListLastNumber(numberList){

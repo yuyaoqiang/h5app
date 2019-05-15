@@ -68,9 +68,7 @@ export default {
             areaData.id = playType.betlossId;
             var lotteryData = lottery.data;
 
-
             var betTypeData = lotteryData.bettype[playType.betlossId];
-            
             areaData.singleMaxBetCount = betTypeData.singleMaxBetCount == undefined ? 0 : betTypeData.singleMaxBetCount;
 
             var userPoint = lotteryData.user;

@@ -693,12 +693,14 @@
                 var user=this.user;
                 
                 if(user.lotteryInitFinish==true){
-                   
                     var ltyList = userBusiness.getLotteryList();
                     _this.lotteryList = ltyList;
                     id =id==null? _this.$route.query.gameId:id;
                     var lty = arrayUtil.findFirst(ltyList,item=>{return item.id==id});
                     _this.collection = lty.favorited;
+                    if(_this.menuList[1] && _this.menuList[1].active){
+                        return;
+                    }
                     if(lty != null){
                         var betCmp=null;
                         arrayUtil.forEach(_this.menuList,m=>{

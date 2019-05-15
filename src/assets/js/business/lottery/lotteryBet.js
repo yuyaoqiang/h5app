@@ -118,7 +118,6 @@ export default {
             var singleMaxBetCount = bettype.singleMaxBetCount;
 
             var maxBetCount = bettype.maxBetCount;
-
             if (singleMaxBetCount >= betQty) {
                 var scale = 0;
                 var maxMoney = 0;

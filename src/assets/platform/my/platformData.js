@@ -24,6 +24,7 @@ export default {
     ],
 
     lotteryGames: [
+        { id: 205, name: "欢乐球", logo: "icon_hlffc.png", type: "sscrules" },
         { id: 63, name: "腾讯分分彩", logo: "icon_txffc.png", type: "sscrules" },
         { id: 202, name: "五分PK10", logo: "bdb5fpk10.png", type: "pk10rules", displayType: "klc", },
         // { id: 70, name: "新腾讯分分彩", logo: "icon_xtxffc.png", type: "sscrules" },

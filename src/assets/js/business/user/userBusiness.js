@@ -47,12 +47,11 @@ export default {
         this.user.lotteryInitFinish = false;
         this.user.kgInitFinish = false;
         this.user.traditionInitFinsh = false;
-
         this.user.allInitFinish = false;
         this.getUser(view, compelete, quickCallback);
     },
     getUser(view, compelete, quickCallback) {
-
+        
         var callBack = function (user) {
             if (compelete) {
                 compelete(user);
