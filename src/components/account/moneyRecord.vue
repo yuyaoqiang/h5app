@@ -63,9 +63,9 @@
                 <ul  class="display-box recording-list" v-if="selecteDown.active&&selecteDown.selected!='SB' &&selecteDown.selected!='KY'" v-for="item in records.MIR">
                     <li>
                         <p v-if="selecteDown.selected">
-                            {{item.gameType}}
+                            {{records.GTYPE[item.gameType]?records.GTYPE[item.gameType].name:""}}
                             <i class="red">--</i>
-                            {{item.playType}}
+                            {{records.PTYPE[item.playType]?records.PTYPE[item.playType].name:""}}
                         </p>
                         <p v-else>
                             {{records.GTYPE[item.gameType]?records.GTYPE[item.gameType].name:""}}
@@ -302,6 +302,9 @@
                             
                             if(_this.selecteDown.selected == "AG"){
                                 _this.records.TYPE = data.TYPE;
+                                _this.records.GSTATE = data.GSTATE;
+                                _this.records.GTYPE = data.GTYPE;
+                                _this.records.PTYPE = data.PTYPE;
                             }else{
                                 _this.records.GSTATE = data.GSTATE;
                                 _this.records.GTYPE = data.GTYPE;
