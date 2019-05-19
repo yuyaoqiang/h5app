@@ -39,13 +39,18 @@
                         <input v-model.trim="data.telephone"  placeholder="请输入有效手机号" type="text"/>
                     </dd>
                 </dl>
+                <dl class="display-flex pt10 register-box">
+                    <dt><span class="red">*</span> 推荐码:</dt>
+                    <dd class="flex-box">
+                        <input v-model.trim="data.regCode"  placeholder="不能超过16位字符" type="text"/>
+                    </dd>
+                </dl>
                 <dl  class="display-flex pt10 register-box"  v-if="regRestrict.regQQConfig != -1">
                     <dt><span class="red"  v-show="regRestrict.regQQConfig ==1">*</span> QQ:</dt>
                     <dd class="flex-box">
                         <input v-model.trim="data.qq"  placeholder="请输入有效qq号码" type="text"/>
                     </dd>
                 </dl>
-
                 <dl class="display-flex pt10 register-box">
                     <dt><span class="red">*</span> 密码:</dt>
                     <dd class="flex-box">
@@ -144,7 +149,6 @@
         created(){
             var _this = this;
             this.getUrlParam();
-            
             if(this.isAgentReg.agentRegId){
                 userInfo.appRegCode({code:this.isAgentReg.agentRegId},function(resp){
                     if(resp.code==200){
@@ -231,7 +235,10 @@
                         this.lalterError("昵称不能超过16位字符");
                         return;
                     }
-
+                    if(stringUtil.isBlank(this.data.regCode)){
+                        this.lalterError("推荐码不能为空");
+                        return;
+                    }
                     if(this.regRestrict.regEmailConfig == 1 || this.data.email != ""){
                         let emailReg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/;
                         if(!emailReg.test(this.data.email)){

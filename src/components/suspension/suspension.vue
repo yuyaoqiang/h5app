@@ -40,7 +40,7 @@
                 }
             },
             changeDomain(item){
-                window.location.replace("http://"+item);
+                window.location.replace("http://"+item+"/mobile#/newLogin");
             },
             addListnerClass(){
                 $(".info-nr-phone").toggleClass("info-nr-phone2");
