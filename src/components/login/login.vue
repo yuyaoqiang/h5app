@@ -45,7 +45,7 @@
                 </div>
                 <div class="login-msg clearfix">
                     <p><span @click="openOnlineService" class="fl">在线客服</span></p>
-                    <!-- <p><span v-if="regUrl != ''&& regUrl!=null && disableDomain==-1" @click="openRegUrl">立即注册</span></p> -->
+                    <p><span v-if="regUrl != ''&& regUrl!=null" @click="openRegUrl">立即注册</span></p>
                     <p><span v-if="platformSetting.allowTryPlay==true" @click="loginShiWan" class="fr">立即试玩</span></p>
                 </div>
             </div>
@@ -259,7 +259,7 @@
             },
             openRegUrl(){
                 let _this = this;
-                this.$router.push({path:`reg?code=${_this.regUrl}`});
+                this.$router.push({path:`reg`});
             }
         },
         destroyed(){

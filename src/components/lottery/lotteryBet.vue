@@ -842,7 +842,7 @@
 }
 .last-issue{
     text-align:center;
-    margin-left: 0.23rem;
+    margin-left: 0.1rem;
 }
 .last-nums{
     text-align:center;

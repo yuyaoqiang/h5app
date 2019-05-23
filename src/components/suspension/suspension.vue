@@ -11,6 +11,7 @@
 <script>
     import userBusiness  from '../../assets/js/business/user/userBusiness';
     import cacheUtil from "../../assets/js/util/cacheUtil"
+    import dragUtil from "../../assets/js/util/dragUtil"
     export default {
         data () {
             return {
@@ -27,6 +28,7 @@
             userBusiness.getUser(this,function (user) {
             _this.lines=user.lines;
             });
+           new dragUtil.Drag(document.getElementById("info-nr"));
         },
         methods: {
             onAndOff(){

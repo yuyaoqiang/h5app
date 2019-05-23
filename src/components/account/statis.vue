@@ -14,6 +14,7 @@
                 <p><span>充值人数:</span>{{statisticalData.inMoneyPeopleCount}}</p>
                 <p><span>统计人数:</span>{{statisticalData.peopleCount}}</p>
                 <p><span>新增人数:</span>{{statisticalData.newRegistCount}}</p>
+                <p><span>首冲人数:</span>{{statisticalData.firstInMoneyPeopleCount || 0}}</p>
             </li>
             <li>
                 <p><span>投注人数:</span>{{statisticalData.betPeopleCount}}</p>

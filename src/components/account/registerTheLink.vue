@@ -30,7 +30,8 @@
                 </ul>
                 <ul class="display-box link-delete">
                     <li>{{item.enabled==1?'已启用':'已禁用'}}</li>
-                    <li>{{item.regTypeDesc}}</li>
+                    <li class="last-link">{{item.regTypeDesc}}</li>
+                    <li>返点:{{item.bonus}}</li>
                 </ul>
                 <ul class="display-box link-delete">
                     <li @click="linkOff(item.uniquess)">{{item.enabled==1?'禁用':'启用'}}</li>
