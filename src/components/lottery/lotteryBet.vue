@@ -864,6 +864,8 @@
 }
 .resultNums {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .resultNums dl {

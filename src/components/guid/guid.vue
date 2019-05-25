@@ -16,9 +16,9 @@
                 <li  class="down_app">
                     <a href="javascript:;" id="btnOpenApp" @click="toDownloadBanner">
                         <i class="iconfont icon-cebianfudongtiaoshoujifuzhi" style="font-size: 0.4rem"></i>手机客户端
-                      <!--   <div class="login-dloadbanner" style="display:none">
+                        <div class="login-dloadbanner" style="display:none">
                             <v-downloadBanner ref="downloadBanner"></v-downloadBanner>
-                        </div> -->
+                        </div>
                     </a>
                     
                 </li>
