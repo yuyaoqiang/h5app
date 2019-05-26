@@ -63,6 +63,7 @@ export default {
         { id: 201, name: "二分PK10", logo: "bdb2fpk10.png", type: "pk10rules", displayType: "klc", },
         { id: 200, name: "极速PK10", logo: "bdb1fpk10.png", type: "pk10rules", displayType: "klc", },
 
+        { id: 204, name: "幸运快三", logo: "xyk3.png", type: "k3rules", },
         { id: 28, name: "江苏快三", logo: "icon_jsk3.png", type: "k3rules", },
         { id: 29, name: "安徽快三", logo: "icon_awk3.png", type: "k3rules", },
         { id: 31, name: "湖北快三", logo: "icon_hbk3.png", type: "k3rules", },
