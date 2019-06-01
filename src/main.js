@@ -27,9 +27,9 @@ Vue.use(VueClipboard)
 
 
 Vue.prototype.scrollTopl = null;
-import { InfiniteScroll, DatetimePicker, Swipe, SwipeItem } from 'mint-ui';
+import { InfiniteScroll, DatetimePicker, Swipe, SwipeItem, Checklist} from 'mint-ui';
 Vue.use(InfiniteScroll);
-
+Vue.component(Checklist.name, Checklist);
 Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);

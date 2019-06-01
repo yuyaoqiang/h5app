@@ -28,6 +28,15 @@
                         <input type="password" placeholder="密码"  v-model.trim="newUserInfo.password"/>
                     </dd>
                 </dl>
+                 <dl class="display-flex pt15">
+                    <label class="mint-checklist-label remember-checkbox">
+                       <span class="mint-checkbox">
+                            <input class="mint-checkbox-input out-line" type="checkbox"  v-model="remember"/>
+                            <span class="mint-checkbox-core"></span>
+                       </span>
+                    </label>
+                   <dd class="flex-box remember-text">记住密码</dd>
+                </dl>
                 <dl v-if="loginNeedValidateCode != false" class="display-flex pt15">
                     <dt class="login-icon">
                         <img src="../../assets/images/yzm.png">
@@ -68,10 +77,13 @@
     import arrayUtil from '../../assets/js/util/arrayUtil'
     import userRegDomainBusiness from '../../assets/js/business/user/userRegDomainBusiness'
     import appContext from '../../assets/js/context/appContext'
+    import cacheUtil from '../../assets/js/util/cacheUtil'
+    import { Base64 } from 'js-base64';
     import bus from '../eventBus'
     export default {
         data () {
             return {
+                remember:false,
                 loginNeedValidateCode:false,
                 validateUrl: "",
                 regUrl: "",
@@ -96,6 +108,7 @@
             this.initValidateCodeDisplay();
             this.isSafe();
             this.platformSetting = platformData.setting;
+            this.isRemember();
             this.refreshCode();
 
             var array = $L_appSetting.disableDomain || [];
@@ -150,6 +163,7 @@
             },
             logins:function(){
                 var _this = this;
+                console.log(this.newUserInfo);
                 if(this.newUserInfo.userName == ''){
                     this.lalterWarning("用户名不能为空");
                     return false
@@ -171,6 +185,7 @@
                 userInfoApi.login(params,(res)=>{
                     if(res.code == 200){
                         _this.loginSuccess();
+                        _this.remember2pw();
                     }else {
                         this.lalterError(res.msg);
                         _this.newUserInfo.validate = '';
@@ -178,6 +193,20 @@
                         _this.loginNeedValidateCode=res.data.needValidateCode;
                     }
                 })
+            },
+            remember2pw(){
+                if(!this.remember)return;
+                cacheUtil.setLocalStorage("user",this.newUserInfo.userName);
+                cacheUtil.setLocalStorage("encode2pw",Base64.encode(this.newUserInfo.password));
+            },
+            isRemember(){
+                let user = cacheUtil.getLocalStorage("user")
+                let password = cacheUtil.getLocalStorage("encode2pw")
+                if(user){
+                    this.remember = true;
+                    this.newUserInfo.userName = user;
+                    this.newUserInfo.password = Base64.decode(password);
+                }
             },
             refreshCode: function(){
                 this.validateUrl = securityApi.getVerifyCodeUrl()+"?" + Math.random();
@@ -277,5 +306,23 @@
 <style>
     .login-btnbox{
         margin-top: 0.30rem;
+    }
+    .remember-checkbox{
+        width: 0.6rem;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .remember-text{
+        color: #fff;
+        background: none;
+        border: none;
+        box-sizing: border-box;
+    }
+    .mint-checkbox-core{
+        background-color: #ffffff !important;
+        border-color: #ffffff !important;
+    }
+    .mint-checkbox-input:checked + .mint-checkbox-core::after{
+            border-color: #ff5050;
     }
 </style>
