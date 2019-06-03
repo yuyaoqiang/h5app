@@ -202,7 +202,19 @@
                         <p>第四步：点击【转账到银行卡】</p>
                         <p>第五步：根据以上信息按步骤完成充值。</p>
                     </dd>
+                </dl><dl class="recharge-step" v-if="bankInfo.mark=='wxzyhk'">
+                    <dt><b>充值步骤：</b></dt>
+                    <dd>
+                        <p>第一步：打开微信</p>
+                        <p>第二步：点击右上角+号,并选择收付款</p>
+                        <p>第三步：选择转账到银行卡</p>
+                        <p>第四步：填写入款银行账号</p>
+                        <p>第五步：填写您要转入的金额,转账说明填写:真实姓名(重要)</p>
+                        <p>第六步：确认金额并确定支付</p>
+                        <p>第七步：转账成功,一般到账时间为2分钟内,取决于微信官方</p>
+                    </dd>
                 </dl>
+
                 <dl class="recharge-step" v-if="bankInfo.mark == 'xxcz'">
                     <dt><b>充值步骤：</b></dt>
                     <dd>
@@ -425,7 +437,7 @@
                         return false;
                     }
 
-                    if(/^[+]{0,1}(\d+)$/.test(this.depositMoney)==false){
+                    if(/^[+]{0,1}(\d+)$/.test(this.dewpositMoney)==false){
                         this.lalterWarning("请输入有效的充值金额");
                         return false;
                     }
@@ -509,9 +521,13 @@
                             _this.bankInfo.markName = '支付宝'
                             _this.bankInfo.mark = 'zfb'
                         }
-                        if(_this.bankInfo.bankname=='微信充值'){
+                        if(_this.bankInfo.bankname=='微信充值' || _this.bankInfo.bankname=='微信转银行卡'){
                             _this.bankInfo.markName = '微信'
                             _this.bankInfo.mark = 'wx'
+                        }
+                         if(_this.bankInfo.bankname=='微信转银行卡'){
+                            _this.bankInfo.markName = '微信'
+                            _this.bankInfo.mark = 'wxzyhk'
                         }
                         if (_this.isAllowRemote == false) {
                             if (platformData.setting.code == "qj" || platformData.setting.code == "jn") {
@@ -632,7 +648,7 @@
                     }
                 }
 
-                if (/^[+]{0,1}(\d+)$/.test(this.money) == false  && _this.bankInfo.bankname != '线下微信' && _this.bankInfo.bankname != '支付宝') {
+                if (/^[+]{0,1}(\d+)$/.test(this.money) == false  && _this.bankInfo.bankname != '线下微信' && _this.bankInfo.bankname != '支付宝' && _this.bankInfo.bankname != '微信转银行卡') {
                     this.lalterWarning("请输入有效的充值金额");
                     return false;
                 }

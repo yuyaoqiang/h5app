@@ -274,7 +274,10 @@ textarea {
     -moz-flex: 1;
     box-sizing: border-box;
 }
-
+.display-box .lottery-issue{
+    flex: none;
+    margin-left: 0.15rem;
+}
 .flex-box-2 {
     -webkit-box-flex: 2;
     -moz-box-flex: 2;

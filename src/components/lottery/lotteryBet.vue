@@ -842,7 +842,7 @@
 }
 .last-issue{
     text-align:center;
-    margin-left: 0.1rem;
+    margin-left: 0.15rem;
 }
 .last-nums{
     text-align:center;
@@ -863,9 +863,11 @@
     border: 1px solid #ddd;
 }
 .resultNums {
+    height: 0.3rem;
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .resultNums dl {
