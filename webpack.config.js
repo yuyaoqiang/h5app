@@ -11,15 +11,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // -----------------------------------------------------------------------------
 
 var objPlatform = {
-    1:'50k', 2:'bdb',3:'bjc', 4:'bjg',5:'bkc',6:'ds',7:'hkc',8:'jh',9:'jn',10:'jxb',
-    11:'lsb',12:'my', 13:'n8',14:'qc',15:'qj',16:'sbc',17:'su8',18:'vc',19:'ybw',20:'yfc',21:'ylc',22:'yygj', 
-   
+    1:'hhgj'
 }
 
 var index = 0;//index=0 本机开发； index=1 本机打包
 
 //打包的平台编码  
-var lotteryPlatform = objPlatform[12];
+var lotteryPlatform = objPlatform[1];
 
 if(!lotteryPlatform){
     console.log('平台不存在')
