@@ -26,7 +26,7 @@
             <header class="lottery-issue-box">
                 <ul class="display-box">
                     <li class="lottery-issue">
-                        <span @click="showHistory(true)">第{{lottery.issue}}期</span>
+                        <span @click="showHistory(true,lottery.type.name,lottery)">第{{lottery.issue}}期</span>
                     </li>
                     <li class="lottery-time">
                         <div class="lottery-time-box">
@@ -106,8 +106,12 @@
                 <div class="alert-main">
                     <h1 class="alert-title">开奖记录</h1>
                     <div class="history-content">
+                        <span class="loaing-text" v-if="lotteryHistoryList===null">正在加载中....</span>
                         <ul class="display-flex" v-for="item in lotteryHistoryList">
-                            <li class="history-alert-issue">{{item.issueno}}</li>
+                            <li :class="[lottery.type.numLen===10?'history-alert-issue-10':'',
+                                         lottery.type.numLen===8?'history-alert-issue-8':'',
+                                         lottery.type.numLen===5?'history-alert-issue':'',
+                                         lottery.type.numLen===5?'history-alert-issue':'']">{{item.issueno}}</li>
                             <li class="flex-box">
                                 <b v-for="n in item.nums.split(' ')"
                                    :class="[
@@ -116,7 +120,9 @@
                                     pcddBallColor.gray.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-gray':
                                     pcddBallColor.blue.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-blue':'',
                                 ]">{{n}}</b>
-
+                                <b v-if="lottery.type.name == 'k3rules'" class="ball-gray">{{item.bs}}</b>
+                                <b v-if="lottery.type.name == 'k3rules'" class="ball-pink">{{item.sd}}</b>
+                                <b v-if="lottery.type.name == 'k3rules'" class="ball-green">{{item.count}}</b>
                                 <span v-if="lottery.type.name == 'pcdd'">= <b>{{item.nums.split(' ')[0]/1 + item.nums.split(' ')[1]/1 + item.nums.split(' ')[2]/1}}</b></span>
                             </li>
                         </ul>
@@ -267,12 +273,11 @@
             appContext.current = this;
             this.loadUser();
             this.lotteryCountdown();
-            this.showHistory()
             this.pcddBallColor = baseData.pcddBallColor;
             this.heightHtml = document.documentElement.clientHeight;
         },
         mounted(){
-            
+              
         },
         methods: {
              //amq推送回调方法
@@ -669,24 +674,48 @@
                     });
                 }
             },
-            showHistory(val) {
+            showHistory(val,lott) {
                 var _this = this;
-                
+                _this.lotteryHistoryList = null;
                 var id = _this.$route.query.gameId;
-                
                 var params = {
                     gameIds: _this.$route.query.gameId
                 }
                 lotteryBusiness.getHistoryNums(params, function (data) {
-                    
-                    _this.lotteryHistoryList = data[params.gameIds].reverse();
+                    if(lott === "k3rules"){
+                                console.log(data);
+                        _this.lotteryHistoryList = _this.computeHistoryTypes(data[params.gameIds].reverse());
+                    }else{
+                        _this.lotteryHistoryList = data[params.gameIds].reverse();
+                    }
                     _this.showNumberHis = _this.lotteryHistoryList[0];
-                    
                 });
                 if(val){
                     this.dialogLottery = true;
                 }
                
+            },
+            computeHistoryTypes(list){
+                console.log(this.lottery.type.name);
+                list.forEach(item=>{
+                    let arr = item.nums.split(" ");
+                    let count = this.countNums(arr);
+                    let bs = this.bigAndsmall(count);
+                    let sd = this.sginlAndDouble(count);
+                    item.count = count;
+                    item.bs = bs;
+                    item.sd = sd;
+                })
+                return list;
+            },
+            countNums(list){
+                return list.reduce(function(pre,cur){return pre/1 + cur/1})
+            },
+            bigAndsmall(item){
+                return item > 10 ? "大": "小"
+            },
+            sginlAndDouble(item){
+                return item%2 === 1 ?  "单": "双"
             },
             initLottery(id){
                 var _this=this;
@@ -930,7 +959,14 @@
     font-weight: 700;
     border: 1px solid #ddd;
 }
-
+.loaing-text{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.13rem;
+}
 .bigNum dl:last-child {
     margin-right: 0;
 }

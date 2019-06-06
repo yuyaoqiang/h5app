@@ -2428,7 +2428,7 @@ span.link-address{
 }
 .lottery-issue{
   line-height: 0.35rem;
-  overflow: hidden;
+  // overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: rgb(51,51,51,1);
@@ -2454,11 +2454,11 @@ span.link-address{
   width: 0;
   height: 0;
   content: "";
-  border: solid 4px transparent;
+  border: solid 6px transparent;
   border-top-color:rgb(51,51,51,1);
   position: absolute;
   right: -0.12rem;
-  top: 0.07rem;
+  top: 0.05rem;
 }
 .lottery-time{
   line-height: 0.35rem;
@@ -3305,18 +3305,32 @@ span.link-address{
   box-sizing: border-box;
 }
 .history-alert-issue{
-  width: 1.3rem;
+  width: 1rem;
   line-height: 0.25rem;
   text-align: center;
   color: #6a4d48;
+}
+.history-alert-issue-8{
+  width: 1rem;
+  line-height: 0.25rem;
+  text-align: center;
+  color: #6a4d48;
+  flex: 90%;
+}
+.history-alert-issue-10{
+  width: 1rem;
+  line-height: 0.25rem;
+  text-align: center;
+  color: #6a4d48;
+  flex: 80%;
 }
 .history-content b{
   font-weight: normal;
   font-size: 0.12rem;
   display: inline-block;
-  width: 0.25rem;
-  height: 0.25rem;
-  line-height: 0.25rem;
+  width: 0.23rem;
+  height: 0.23rem;
+  line-height: 0.23rem;
   text-align: center;
   background: @main-color;
   color: #ffffff;
@@ -3351,7 +3365,10 @@ span.link-address{
     color: #ffffff;
     background: blue;
   }
-
+  &.ball-pink{
+    color: #ffffff;
+    background: rgb(215, 60, 253);
+  }
   &.ball-green{
     color: #ffffff;
     background: green;
@@ -4668,6 +4685,10 @@ line-height: 0.3rem;
 .ball-gray{
   color: #ffffff;
   background: #f38922;
+}
+.ball-pink{
+  color: #ffffff;
+  background: hsl(286, 92%, 64%);
 }
 .kg-pcdd-box div{
   position: absolute;
