@@ -11,13 +11,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // -----------------------------------------------------------------------------
 
 var objPlatform = {
-    1:'hhgj'
+    1:'hhgj',2:"my"
 }
 
 var index = 0;//index=0 本机开发； index=1 本机打包
 
 //打包的平台编码  
-var lotteryPlatform = objPlatform[1];
+var lotteryPlatform = objPlatform[2];
 
 if(!lotteryPlatform){
     console.log('平台不存在')
