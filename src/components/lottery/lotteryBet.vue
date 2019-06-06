@@ -112,7 +112,7 @@
                                          lottery.type.numLen===8?'history-alert-issue-8':'',
                                          lottery.type.numLen===5?'history-alert-issue':'',
                                          lottery.type.numLen===5?'history-alert-issue':'']">{{item.issueno}}</li>
-                            <li class="flex-box">
+                            <li class="flex-box-history">
                                 <b v-for="n in item.nums.split(' ')"
                                    :class="[
                                     pcddBallColor.red.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-red':
