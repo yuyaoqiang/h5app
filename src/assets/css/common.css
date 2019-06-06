@@ -270,7 +270,7 @@ textarea {
     align-items: end;
     justify-content: space-evenly;
 }
-.display-box li{
+.display-box li,.flex-box{
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -webkit-flex: 1;
@@ -280,7 +280,7 @@ textarea {
     -moz-flex: 1;
     box-sizing: border-box;
 }
-.flex-box {
+.flex-box-history {
     display: flex;
     flex-wrap: wrap;
 }
