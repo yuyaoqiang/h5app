@@ -1,8 +1,8 @@
 export default {
     setting: {
         code: "my",
-        name: "辉煌国际",
-        title: "辉煌国际",
+        name: "GO彩国际",
+        title: "GO彩国际",
         url: "http://xxxxxx.com/",
         allowTryPlay: true,
         allowRemoteUrl: true,

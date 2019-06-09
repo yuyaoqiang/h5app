@@ -21,6 +21,18 @@
                     </dd>
                 </dl>
                 <dl class="display-flex pt10 register-box">
+                    <dt><span class="red">*</span> 密码:</dt>
+                    <dd class="flex-box">
+                        <input v-model.trim="data.password"  placeholder="必须在6-16个字符之间" type="password"/>
+                    </dd>
+                </dl>
+                <dl class="display-flex pt10 register-box">
+                    <dt><span class="red">*</span> 确认密码:</dt>
+                    <dd class="flex-box">
+                        <input v-model.trim="data.repassword"  placeholder="必须在6-16个字符之间" type="password">
+                    </dd>
+                </dl>
+                <dl class="display-flex pt10 register-box">
                     <dt><span class="red">*</span> 昵称:</dt>
                     <dd class="flex-box">
                         <input v-model.trim="data.nickname"  placeholder="不能超过16位字符" type="text"/>
@@ -32,7 +44,12 @@
                         <input v-model.trim="data.email"  placeholder="请输入有效邮箱" type="text"/>
                     </dd>
                 </dl>
-
+                <dl  class="display-flex pt10 register-box"  v-if="regRestrict.regQQConfig != -1">
+                    <dt><span class="red"  v-show="regRestrict.regQQConfig ==1">*</span> QQ:</dt>
+                    <dd class="flex-box">
+                        <input v-model.trim="data.qq"  placeholder="请输入有效qq号码" type="text"/>
+                    </dd>
+                </dl>
                 <dl  class="display-flex pt10 register-box"  v-if="regRestrict.regMobileConfig != -1">
                     <dt><span class="red"  v-show="regRestrict.regMobileConfig ==1">*</span> 手机号:</dt>
                     <dd class="flex-box">
@@ -43,24 +60,6 @@
                     <dt><span class="red">*</span> 推荐码:</dt>
                     <dd class="flex-box">
                         <input v-model.trim="data.regCode"  placeholder="请输入有效的推荐码" type="text"/>
-                    </dd>
-                </dl>
-                <dl  class="display-flex pt10 register-box"  v-if="regRestrict.regQQConfig != -1">
-                    <dt><span class="red"  v-show="regRestrict.regQQConfig ==1">*</span> QQ:</dt>
-                    <dd class="flex-box">
-                        <input v-model.trim="data.qq"  placeholder="请输入有效qq号码" type="text"/>
-                    </dd>
-                </dl>
-                <dl class="display-flex pt10 register-box">
-                    <dt><span class="red">*</span> 密码:</dt>
-                    <dd class="flex-box">
-                        <input v-model.trim="data.password"  placeholder="必须在6-16个字符之间" type="password"/>
-                    </dd>
-                </dl>
-                <dl class="display-flex pt10 register-box">
-                    <dt><span class="red">*</span> 确认密码:</dt>
-                    <dd class="flex-box">
-                        <input v-model.trim="data.repassword"  placeholder="必须在6-16个字符之间" type="password">
                     </dd>
                 </dl>
                 <dl class="display-flex pt10 register-box">
@@ -149,6 +148,34 @@
         created(){
             var _this = this;
             this.getUrlParam();
+            debugger;
+             if(this.isAgentReg.agentRegId){
+                userInfo.appRegCode({code:this.isAgentReg.agentRegId},function(resp){
+                    if(resp.code==200){
+                        _this.data.regCode = resp.data.sysDefaultRegCode;
+                    }
+                    
+                })
+            }else{
+                if(stringUtil.isBlank(this.isAgentReg.code)){
+                    this.lconfirm("该注册链接为无效的注册链接",{
+                        showCancelButton:false,
+                        closeOnClickModal:false
+                    },function () {
+                        window.opener = null;//禁止某些浏览器的一些弹窗
+                        window.open('','_self');
+                        window.close()
+                    })
+                }
+    
+                var regCode = this.isAgentReg.code
+                this.data.regCode = regCode;
+                var isPc = deviceUtil.isPC();
+                if(isPc==true) {
+                    window.location.href = "/pcapp/index.html#/reg?code=" + regCode;
+                    return;
+                }
+            }
             var regCode = this.isAgentReg.code
             this.data.regCode = regCode;
             userInfo.regCode((res)=>{
