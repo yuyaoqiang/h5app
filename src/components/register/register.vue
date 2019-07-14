@@ -148,34 +148,6 @@
         created(){
             var _this = this;
             this.getUrlParam();
-            debugger;
-             if(this.isAgentReg.agentRegId){
-                userInfo.appRegCode({code:this.isAgentReg.agentRegId},function(resp){
-                    if(resp.code==200){
-                        _this.data.regCode = resp.data.sysDefaultRegCode;
-                    }
-                    
-                })
-            }else{
-                if(stringUtil.isBlank(this.isAgentReg.code)){
-                    this.lconfirm("该注册链接为无效的注册链接",{
-                        showCancelButton:false,
-                        closeOnClickModal:false
-                    },function () {
-                        window.opener = null;//禁止某些浏览器的一些弹窗
-                        window.open('','_self');
-                        window.close()
-                    })
-                }
-    
-                var regCode = this.isAgentReg.code
-                this.data.regCode = regCode;
-                var isPc = deviceUtil.isPC();
-                if(isPc==true) {
-                    window.location.href = "/pcapp/index.html#/reg?code=" + regCode;
-                    return;
-                }
-            }
             var regCode = this.isAgentReg.code
             this.data.regCode = regCode;
             userInfo.regCode((res)=>{

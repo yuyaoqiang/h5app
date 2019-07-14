@@ -20,7 +20,7 @@
                     <li><span class="link-level">{{registerLinkList.TYPE[item.usertype]}}</span></li>
                 </ul>
                 <ul class="display-flex link-register">
-                    <li class="flex-box link-address">注册码：<span class="orange link-reg-code" >{{item.newRegCode}}</span></li>
+                    <li class="flex-box link-address">推荐码：<span class="orange link-reg-code" >{{item.newRegCode}}</span></li>
                     </li>
                     <li class="link-img" @click="showDialog(item.currentRegUrl,'扫一扫注册')"><img
                             src="../../assets/images/code_icon.png"></li>

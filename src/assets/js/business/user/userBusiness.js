@@ -599,7 +599,7 @@ export default {
                 return;
             }
         }
-        appContext.current.lalterWarning("提现功能暂时关闭,若有疑问请联系客服!");
+        appContext.current.lalterWarning("系统开小差了,若有疑问请联系客服!");
     },
     toGame(view, id, name) {
 
