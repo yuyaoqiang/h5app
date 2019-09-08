@@ -307,7 +307,7 @@
             <div class="alert-main">
                 <h1 class="alert-title">分红管理</h1>
                 <div class="alert-modify-fh">
-                    <li>用户名称: <span>{{fhglData.username}}</span></li>
+                    <li>账号称: <span>{{fhglData.username}}</span></li>
                     <li>用户昵称: <span>{{fhglData.nickname}}</span></li>
                     <li>当前分红: <span>{{fhglData.slaveDividend+'%'}}</span></li>
                     <li>分红设置:
@@ -445,7 +445,7 @@
                 userList:{
                     US:[]
                 },
-                searchName:'',//搜索用户名
+                searchName:'',//搜索账号
                 //修改返点data
                 modifyBonus:{
                     MYBONUS:'',

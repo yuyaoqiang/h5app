@@ -87,8 +87,8 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: -webkit-linear-gradient(135deg, #ff5050 1%,#ff2b2c 32%,#e83c3d 70%,#eb3c23 100%);
-  background: linear-gradient(135deg, #ff5050 1%,#ff2b2c 32%,#e83c3d 70%,#eb3c23 100%);
+  background: -webkit-linear-gradient(135deg, @main-color 1%,@main-color 32%,@main-color 70%,@main-color 100%);
+  background: linear-gradient(135deg, @main-color 1%,@main-color 32%,@main-color 70%,@main-color 100%);
   background-size: cover;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -114,14 +114,14 @@
 }
 .login-logo section {
   position: absolute;
-  top: 50%;
+  top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
 }
 
 .login-logo img {
-  width: 1.3rem;
+  width: 1.6rem;
   display: block;
 }
 .login-logo .ds_img {
@@ -129,7 +129,7 @@
   
 }
 .login-container {
-  padding: 0 0.15rem;
+  padding: 0.5rem 0.15rem 0;
   height: 3.5rem;
   min-height: -webkit-calc(100% - 31.6rem);
   min-height: -moz-calc(100% - 31.6rem);
@@ -256,7 +256,7 @@
 
   //注册页面
 .register-container {
-  padding: 0 0.15rem;
+  padding: .4rem 0.15rem 0;
   height: 3.8rem;
   min-height: -webkit-calc(100% - 31.6rem);
   min-height: -moz-calc(100% - 31.6rem);
@@ -398,6 +398,7 @@
   overflow: hidden;
 }
 .lottery-note ul{
+  padding: 0;
   background: #ffffff;
   border-radius: 0.14rem;
 }
@@ -4957,11 +4958,11 @@ line-height: 0.3rem;
   height: 1.48rem;
   overflow: hidden;
 }
-.index-header-box h1{
-  text-align: center;
-  line-height: 0.44rem;
-  font-weight: normal;
-  color:@font-main-color;
+.index-header-box .logo-header{
+  height: 0.44rem;
+  display: inline-block;
+  margin-left: 50%;
+  transform: translateX(-50%)
 }
 .column-icon-box{
   position: absolute;
@@ -5050,6 +5051,12 @@ line-height: 0.3rem;
   padding-top: 0.12rem;
   height: 0.86rem;
   box-sizing: border-box;
+}
+
+.index-menu p{
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(255, 62, 58)), to(rgb(161, 80, 249)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .index-menu div{

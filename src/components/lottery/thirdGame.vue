@@ -21,15 +21,15 @@
             
                 <section class="recording-height" v-if="current != null" style="padding-top:0.4rem">
                     <ul class="display-flex platform-enter" v-for="item in current.list">
-                    <li class="flex-box">
+                    <li class="flex-box"  @click="playGame(item)">
                         <img :src="require('../../assets/platform/main/images/game/'+item.image)">
                     </li>
-                    <li class="platform-sidebar">
+                    <!-- <li class="platform-sidebar">
                         <div>
                             <h2>{{item.name}}</h2>
                             <button type="button"  @click="playGame(item)">立即游戏</button>
                         </div>
-                    </li>
+                    </li> -->
                     </ul>
                 </section>
             </div>
@@ -252,8 +252,11 @@
                 } else {
                     var $form = $("#game_form");
 
-                    if(platform=="AG" || platform=="KY"){
+                    if(platform=="AG"){
                         $form.attr("method","post")
+                    }
+                    if( platform=="KY"){
+                        $form.attr("method","get")
                     }
                     $form.attr("action", val);
                     $form.submit();
@@ -272,5 +275,13 @@
 
 
 <style  scoped>
-
+.display-flex{
+    padding: 0.05rem 0 0;
+    box-shadow: 0 1px 0 #e8e8e8 inset;
+    -webkit-box-shadow: 0 1px 0 #e8e8e8 inset;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 </style>

@@ -1,11 +1,11 @@
+@import "../platform/main/platform.less";
 .guid-bg{
     position: fixed;
     top:0;
     left: 0;
     bottom: 0;
     right: 0;
-    background: -webkit-linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%);
-    background: linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%);
+    background-image: url('../images/guide.png');
     background-size: cover;
 }
 .guid-icon{
@@ -21,16 +21,31 @@
     -webkit-transform: translate(-50%,-50%);
 }
 .guid-icon img{
-    width: 1.3rem;
+    width: 1.5rem;
     display: block;
 }
 .guid-main{
     font-size: 0.16rem;
     color: #f5f5f5;
     text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 .guid-main li{
-    padding-top: 0.35rem;
+    padding: 0.1rem 0;
+    color: #f7c200;
+    width: 44%;
+    border-bottom: 1px dashed;
+    i{
+        color: #f7c200;
+    }
+    a{
+        color: #f7c200;
+    }
+}
+.guid-pc-frist{
+    border-top: 1px dashed;
 }
 .pc-icon{
     width: 0.27rem;

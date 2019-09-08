@@ -353,7 +353,7 @@
 
                 let userName = this.$route.query.userName;
 
-                let account = this.$route.query.account;//用户名加密
+                let account = this.$route.query.account;//账号加密
                 let nickName = this.$route.query.nickName;//用户昵称
 
                 let nameSign = this.$route.query.nameSign;

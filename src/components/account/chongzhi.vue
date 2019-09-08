@@ -252,7 +252,7 @@
                     {desc:'支付宝充值',type:'zfb',list:[],icon:'icon-umidd17',color:'#00c2ff'},
                 ],
                 payPlatformList:[], //当前选择充值列表
-                inMoneyType:'1', //账户类型
+                inMoneyType:'0', //账户类型
                 accountnOption:[
                     {value: '0',label: '钱包中心'},
                     {value: '1',label: '彩票中心'}

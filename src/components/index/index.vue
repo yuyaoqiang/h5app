@@ -2,7 +2,7 @@
     <div>
 
         <v-header :titleName="titleName" v-show="showTitle"></v-header>
-        <v-suspension></v-suspension>
+        <!-- <v-suspension></v-suspension> -->
         <div class="lottery-slide-left">
             <v-slippery :user="user" ref="tagIndex"></v-slippery>
         </div>

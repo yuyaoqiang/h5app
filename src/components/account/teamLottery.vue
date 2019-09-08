@@ -24,7 +24,7 @@
             <div class="lottery-play-bg"></div>
             <div class="userquery-select">
                 <div class="search-user">
-                    <div><img src="../../assets/images/icon37_b.png" alt="search"><input type="text" placeholder="请输入用户名" v-model="setting.username"></div>
+                    <div><img src="../../assets/images/icon37_b.png" alt="search"><input type="text" placeholder="请输入账号" v-model="setting.username"></div>
                     <div @click.stop="switchUserQuery(item)" :class="setting.usernameQuery == item.value?'active':''" v-for="item in usernameQuery">{{item.label}}</div>
                 </div>
                 <ul class="display-box trend-set-btn" @click="showCard = false">

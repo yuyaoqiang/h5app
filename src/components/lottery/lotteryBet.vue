@@ -2,7 +2,7 @@
     <div>
         <div class="bet-chatroom-icon" @click="toChatroom" v-if="user.isChatroom"></div>
 
-        <v-suspension></v-suspension>
+        <!-- <v-suspension></v-suspension> -->
         <div class="index-header-box lottery-box-header">
             <header class="header-box betting-header">
                 <div class="column-icon-box" @click="leftSlide">
@@ -239,8 +239,8 @@
                 lotteryHistoryList: [],
                 betting:null,
                 menuList:[
-                    {code:"Tradition",name:"彩票投注",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:true},
-                    {code:"Kg",name:"KG投注",icon:"icon-youxi_K",isOpen:false,type:"v-kg-betting",active:false},
+                    {code:"Tradition",name:"彩票投注",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:false},
+                    {code:"Kg",name:"KG投注",icon:"icon-youxi_K",isOpen:false,type:"v-kg-betting",active:true},
                     {code:"Chatroom",name:"聊天室",icon:"icon-youxi_liaotianshi",isOpen:false,type:"v-chatroom",active:false},
                 ],
                 menuSetting:{
@@ -728,6 +728,9 @@
                     var lty = arrayUtil.findFirst(ltyList,item=>{return item.id==id});
                     _this.collection = lty.favorited;
                     if(_this.menuList[1] && _this.menuList[1].active){
+                         _this.menuList[1].isOpen=true;
+                         _this.menuList[0].isOpen=true;
+                          _this.betting=_this.menuList[1].type;
                         return;
                     }
                     if(lty != null){

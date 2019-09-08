@@ -2,12 +2,12 @@
     <div class="guid-bg display-vertical">
         <div class="guid-icon">
             <section>
-                <img src="../../assets/platform/main/images/logo.png">
+                <img src="../../assets/platform/main/images/guide-logo.png">
             </section>
         </div>
         <div class="flex-box">
             <ul class="guid-main">
-                <li @click="toPcApp">
+                <li @click="toPcApp" class="guid-pc-frist">
                     <i class="iconfont icon-diannao"></i>电脑网页版
                 </li>
                 <li @click="toH5App">
@@ -76,7 +76,7 @@
 
 <style scoped lang="less">
     @import "../../assets/platform/main/platform.less";
-    @import "../../assets/css/guid.css";
+    @import "../../assets/css/guid.less";
 
     .guid-main,.guid-msg{
         color: @reg-input-title;

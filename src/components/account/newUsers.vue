@@ -109,7 +109,7 @@
                     return false;
                 }
                 if(this.username.length < 5 || this.username.length > 12){
-                    this.lalterError("用户名必须在5-12个字符之间！")
+                    this.lalterError("账号必须在5-12个字符之间！")
                     return false;
                 }
 

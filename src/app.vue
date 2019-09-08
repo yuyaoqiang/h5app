@@ -21,7 +21,7 @@
             }
         },
         beforeCreate(){
-            document.title=platformData.setting.title;
+            document.title='Welcome';
         },
         created(){
             

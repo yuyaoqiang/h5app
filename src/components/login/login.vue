@@ -16,7 +16,7 @@
                         <i class="iconfont icon-dibu_zhanghu_hover"></i>
                     </dt>
                     <dd class="flex-box login-input">
-                        <input type="text" placeholder="用户名" name="username" v-model.trim="newUserInfo.userName"/>
+                        <input type="text" placeholder="账号" name="username" v-model.trim="newUserInfo.userName"/>
                     </dd>
                 </dl>
                 <dl class="display-flex pt15">
@@ -165,7 +165,7 @@
                 var _this = this;
                 console.log(this.newUserInfo);
                 if(this.newUserInfo.userName == ''){
-                    this.lalterWarning("用户名不能为空");
+                    this.lalterWarning("账号不能为空");
                     return false
                 }
                 if (this.newUserInfo.password == ''){
@@ -288,7 +288,7 @@
             },
             openRegUrl(){
                 let _this = this;
-                this.$router.push({path:`reg`});
+                this.$router.push({path: `reg`,query: {code: _this.regUrl}});
             }
         },
         destroyed(){

@@ -4,7 +4,7 @@
             <div class="column-icon-box" @click="leftSlide" v-if="user.init==true">
                 <i class="column-icon"></i>
             </div>
-            <h1>{{titleName}}</h1>
+            <img class="logo-header" src="/h5app/static/img/logo.png"></img>
             <div class="index-login-to" v-if="user.apiReqFinish==true&&user.init==false"><a @click="toLogin">登录</a></div>
             <div class="index-login-try" v-if="user.apiReqFinish==true&&user.init==false"><a href="javascript:void(0);" @click="loginShiWan">试玩</a></div>
             <div class="down-load-app" v-if="user.init==true">

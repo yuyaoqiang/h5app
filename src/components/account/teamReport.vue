@@ -172,7 +172,7 @@
                         </div>
                     </div>
                     <div class="search-user" v-if="searchType == 'user'">
-                        <div><img src="../../assets/images/icon37_b.png" alt="search"><input type="text" placeholder="请输入用户名" v-model="setting.username"></div>
+                        <div><img src="../../assets/images/icon37_b.png" alt="search"><input type="text" placeholder="请输入账号" v-model="setting.username"></div>
                         <div @click="setting.usernameQuery = 1" :class="setting.usernameQuery == 1?'active':''">个人</div>
                         <div @click="setting.usernameQuery = 2" :class="setting.usernameQuery == 2?'active':''">团队</div>
                     </div>
