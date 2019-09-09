@@ -208,7 +208,7 @@
                     var params={
                         platform:platform,
                         gameType: item.type,
-                        tryPlay:false
+                        tryPlay:false 
                     };
 
                     _this.lshowWait();
@@ -256,7 +256,8 @@
                         $form.attr("method","post")
                     }
                     if( platform=="KY"){
-                        $form.attr("method","get")
+                        window.open(val)
+                        return;
                     }
                     $form.attr("action", val);
                     $form.submit();
