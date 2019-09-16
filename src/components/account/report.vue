@@ -46,7 +46,7 @@
                                + data.ALLSSUM.bbselfbonusmoney / 1)>0?'+':''}}{{((data.ALLSSUM.bbinvideowinmoneytotal + data.ALLSSUM.bbinsportwinmoneytotal + data.ALLSSUM.bbinvideogamewinmoneytotal) / 1
                                + data.ALLSSUM.bbselfbonusmoney / 1)  | fixedMoney}}
                            </p>
-                           <p v-if="item.name == 'MG'"> {{(data.ALLSSUM.mgvideowinmoneytotal + data.ALLSSUM.mgselfbonusmoney)>0?'+':''}}{{(data.ALLSSUM.mgvideowinmoneytotal + data.ALLSSUM.mgselfbonusmoney)  | fixedMoney}}
+                           <p v-if="item.name == 'MG'"> {{(data.ALLSSUM.mgvideowinmoneytotal -data.ALLSSUM.mgvideoordermoneytotal+ data.ALLSSUM.mgselfbonusmoney)>0?'+':''}}{{(data.ALLSSUM.mgvideowinmoneytotal - data.ALLSSUM.mgvideoordermoneytotal+ data.ALLSSUM.mgselfbonusmoney)  | fixedMoney}}
                            </p>
                            <p v-if="item.name == 'PT'"> {{(data.ALLSSUM.ptvideowinmoneytotal + data.ALLSSUM.ptselfbonusmoney)>0?'+':''}}{{(data.ALLSSUM.ptvideowinmoneytotal + data.ALLSSUM.ptselfbonusmoney)  | fixedMoney}}
                            </p>

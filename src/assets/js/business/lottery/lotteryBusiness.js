@@ -402,33 +402,26 @@ export default {
                         var indexLotteryList = [];
                         var data = (resp.data || []).reverse();
                         var lotteryList = userBussiness.getLotteryList();
-                        for (var i = 0; i < data.length; i++) {
-                            var lottery = arrayUtil.findFirst(lotteryList, item => {
-                                return item.id == data[i].id
+                        for (var i = 0; i < lotteryList.length; i++) {
+                            console.log(lotteryList[i].deep,lotteryList[i])
+                            var lottery = arrayUtil.findFirst(data, item => {
+                                return item.id == lotteryList[i].id
                             });
-                            if (lottery != null) {
-                                indexLotteryList.push(lottery);
+                            if (lottery == null) {
+                                let lot = Object.assign({},lotteryList[i]);
+                                lot['openTradition']=false
+                                indexLotteryList.push(lot);
+                            }else{
+                                lotteryList[i].deep = lottery.deep;
+                                indexLotteryList.push(lotteryList[i]);
                             }
                         }
-                        _this.indexLotteryList = indexLotteryList;
+                        _this.indexLotteryList = indexLotteryList.sort((a,b)=>{return a.deep<b.deep?1:-1})
                         callback(_this.indexLotteryList);
                     } else {
                         console.error("获取首页推荐采种失败:" + resp.msg);
                     }
                 })
-                /*
-                 var indexLotteryIds=[1,13,37,28,4,19,18]
-                 var lotteryList=userBussiness.getLotteryList();
-                 this.indexLotteryList=[];
-
-                 arrayUtil.forEach(indexLotteryIds,id=>{
-                 var lottery=arrayUtil.findFirst(lotteryList,item=>{return id == item.id;});
-                 if(lottery!=null){
-                 this.indexLotteryList.push(lottery);
-                 }
-                 });
-                 callback(this.indexLotteryList);*/
-
             return;
         }
         callback(this.indexLotteryList);

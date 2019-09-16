@@ -118,9 +118,9 @@
     width: 100%;
     height: 100%;
     position: relative;
-    /* background:url("../../assets/platform/main/images/down-bg.jpg") no-repeat center; */
-        background: -webkit-linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%);
-    background: linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%);
+    background:url("../../assets/platform/main/images/down-bg.png") no-repeat center;
+        /* background: -webkit-linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%); */
+    /* background: linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%); */
     background-size: cover;
 }
 .down-wx{

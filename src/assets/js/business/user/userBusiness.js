@@ -316,7 +316,7 @@ export default {
         var types = lotteryTypeData.types;
 
         var list = platformData.lotteryGames;
-
+        
         var displayTypes = platformData.lotteryDisplayTypes;
 
         for (var i in list) {
@@ -369,10 +369,11 @@ export default {
                     var item = arrayUtil.findFirst(data, d => {
                         return lottery.id == d.id
                     });
-                    if (item == null) {
+                    if (item == undefined) {
                         return;
                     }
                     lottery.openKg = true;
+                    lottery.deep= item.deep;
                 });
                 _this.user.kgInitFinish = true;
                 _this.setAllLotteryInitFinish();

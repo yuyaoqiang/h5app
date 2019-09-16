@@ -41,7 +41,7 @@
             </div>
             <div class="slippery-game-box">
                 <ul v-show="tagIndex==0">
-                    <li v-for="item in lotteryList" v-if="item.openTradition==true || item.openKg==true" @click="toLotteryBet(item)">
+                    <li v-for="item in lotteryList" v-if="item.permission==true || item.openKg==true" @click="toLotteryBet(item)">
                         <p>{{item.name}} <i class="hot-icon" v-if="item.hot"></i></p>
                     </li>
                 </ul>
@@ -183,8 +183,13 @@
             }         
         },
         created(){
+            let _this=this;
             this.initUser();
-            this.lotteryList = userBusiness.getLotteryList();
+            lotteryBusiness.getIndexLotteryList(function (indexLotteryList) {
+                   if (indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
+                    _this.lotteryList  =indexLotteryList
+                   }
+            })
         },
         watch:{
             "user.isShiWan":function(){

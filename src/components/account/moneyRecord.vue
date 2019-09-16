@@ -60,7 +60,7 @@
                         <p>状态：{{records.STATUS[item.status]}}</p>
                     </li>
                 </ul>
-                <ul  class="display-box recording-list" v-if="selecteDown.active&&selecteDown.selected!='SB' &&selecteDown.selected!='KY'" v-for="item in records.MIR">
+                <ul  class="display-box recording-list" v-if="selecteDown.active&&selecteDown.selected!='SB' &&selecteDown.selected!='KY' &&selecteDown.selected!='MG'" v-for="item in records.MIR">
                     <li>
                         <p v-if="selecteDown.selected">
                             {{records.GTYPE[item.gameType]?records.GTYPE[item.gameType].name:""}}
@@ -80,7 +80,21 @@
                         <p>状态：{{records.TYPE[item.flag]}}</p>
                     </li>
                 </ul>
+                <ul  class="display-box recording-list" v-if="selecteDown.active&&selecteDown.selected=='MG'" v-for="item in records.MIR">
+                    <li>
+                        <p>
+                           游戏类型: {{records.GTYPE[item.gameCasinoId]?records.GTYPE[item.gameCasinoId]:'其它'}}
+                        </p>
 
+                        <p>用户名:{{item.userName}}</p>
+                        <p>投注单号:{{item.colld}}</p>
+                    </li>
+                    <li class="text-right">
+                        <p>投注金额:{{item.amount}}</p>
+                        <p :class="item.amount>0?'red':'green'">中奖额度:{{item.win}}</p>
+                        <!-- <p>状态：{{records.GSTATE[item.ticket_status]}}</p> -->
+                    </li>
+                </ul>
                 <ul  class="display-box recording-list" v-if="selecteDown.active&&selecteDown.selected=='SB'" v-for="item in records.MIR">
                     <li>
                         <p>

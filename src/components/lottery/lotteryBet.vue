@@ -239,8 +239,8 @@
                 lotteryHistoryList: [],
                 betting:null,
                 menuList:[
-                    {code:"Tradition",name:"彩票投注",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:false},
                     {code:"Kg",name:"KG投注",icon:"icon-youxi_K",isOpen:false,type:"v-kg-betting",active:true},
+                    {code:"Tradition",name:"彩票投注",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:false},
                     {code:"Chatroom",name:"聊天室",icon:"icon-youxi_liaotianshi",isOpen:false,type:"v-chatroom",active:false},
                 ],
                 menuSetting:{
@@ -720,10 +720,13 @@
             initLottery(id){
                 var _this=this;
                 var user=this.user;
-                
+                var ltyList ;
                 if(user.lotteryInitFinish==true){
-                    var ltyList = userBusiness.getLotteryList();
-                    _this.lotteryList = ltyList;
+                lotteryBusiness.getIndexLotteryList(function (indexLotteryList) {
+                    if (indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
+                       _this.lotteryList  = ltyList = indexLotteryList
+                    }
+                })
                     id =id==null? _this.$route.query.gameId:id;
                     var lty = arrayUtil.findFirst(ltyList,item=>{return item.id==id});
                     _this.collection = lty.favorited;

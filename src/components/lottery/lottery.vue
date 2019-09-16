@@ -229,6 +229,7 @@
 
                         lotteryApi.getBettingTimeList({gameIds: ids}, function (resp) {
                             if (resp.code == 200) {
+                                //todo
                                 var data = resp.data;
                                 arrayUtil.forEach(indexLotteryList, item => {
                                     var countdown = data[item.id];
