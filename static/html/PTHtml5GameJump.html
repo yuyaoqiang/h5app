@@ -1,160 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-    <title>PT游戏跳转中...</title>
-    <style>
-        .l-spinner-mask{
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: .4;
-            z-index:9900;
-            background: url('/h5app/static/img/login_bg.png')
-        }
-        .l-spinner-three-bounce.l-spinner{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            background: none!important;
-            z-index: 9909;
-            margin: 0 auto;
-            width: 200px;
-            transform: translate(-50%,-50%);
-            text-align: center;
-        }
-        .l-spinner-three-bounce div{
-            width: 40px;
-            height: 40px;
-            background-color: #0092dd;
-            border-radius: 100%;
-            display: inline-block;
-            -webkit-animation: l-threeBounceDelay 1.4s infinite ease-in-out;
-            animation: l-threeBounceDelay 1.4s infinite ease-in-out;
-            -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-        }
-        .l-spinner-three-bounce .l-bounce1{
-            -webkit-animation-delay: -.32s;
-            animation-delay: -.32s;
-        }
-        .l-spinner-three-bounce .l-bounce2{
-            -webkit-animation-delay: -.16s;
-            animation-delay: -.16s;
-        }
-        @-webkit-keyframes l-threeBounceDelay{
-            0%,
-            100%,
-            80%{-webkit-transform:scale(0);transform: scale(0) }
-            40%{-webkit-transform:scale(1);transform: scale(1) }
-        }
-        @keyframes l-threeBounceDelay{
-            0%,
-            100%,
-            80%{-webkit-transform:scale(0);transform: scale(0) }
-            40%{-webkit-transform:scale(1);transform: scale(1) }
-        }
-    </style>
-</head>
-<body>
 
-    <div class="show-hide">
-        <div class="l-spinner-mask"></div>
-        <div class="l-spinner l-spinner-three-bounce">
-            <div class="l-bounce1"></div>
-            <div class="l-bounce2"></div>
-            <div class="l-bounce3"></div>
-        </div>
-    </div>
-    <span class="show-text"></span>
-</body>
-</html>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <meta content="true" name="HandheldFriendly" />
+  <meta content="width=device-width; initial-scale=1; maximum-scale=1; minimum-scale=1" name="viewport" />
+  <title>HTML5 Login</title>
+  <script src="/pcapp/static/js/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="https://login.ld176988.com/jswrapper/integration.js.php?casino=winforfun88"></script>
+  <script type="text/javascript">
+
+    var username = "PT用户名";
+    var password=  "PT密码";
+    var lang = "zh"; //语言
+    var gamecode= "anwild";  //游戏gameid
 
 
-<script src="/pcapp/static/js/jquery-3.1.1.min.js"></script>
-<script src="https://login.luckydragon88.com/jswrapper/integration.js.php?casino=greatfortune88"></script>
-<script>
-   
-        var c1 = null;
-        var c2 = null;
-    
-        var u1 = null;
-        var u2 = null;
-        let href='http://hub.ld76888.com/';
-    
-        $(function () {
-    
-            
-            
-            c1 = getUrlParam("c1")//游戏code
-    
-            var tryPlay = getUrlParam("t1") == "true";
-            if (tryPlay) {
-                toTryPtGame();
-                return;
-            }
-    
-    
-            c2 = getUrlParam("c2");
-            var sourceStr = decrypt(c2);
-    
-            u1 =getParamVal(sourceStr,"u1").toUpperCase();//ptUser.username
-            u2 =getParamVal(sourceStr,"u2");//ptUser.password
-    
-            var mills =parseInt(getParamVal(sourceStr,"u3"));
-    
-            if((new Date().getTime()-mills)>(1000*60*1)){
-                alert("该游戏链接已经过期,请重新点击进入游戏")
-                $('.show-text').text('该游戏链接已经过期,请返回重新点击进入游戏')
-                return;
-            }
-    
-            setTimeout(function () {
-    
-                if(iapiSetCallout == null){
-                    alert("加载游戏失败！")
-                } 
-                iapiSetCallout('Login', response => {
-                    console.log(response,1)
-                    let code = +response.errorCode
-                    
-                    document.querySelector('.show-hide').style.display = 'none';
-                    if (code && code !== 6){
-                        alert('Login failed', code);
-                        $('.show-text').text('登录失败')
-                    }else{
-                        console.log('进入手机登录...');
-                        iapiRequestTemporaryToken(1, '424', 'GamePlay');
-                        iapiSetCallout('GetTemporaryAuthenticationToken', response => {
-                            console.log(response,2)
-                            if (response.errorCode) {
-                                alert("Token failed. " + response.playerMessage + " Error code: " + response.errorCode);
-                            } else {
-                                
-                                let jumpUrl = `http://hub.ld176888.com/igaming/?gameId=${c1}&real=1&username=${u1}&lang=zh-cn&tempToken=${response.sessionToken.sessionToken}&lobby=${href + 'lobby.html'}&support=${href + 'support.html'}&logout=${href + 'logout.html'}&deposit=${href + 'deposit.html'}`;
-                                document.location=jumpUrl;
-                            }
-                        })
-                    }
-                    
-                })
-                iapiSetClientPlatform("mobile&deliveryPlatform=HTML5")
-                console.log('调用登录..');
-                iapiLogin(u1, u2, 1, "en");
-    
-                
-            }, 500)
-    
-    
-    
-        })
-    
-    
-        
-        function getUrlParam(name) {
+    window.onload = function () { 
+        gamecode = getUrlParam("c1")//游戏code
+        var tryPlay = getUrlParam("t1") == "true";
+        if (tryPlay) {
+            toTryPtGame();
+            return;
+        }
+        debugger
+        c2 = getUrlParam("c2");
+        var sourceStr = decrypt(c2);
+
+        username =getParamVal(sourceStr,"u1").toUpperCase();//ptUser.username
+        password =getParamVal(sourceStr,"u2");//ptUser.password
+
+        var mills =parseInt(getParamVal(sourceStr,"u3"));
+        debugger
+        login();
+        };
+    //iapiSetCallout('Login');
+    iapiSetCallout('Login', calloutLogin);
+
+    function login() {
+      iapiSetClientPlatform("mobile&deliveryPlatform=HTML5");
+      var realMode = 1;
+      debugger
+      iapiLogin(username, password, realMode, lang === "zh" ? "ch" : "en");
+    }
+    function calloutLogin(response) {
+      if (response.errorCode) {
+        alert("Login failed. " + response.playerMessage + " Error code: " + response.errorCode)
+
+      }
+      else {
+        askTempandLaunchGame('thtk');
+      }
+    }
+    function getUrlVars() {
+
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+      });
+      return vars;
+
+    }
+
+    iapiSetCallout('GetTemporaryAuthenticationToken', calloutGetTemporaryAuthenticationToken);
+
+    function askTempandLaunchGame(gamecode) {
+
+      currentgame = gamecode;
+      var realMode = 1;
+
+      iapiRequestTemporaryToken(realMode, '424', 'GamePlay');
+
+    }
+
+    function launchMobileClient(temptoken) {
+      var clientUrl = 'http://hub.ld176988.com/igaming/' + '?gameId=' + gamecode + '&real=1' + '&username=' + username + '&lang=' + (lang === "zh" ? "zh-cn" : "en") + '&tempToken=' + temptoken;
+      document.location = clientUrl;
+    }
+
+    function calloutGetTemporaryAuthenticationToken(response) {
+      if (response.errorCode) {
+        alert("Token failed. " + response.playerMessage + " Error code: " + response.errorCode);
+      }
+
+      else {
+        launchMobileClient(response.sessionToken.sessionToken);
+      }
+
+    }
+    function getUrlParam(name) {
             try {
                 var url = window.location.href;
                 var paramStr=url.substring(url.lastIndexOf("/") + 1).split("?")[1];
@@ -187,7 +118,5 @@
             }
             return source;
         }
-       
-</script>
-
-
+  </script>
+</html>

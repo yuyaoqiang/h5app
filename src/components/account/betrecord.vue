@@ -294,7 +294,6 @@
                     }else{
                         _this.lalterWarning(res.msg);
                     }                             
-                    _
                 })
             },
             deleteOrder(unique,event){

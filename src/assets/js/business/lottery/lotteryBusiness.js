@@ -403,7 +403,6 @@ export default {
                         var data = (resp.data || []).reverse();
                         var lotteryList = userBussiness.getLotteryList();
                         for (var i = 0; i < lotteryList.length; i++) {
-                            console.log(lotteryList[i].deep,lotteryList[i])
                             var lottery = arrayUtil.findFirst(data, item => {
                                 return item.id == lotteryList[i].id
                             });

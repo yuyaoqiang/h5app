@@ -683,7 +683,6 @@
                 }
                 lotteryBusiness.getHistoryNums(params, function (data) {
                     if(lott === "k3rules"){
-                                console.log(data);
                         _this.lotteryHistoryList = _this.computeHistoryTypes(data[params.gameIds].reverse());
                     }else{
                         _this.lotteryHistoryList = data[params.gameIds].reverse();
@@ -696,7 +695,6 @@
                
             },
             computeHistoryTypes(list){
-                console.log(this.lottery.type.name);
                 list.forEach(item=>{
                     let arr = item.nums.split(" ");
                     let count = this.countNums(arr);
@@ -723,6 +721,7 @@
                 var ltyList ;
                 if(user.lotteryInitFinish==true){
                 lotteryBusiness.getIndexLotteryList(function (indexLotteryList) {
+                   console.log(2)
                     if (indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
                        _this.lotteryList  = ltyList = indexLotteryList
                     }

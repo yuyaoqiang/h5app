@@ -27,12 +27,15 @@
                     <p  class="recording-single">单号：{{item.ordernumber}}</p>
                 </li>
                 <li  class="text-right">
+                    <p  v-show="item.state==1" >
+                        <button type="button" class="betting-remove"  @click.stop="deleteOrder(item.uniqueness,$event)">撤单</button>
+                    </p>
                     <p>{{betRecord.STATE[item.state]}}</p>
                     <p :class="[item.iswin==1?'red':'green']" v-if="item.state!=1 && item.state!=2">
                         盈亏：¥{{ item.winmoney - item.betmoneytotal | fixedMoney}}</p>
                     <p class="red recording-icon" v-show="item.iswin==1">
                         <img src="../../assets/images/icom_jiang.png">¥{{item.winmoney}}</p>
-                </li>
+                </li> 
             </ul>
             <div class="recording-no"><i class="el-icon-loading" v-if="loadicon"></i><span>{{loadingDesc}}</span></div>
         </section>
@@ -178,7 +181,7 @@
                     {"desc":"全部",state:"",selected:true},
                     {"desc":"已开奖",state:"4",selected:false},
                     {"desc":"未开奖",state:"1",selected:false},
-                    //{"desc":"已撤单",state:"2",selected:false}
+                    {"desc":"已撤单",state:"2",selected:false}
                 ],
                 loadicon:false,
                 loadingDesc:"",
@@ -289,7 +292,6 @@
                     }else{
                         _this.lalterWarning(res.msg);
                     }                             
-                    
                 })
             },
             deleteOrder(unique,event){
@@ -315,6 +317,8 @@
                             _this.lalterSuccess(res.msg);
                             $(event.target).next('p').html("已撤单");
                             $(event.target).hide();
+                            _this.page=0;
+                            _this.search("");
                         }else{
                             _this.lalterError(res.msg);
                         }
