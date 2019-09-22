@@ -394,36 +394,36 @@ export default {
     },
 
     indexLotteryList: null,
-    getIndexLotteryList(callback) {
+    async  getIndexLotteryList(callback) {
         var _this = this;
         if (this.indexLotteryList == null) {
-            lotteryApi.getIndexLotteryList(function(resp) {
-                    if (resp.code == 200) {
-                        var indexLotteryList = [];
-                        var data = (resp.data || []).reverse();
-                        var lotteryList = userBussiness.getLotteryList();
-                        for (var i = 0; i < lotteryList.length; i++) {
-                            var lottery = arrayUtil.findFirst(data, item => {
-                                return item.id == lotteryList[i].id
-                            });
-                            if (lottery == null) {
-                                let lot = Object.assign({},lotteryList[i]);
-                                lot['openTradition']=false
-                                indexLotteryList.push(lot);
-                            }else{
-                                lotteryList[i].deep = lottery.deep;
-                                indexLotteryList.push(lotteryList[i]);
-                            }
+         await   userBussiness.initLotteryList();
+                 lotteryApi.getIndexLotteryList(function(resp) {
+                if (resp.code == 200) {
+                    var indexLotteryList = [];
+                    var data = (resp.data || []).reverse();
+                    var lotteryList = userBussiness.getLotteryList();
+                    for (var i = 0; i < lotteryList.length; i++) {
+                        var lottery = arrayUtil.findFirst(data, item => {
+                            return item.id == lotteryList[i].id
+                        });
+                        if (lottery == null) {
+                            let lot = Object.assign({},lotteryList[i]);
+                            lot['openTradition']=false
+                            indexLotteryList.push(lot);
+                        }else{
+                            lotteryList[i].deep = lottery.deep;
+                            indexLotteryList.push(lotteryList[i]);
                         }
-                        _this.indexLotteryList = indexLotteryList.sort((a,b)=>{return a.deep<b.deep?1:-1})
-                        callback(_this.indexLotteryList);
-                    } else {
-                        console.error("获取首页推荐采种失败:" + resp.msg);
                     }
-                })
-            return;
+                    _this.indexLotteryList = indexLotteryList.sort((a,b)=>{return a.deep<b.deep?1:-1})
+                    callback(_this.indexLotteryList);
+                } else {
+                    console.error("获取首页推荐采种失败:" + resp.msg);
+                }
+            })
         }
-        callback(this.indexLotteryList);
+        callback(_this.indexLotteryList);
     },
     getHistoryNums(params, callback) {
         var lotteryList = userBussiness.getLotteryList();

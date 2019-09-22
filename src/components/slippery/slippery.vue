@@ -41,7 +41,7 @@
             </div>
             <div class="slippery-game-box">
                 <ul v-show="tagIndex==0">
-                    <li v-for="item in lotteryList" v-if="item.permission==true || item.openKg==true" @click="toLotteryBet(item)">
+                    <li v-for="item in lotteryList" v-if="item.openTradition==true || item.openKg==true" @click="toLotteryBet(item)">
                         <p>{{item.name}} <i class="hot-icon" v-if="item.hot"></i></p>
                     </li>
                 </ul>

@@ -27,10 +27,7 @@ export default  {
         apiUtil.doPost('/lottery/list.mvc',params,callback);
     },
     getIndexLotteryList(callback){
-        setTimeout(() => {
-            apiUtil.doPost('/gameType/index-list.mvc',null,callback);
-        }, 500);
-        
+        apiUtil.doPost('/gameType/index-list.mvc',null,callback);
     },
     getColdHot(id,callback){
         apiUtil.doPost("/betRecord/coldHot.mvc",{gameType:id},callback)

@@ -261,7 +261,6 @@ export default {
                 callBack(_this.user);
             }
         });
-
         this.initLotteryList();
         this.initSysConfig();
 
@@ -307,12 +306,12 @@ export default {
 
     lotteryList: [],
     initLotteryList() {
-
+    return new Promise((resolve,reject)=>{
         var _this = this;
         if (this.lotteryList.length > 0) {
+            resolve();
             return;
         }
-
         var types = lotteryTypeData.types;
 
         var list = platformData.lotteryGames;
@@ -362,7 +361,6 @@ export default {
         }
 
         kgApi.getLotteryList(function (resp) {
-
             if (resp.code == 200) {
                 var data = resp.data || [];
                 arrayUtil.forEach(list, lottery => {
@@ -377,16 +375,16 @@ export default {
                 });
                 _this.user.kgInitFinish = true;
                 _this.setAllLotteryInitFinish();
-
+                lotteryBusiness.initLotteryInfos(list);
+                arrayUtil.cover(_this.lotteryList, list);
+                resolve();
             } else {
+                reject();
                 console.error("获取KG采种API失败," + JSON.stringify(resp))
             }
         });
-
-        lotteryBusiness.initLotteryInfos(list);
-
-        arrayUtil.cover(this.lotteryList, list);
-
+    })
+        
     },
     lotteryTypesWithList: null,
     getLotteryTypesWithList() {
