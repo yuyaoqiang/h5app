@@ -186,7 +186,7 @@
             let _this=this;
             this.initUser();
             lotteryBusiness.getIndexLotteryList(function (indexLotteryList) {
-                   if (indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
+                   if (indexLotteryList && indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
                     _this.lotteryList  =indexLotteryList
                    }
             })

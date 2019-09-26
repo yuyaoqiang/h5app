@@ -11,7 +11,7 @@ import lotteryTypeData from '../../data/lotteryTypeData';
 import objectUtil from './../../util/objectUtil';
 import appContext from './../../context/appContext';
 import fileLoader from './../../util/fileLoader';
-
+import _ from 'lodash'
 
 export default {
     STATUS_LIST: {
@@ -412,11 +412,18 @@ export default {
                             lot['openTradition']=false
                             indexLotteryList.push(lot);
                         }else{
-                            lotteryList[i].deep = lottery.deep;
-                            indexLotteryList.push(lotteryList[i]);
+                            let lot = Object.assign({},lotteryList[i]);
+                            lot.deep = lottery.deep;
+                            indexLotteryList.push(lot);
                         }
                     }
-                    _this.indexLotteryList = indexLotteryList.sort((a,b)=>{return a.deep<b.deep?1:-1})
+                    // _this.indexLotteryList = indexLotteryList.sort((a,b)=>{return a.deep<b.deep?1:-1})
+                     _this.indexLotteryList = _.sortBy(indexLotteryList,item=>-item.deep)
+                    _this.indexLotteryList.map(item=>{
+                        if(item.permission && item.openKg){
+                            console.log(item.name)
+                        }
+                    })
                     callback(_this.indexLotteryList);
                 } else {
                     console.error("获取首页推荐采种失败:" + resp.msg);

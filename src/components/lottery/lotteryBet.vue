@@ -721,8 +721,7 @@
                 var ltyList ;
                 if(user.lotteryInitFinish==true){
                 lotteryBusiness.getIndexLotteryList(function (indexLotteryList) {
-                   console.log(2)
-                    if (indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
+                    if (indexLotteryList && indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
                        _this.lotteryList  = ltyList = indexLotteryList
                     }
                 })

@@ -23,7 +23,7 @@
                         {{(item.isOwn == true ? user[item.name + 'Bal'] : item.bal) | fixedMoney}}
                     </li>
                     <li class="pb10 platform-name">
-                        {{item.desc}}(元)
+                        {{item.desc==='AGIN'?'AG':item.desc}}(元)
                         <button type="button" class="platform-opened" v-show="item.opened==false" @click="openTrdGame(item.name)">开通</button>
                     </li>
 
