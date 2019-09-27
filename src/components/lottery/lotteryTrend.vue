@@ -277,7 +277,6 @@
                             _this.setting.issueQty = 0;
                         }
                         _this.removeOffsetHistoryEnd = numList.length - _this.setting.issueQty;
-                        console.log(_this.removeOffsetHistoryEnd)
                         numList.forEach(item =>{
                             //_this.issueList.unshift(item)
                             _this.tableList.push(item)

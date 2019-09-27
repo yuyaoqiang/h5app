@@ -228,7 +228,6 @@
                     "bankname" : this.bankCard.bankname,
                     "id": this.bankCard.id
                 };
-                console.log(this.bankCard,666);
                 this.lconfirm('您是否确定修改该银行卡？', null, () => {
                     GetBankListApi.updatedBank(params,function(res){
                         if(res.code==200){

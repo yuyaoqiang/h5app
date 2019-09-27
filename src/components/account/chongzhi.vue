@@ -8,7 +8,7 @@
         </header>
         <div class="recharge-slide-left" :class="openSlide == true?'slide_active':''">
             <ul class="recharge-type">
-                <li @click="rechType(item)" class="display-flex" v-for="item in rechargeList" v-if="item.list.length>0">
+                <li @click="rechType(item)" v-bind:key="item.id" class="display-flex" v-for="item in rechargeList" v-if="item.list.length>0">
                   <i class="rechicon iconfont" :class="item.icon" :style="{color:item.color}"></i>  <p class="flex-box">{{item.desc}}</p> <p class="report-icon"><i class="el-icon-arrow-right"></i></p>
                 </li>
             </ul>
@@ -16,40 +16,41 @@
 
         <div class="recharge-slide-right" :class="openSlide == true?'slide_active':''">
             <!--支付方式-->
-            <div class="account-list mt15">
-                <ul class="display-flex">
-                    <li>支付方式:</li>
-                    <li class="flex-box bank-select">
+            <mt-cell title="请选择支付通道"></mt-cell>
+            <div class="account-list">
+                <mt-radio
+                   v-model="selectMerchantId" 
+                    :options="payPlatformList">
+                </mt-radio>
+                <!-- <li class="flex-box " v-bind:key="item.id"  v-for="item in payPlatformList">
+                    <input type="radio" name="paltformList"  @change="changeRech()" v-model="selectMerchantId"  :value="item.id" />
+                </li> -->
+                    <!-- <li class="flex-box bank-select">
                         <select @change="changeRech()" v-model="selectMerchantId">
                             <option v-for="item in payPlatformList" :label="item.descript"
                                     :value="item.id">{{item.descript}}
                             </option>
                         </select>
-                    </li>
-                </ul>
+                    </li> -->
             </div>
+            <section v-if="fixedNumber.length>2">
+                    <ul class="pay-display-flex">
+                        <li v-bind:key="index" v-for="(item,index) in fixedNumber" >
+                            <mt-button :class="'btn-border-color'" :type="depositMoney==item?'primary':'default'" size="normal" @click="getFixedMoney(item)">{{item}}</mt-button>
+                        </li>
+                    </ul>
+            </section>
             <!--在线扫码-->
             <section v-if="showType=='zxsm'">
                 <div class="account-list mt15">
-                    <ul class="display-flex">
-                        <li>充值账户:</li>
-                        <li class="flex-box bank-select">
-                            <select v-model="inMoneyType">
-                                <option v-for="item in accountnOption"
-                                        :label="item.label"
-                                        :value="item.value">{{item.label}}
-                                </option>
-                            </select>
-                        </li>
-                    </ul>
-                    <ul class="display-flex">
+                    <ul class="display-flex" v-if="fixedNumber.length<=2">
                         <li>充值金额:</li>
                         <li class="flex-box bank-input">
                             <input v-model.trim="depositMoney" type="number" placeholder="请输入金额"/>
                         </li>
                     </ul>
                 </div>
-                <div class="recharge-note">最低 ¥ <span class="red">{{merchant.minlimit}}</span> 元,最高 ¥ <span
+                <div v-if="fixedNumber.length<=2" class="recharge-note">最低 ¥ <span class="red">{{merchant.minlimit}}</span> 元,最高 ¥ <span
                         class="red">{{merchant.maxlimit}}</span> 元
                 </div>
                 <div class="recharge-btn-box">
@@ -255,7 +256,7 @@
                 inMoneyType:'0', //账户类型
                 accountnOption:[
                     {value: '0',label: '钱包中心'},
-                    {value: '1',label: '彩票中心'}
+                    // {value: '1',label: '彩票中心'}
                 ],
                 openSlide:false,
                 showType:'',
@@ -269,7 +270,6 @@
                 //线下充值
                 bankList: {},
                 money: null,
-                selectMerchantId: null,
                 bankInfo: {
                     bank: {minlimit: 0, maxlimit: 0},
                     markName:'',
@@ -290,7 +290,8 @@
                 minlimit: null,
                 maxlimit: null,
                 tjhyInfo:'',
-                isTjhy:false
+                isTjhy:false,
+                fixedNumber:[]
             }
         },
         created(){
@@ -343,10 +344,22 @@
                     }
                 });
             },
+            getFixedMoney(money){
+                this.depositMoney = money;
+            },
             rechType(payType){
                 this.openSlide = true;
-                this.payPlatformList = payType.list;
-                this.selectMerchantId=this.payPlatformList[0].id;
+                this.payPlatformList = payType.list.map(item=>{
+                    const min = item.minlimit || item.minmoney
+                    const max = item.maxlimit || item.maxmoney
+                    item.label=`${item.descript} (${min}-${max})`;
+                    item.value=item.id+'';
+                    return item;
+                });
+                
+                const payPlatform = this.payPlatformList[0];
+                this.selectMerchantId=payPlatform.value;
+                this.fixedNumber = payPlatform.url.split("#");
                 this.changeRech();
             },
             onCopy(e) {
@@ -358,7 +371,7 @@
             changeRech(){
                 let _this = this;
                 var rechType = arrayUtil.findFirst(_this.payPlatformList, item => {
-                            return item.id == _this.selectMerchantId
+                            return item.value == _this.selectMerchantId
                         });
                 if(rechType.onlineType=='online' && rechType.type!= 'wy'){
                     this.showType = 'zxsm';
@@ -375,7 +388,9 @@
                     this.showType = 'xxcz';
                     this.getBankInfo();
                 }
-                this.selectMerchantId=rechType.id;
+                this.fixedNumber = rechType.url ? rechType.url.split("#"):[];
+                this.selectMerchantId=rechType.value;
+                this.depositMoney = '';
                 this.merchant = rechType
             },
             submit(){
@@ -731,6 +746,11 @@
          /*   'v-lineRecharge':lineRecharge,
             'v-onlineRecharge':onlineRecharge,
             'v-onlineBanking':onlineBanking*/
+        },
+        watch: {
+            selectMerchantId (val) {
+                this.changeRech();
+            }
         }
     }
 </script>
@@ -738,9 +758,26 @@
     .bank-input input,.bank-select select{
         width: 100%;
     }
+    .btn-border-color{
+        border: 1px solid #b1b1b1;
+    }
     .copy-url img {
         width: 0.25rem;
         margin-right: 0.1rem;
         margin-top: 0.1rem;
+    }
+    .pay-display-flex{
+        padding: 0.05rem 0 0;
+        box-shadow: 0 1px 0 #e8e8e8 inset;
+        -webkit-box-shadow: 0 1px 0 #e8e8e8 inset;
+        box-sizing: border-box;
+        display: flex;
+        align-items: end;
+        flex-flow: wrap;
+        background: #fff;
+        li{
+            flex: 20%;
+            margin: 5px;
+        }
     }
 </style>

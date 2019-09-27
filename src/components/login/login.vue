@@ -163,7 +163,6 @@
             },
             logins:function(){
                 var _this = this;
-                console.log(this.newUserInfo);
                 if(this.newUserInfo.userName == ''){
                     this.lalterWarning("账号不能为空");
                     return false

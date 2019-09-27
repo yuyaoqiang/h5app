@@ -27,12 +27,15 @@ Vue.use(VueClipboard)
 
 
 Vue.prototype.scrollTopl = null;
-import { InfiniteScroll, DatetimePicker, Swipe, SwipeItem, Checklist} from 'mint-ui';
+import { InfiniteScroll, DatetimePicker, Swipe, SwipeItem, Checklist,Radio,Cell,Button} from 'mint-ui';
 Vue.use(InfiniteScroll);
 Vue.component(Checklist.name, Checklist);
 Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Radio.name, Radio);
+Vue.component(Cell.name, Cell);
+Vue.component(Button.name, Button);
 import "./assets/css/iconfont/iconfont.css"
 
 import "./assets/css/common.css"; //公共样式

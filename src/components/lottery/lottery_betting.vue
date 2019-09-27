@@ -858,7 +858,6 @@
         },
         beforeDestroy() {
             if (this.$parent.isDestory && this.isDestory) {
-                console.log("lottery destroy...")
                 lotteryBusiness.destroy();
             }
         },

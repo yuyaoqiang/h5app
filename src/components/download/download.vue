@@ -90,7 +90,6 @@
                             item.url = resp.data[item.device + "AppDownloadUrl"].split('@');
                             //item.url = resp.data[item.device + "AppDownloadUrl"]
                         });
-                        console.log(_this.apps)
                     } else {
                         console.error("getConfig is error," + JSON.stringify(resp));
                     }
