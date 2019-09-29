@@ -414,6 +414,7 @@ export default {
                         }else{
                             let lot = Object.assign({},lotteryList[i]);
                             lot.deep = lottery.deep;
+                            lot['openTradition']=true
                             indexLotteryList.push(lot);
                         }
                     }

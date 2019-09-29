@@ -15,7 +15,7 @@
             </div>
             <a id="download" href="http://baidu.com" style="display: none"></a>
             <footer class="login-footer">
-                <p>Copyright © 2017 {{platformSetting.name}} 版权所有 All Right Reserved</p>
+                <p>Copyright © 2015 {{platformSetting.name}} 版权所有 All Right Reserved</p>
             </footer>
         </div>
     </div>

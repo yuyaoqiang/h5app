@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="guid-msg">
-            <p>Copyright © 2018 {{platformSetting.name}} 版权所有 All Right Reserved</p>
+            <p>Copyright © 2015 {{platformSetting.name}} 版权所有 All Right Reserved</p>
         </div>
     </div>
 </template>

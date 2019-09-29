@@ -53,7 +53,7 @@
                     return
                 }
                 if(this.kgLottery.totalMoney == null || this.kgLottery.totalMoney==0){
-                    this.kgLottery.totalMoney=2;
+                    this.kgLottery.totalMoney=1;
                 }
                 let selectItem = {
                     id:ID,

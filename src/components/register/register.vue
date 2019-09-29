@@ -14,7 +14,7 @@
                 </div>
             </header>
             <section class="register-container" :style="platformSetting.userTelephone && platformSetting.useEmail?'height: 4.1rem':''">
-                <dl class="display-flex register-box">
+                <dl class="display-flex register-box reg-account-wrap">
                     <dt><span class="red">*</span> 账号:</dt>
                     <dd class="flex-box">
                         <input v-model.trim="data.username"  placeholder="必须在5-12位字符之间" type="text"/>
@@ -379,7 +379,7 @@
         background: #999;
     }
     .login-logo{
-        height: 1.2rem;
+        height: 0.8rem;
     }
     .radius{
         border-radius: 24px;
@@ -406,5 +406,8 @@
     }
     .m20{
         margin-top:0.2rem;
+    }
+    input::-webkit-input-placeholder{
+        color:#fff !important;
     }
 </style>

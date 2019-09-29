@@ -73,7 +73,7 @@
                             <h2>我的收藏</h2>
                         </div>
                     </li>
-                    <li v-for="item in lotteryList" v-if="item.permission==true || item.openKg==true"
+                    <li v-for="item in lotteryList" v-if="item.openTradition==true || item.openKg==true"
                         @click="toGame(item)">
                         <div>
                             <img :src="require('../../assets/images/lottery/'+item.logo)">

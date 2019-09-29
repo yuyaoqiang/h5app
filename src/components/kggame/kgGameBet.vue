@@ -398,8 +398,8 @@
                     kjlotteryBal:0,
                 },
                 setMoney: [{
-                    value: 2,
-                    label: '2元',
+                    value: 1,
+                    label: '1元',
                     imgUrl:'/h5app/static/img/chips/1.png'
                 }, {
                     value: 10,

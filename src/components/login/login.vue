@@ -10,7 +10,7 @@
                 </section>
             </header>
             <div class="login-container">
-                <dl class="display-flex">
+                <dl class="display-flex login-input-wrap">
                     <dt class="login-icon">
                         <!-- <img src="../../assets/images/icon11.png">-->
                         <i class="iconfont icon-dibu_zhanghu_hover"></i>
@@ -19,7 +19,7 @@
                         <input type="text" placeholder="账号" name="username" v-model.trim="newUserInfo.userName"/>
                     </dd>
                 </dl>
-                <dl class="display-flex pt15">
+                <dl class="display-flex">
                     <dt class="login-icon">
                         <!-- <img src="../../assets/images/icon12.png">-->
                         <i class="iconfont icon-suodingmima"></i>
@@ -62,7 +62,7 @@
                 <!-- <v-downloadBanner></v-downloadBanner> -->
             </div>
             <footer class="login-footer">
-                <p>Copyright © 2018 {{platformSetting.name}} 版权所有 All Right Reserved</p>
+                <p>Copyright © 2015 {{platformSetting.name}} 版权所有 All Right Reserved</p>
             </footer>
         </div>
     </div>
@@ -323,5 +323,8 @@
     }
     .mint-checkbox-input:checked + .mint-checkbox-core::after{
             border-color: #ff5050;
+    }
+    .login-input-wrap{
+        box-shadow: none;
     }
 </style>

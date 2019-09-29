@@ -728,12 +728,12 @@
                     id =id==null? _this.$route.query.gameId:id;
                     var lty = arrayUtil.findFirst(ltyList,item=>{return item.id==id});
                     _this.collection = lty.favorited;
-                    if(_this.menuList[1] && _this.menuList[1].active){
-                         _this.menuList[1].isOpen=true;
-                         _this.menuList[0].isOpen=true;
-                          _this.betting=_this.menuList[1].type;
-                        return;
-                    }
+                    // if(_this.menuList[1] && _this.menuList[1].active){
+                    //      _this.menuList[1].isOpen=true;
+                    //      _this.menuList[0].isOpen=true;
+                    //       _this.betting=_this.menuList[1].type;
+                    //     return;
+                    // }
                     if(lty != null){
                         var betCmp=null;
                         arrayUtil.forEach(_this.menuList,m=>{

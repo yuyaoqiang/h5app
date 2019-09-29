@@ -9,8 +9,8 @@
                     <dd @click="toBetChoice(betType,betType.id)" :class="{'active':betType.active}">
                         <div>
                             <p :class="{'pcdd-special-msg':type.id == '55'}">{{type.id == '55'?'特码三压一':betType.name}}</p>
-                            <p :class="{'pcdd-special-msg':type.id == '55'}" class="red">x {{betType.odds}}</p>
-                            <p class="betting-money" v-if="betType.active">¥{{kgLottery.totalMoney}} 元</p>
+                            <p :class="{'pcdd-special-msg':type.id == '55'}" class="red">{{betType.odds}}</p>
+                            <!-- <p class="betting-money" v-if="betType.active">¥{{kgLottery.totalMoney}} 元</p> -->
                         </div>
                     </dd>
                 </dl>
@@ -112,7 +112,7 @@
                     return
                 }
                 if(this.kgLottery.totalMoney == null || this.kgLottery.totalMoney==0){
-                    this.kgLottery.totalMoney=2;
+                    this.kgLottery.totalMoney=1;
                 }
                 let selectItem = {
                     id:ID,

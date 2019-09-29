@@ -9,9 +9,9 @@
                 <dd v-for="(betType,index) in type.betTypes" v-if="betType.name>=0 == false"
                     @click="toBetChoice(betType,betType.id,type.id)" :class="{'active':betType.active}">
                     <div>
-                        {{betType.name}} <span class="red">x {{betType.odds}}</span>
+                        {{betType.name}} <span class="red"> {{betType.odds}}</span>
 
-                        <p v-if="betType.active">¥{{kgLottery.totalMoney}}元</p>
+                        <!-- <p v-if="betType.active">¥{{kgLottery.totalMoney}}元</p> -->
                     </div>
                 </dd>
             </div>
@@ -57,7 +57,7 @@
                     return
                 }
                 if(this.kgLottery.totalMoney == null || this.kgLottery.totalMoney==0){
-                    this.kgLottery.totalMoney=2;
+                    this.kgLottery.totalMoney=1;
                 }
                 let selectItem = {
                     id:ID,

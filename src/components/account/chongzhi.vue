@@ -9,7 +9,7 @@
         <div class="recharge-slide-left" :class="openSlide == true?'slide_active':''">
             <ul class="recharge-type">
                 <li @click="rechType(item)" v-bind:key="item.id" class="display-flex" v-for="item in rechargeList" v-if="item.list.length>0">
-                  <i class="rechicon iconfont" :class="item.icon" :style="{color:item.color}"></i>  <p class="flex-box">{{item.desc}}</p> <p class="report-icon"><i class="el-icon-arrow-right"></i></p>
+                  <i class="rechicon iconfont" :class="item.icon" :style="{color:item.color}"></i>  <p class="flex-box pay-flex">{{item.desc}}<span v-if="item.type=='zxwy'" class="red-color">(额外赠送1%)</span></p> <p class="report-icon"><i class="el-icon-arrow-right"></i></p>
                 </li>
             </ul>
         </div>
@@ -352,14 +352,15 @@
                 this.payPlatformList = payType.list.map(item=>{
                     const min = item.minlimit || item.minmoney
                     const max = item.maxlimit || item.maxmoney
-                    item.label=`${item.descript} (${min}-${max})`;
+                    const isOnBank =  item.bankname  == '微信转银行卡' || item.bankname  ==  '支付宝转银行卡' 
+                    item.label=`${item.descript} (${min}-${max}) ${isOnBank?'(额外送1%)':''}`;
                     item.value=item.id+'';
                     return item;
                 });
                 
                 const payPlatform = this.payPlatformList[0];
                 this.selectMerchantId=payPlatform.value;
-                this.fixedNumber = payPlatform.url.split("#");
+                this.fixedNumber = payPlatform.url && payPlatform.url.split("#");
                 this.changeRech();
             },
             onCopy(e) {
@@ -779,5 +780,12 @@
             flex: 20%;
             margin: 5px;
         }
+    }
+    .pay-flex{
+        display: flex;
+    }
+    .red-color{
+        font-size: 12px;
+        color: red;
     }
 </style>
