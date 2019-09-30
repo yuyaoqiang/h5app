@@ -81,10 +81,14 @@
             userBusiness.getUser(this,function (user) {
                 _this.user=user;
             },true);
-            var lotteryList=userBusiness.getLotteryList();
-            this.lotteryList = lotteryList;
-            this.types=userBusiness.getLotteryTypesWithList();
-            this.search('sscrules',0);
+            lotteryBusiness.getIndexLotteryList(function (indexLotteryList) {
+                   if (indexLotteryList && indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
+                    _this.lotteryList  =indexLotteryList
+                      _this.types=userBusiness.getLotteryTypesWithList();
+                      _this.search('sscrules',0);
+                   }
+            })
+          
         },
         mounted(){
             //window.scroll()

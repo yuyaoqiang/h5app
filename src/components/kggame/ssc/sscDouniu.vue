@@ -6,8 +6,8 @@
                     <dd @click="toBetChoice(betType,betType.id)" :class="{'active':betType.active}">
                         <div>
                             <p>{{betType.name}}</p>
-                            <p class="red"> x {{betType.odds}}</p>
-                            <p class="betting-money" v-if="betType.active">¥ {{kgLottery.totalMoney}} 元</p>
+                            <p class="red">{{betType.odds}}</p>
+                            <!-- <p class="betting-money" v-if="betType.active">¥ {{kgLottery.totalMoney}} 元</p> -->
                         </div>
                     </dd>
                 </dl>

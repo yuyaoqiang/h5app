@@ -6,8 +6,8 @@
                 <i class="lottery-ball" :class="[ballColor.red.indexOf(betType.name)!=-1?'ball-red':
                         ballColor.green.indexOf(betType.name)!=-1?'ball-green':
                         'ball-blue']">{{betType.name}}</i>
-                <span class="red">x {{betType.odds}}</span>
-                <span class="betting-money" v-if="betType.active">¥ {{kgLottery.totalMoney}}元</span>
+                <span class="red">{{betType.odds}}</span>
+                <!-- <span class="betting-money" v-if="betType.active">¥ {{kgLottery.totalMoney}}元</span> -->
             </li>
         </ul>
     </div>

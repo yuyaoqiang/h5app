@@ -15,14 +15,14 @@
                             'ball-blue']">
                         {{name}}
                     </b>
-                    <span class="red wave-odd">x {{betType.odds}}</span>
+                    <span class="red wave-odd">{{betType.odds}}</span>
                 </dd>
 
-                <dd  class="red wave-odd" v-if="kgLottery.showDesc=='星色'">x {{betType.odds}}</dd>
+                <dd  class="red wave-odd" v-if="kgLottery.showDesc=='星色'">{{betType.odds}}</dd>
                 
-                <dd class="wave-money" v-if="betType.active">
+                <!-- <dd class="wave-money" v-if="betType.active">
                     ¥{{kgLottery.totalMoney}}元
-                </dd>
+                </dd> -->
             </dl>
             
         </div>

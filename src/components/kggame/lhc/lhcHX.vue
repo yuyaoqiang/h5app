@@ -12,8 +12,8 @@
                         {{name}}
                     </b>
                 </dd>
-                <dd  class="zodiac-odds red">x{{betType.odds}}</dd>
-                <dd  class="zodiac-odds zodiac-money" v-if="betType.active">¥{{kgLottery.totalMoney}} 元</dd>
+                <dd  class="zodiac-odds red">{{betType.odds}}</dd>
+                <!-- <dd  class="zodiac-odds zodiac-money" v-if="betType.active">¥{{kgLottery.totalMoney}} 元</dd> -->
             </dl>
         </div>
     </div>

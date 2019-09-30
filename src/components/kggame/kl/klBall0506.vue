@@ -10,9 +10,9 @@
                 <div class="betting-ball">
                     <p>
                         <i :class="{'ball':betType.name>=0,'active':betType.active}">{{betType.name}}</i>
-                        <span class="red">x {{betType.odds}}</span>
+                        <span class="red">{{betType.odds}}</span>
                     </p>
-                    <p v-if="betType.active">¥{{kgLottery.totalMoney}}元</p>
+                    <!-- <p v-if="betType.active">¥{{kgLottery.totalMoney}}元</!--> -->
                 </div>
             </dd>
         </dl>

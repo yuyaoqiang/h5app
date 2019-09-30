@@ -40,9 +40,9 @@
         data(){
             return {
                 apps: [
-                    {device: "android", desc: "Android下载", url: [],img:['android1.jpg','android2.jpg']},
+                    {device: "android", desc: "Android下载", url: [],img:['android1.png','android2.jpg']},
                     
-                    {device: "ios", desc: "iPhone下载", url: [],img:['ios_1.jpg','ios_2.jpg']},
+                    {device: "ios", desc: "iPhone下载", url: [],img:['ios_1.png','ios_2.jpg']},
                     
                 ],
                 init: false,

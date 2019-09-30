@@ -17,12 +17,12 @@
                     </b>
                     
                 </dd>
-                <dd  class="red wave-odd" v-if="kgLottery.showDesc=='半波'&&betType.active">x {{betType.odds}}</dd>
-                <dd  class="red wave-odd" v-if="kgLottery.showDesc!='半波'">x {{betType.odds}}</dd>
+                <dd  class="red wave-odd" v-if="kgLottery.showDesc=='半波'&&betType.active">{{betType.odds}}</dd>
+                <dd  class="red wave-odd" v-if="kgLottery.showDesc!='半波'">{{betType.odds}}</dd>
                 
-                <dd class="wave-money" v-if="betType.active" >
+                <!-- <dd class="wave-money" v-if="betType.active" >
                     ¥{{kgLottery.totalMoney}}元
-                </dd>
+                </dd> -->
             </dl>
             
         </div>

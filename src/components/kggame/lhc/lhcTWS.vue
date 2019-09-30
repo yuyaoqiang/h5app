@@ -4,8 +4,8 @@
             <li v-for="(betType,index) in kgBetTypes"   @click="toBetChoice(betType,betType.id)"
                 :class="{'active':betType.active}">
                 <i  class="lottery-block">{{betType.name}}</i>
-                <span class="red">x{{betType.odds}}</span>
-                <span class="betting-money" v-if="betType.active">¥{{kgLottery.totalMoney}}元</span>
+                <span class="red">{{betType.odds}}</span>
+                <!-- <span class="betting-money" v-if="betType.active">¥{{kgLottery.totalMoney}}元</span> -->
             </li>
         </ul>
     </div>

@@ -3,12 +3,12 @@
         <dl class="kg-betting-area" v-if="kgLottery.playTypes!=null  && titleView[type.id]!=null && type.isBall0508==true" v-for="type in kgLottery.playTypes">
             <dt>
                 <h3 :class="{'active':titleView[type.id/1].arr.length>0}">{{titleView[type.id/1].ballName}}</h3>
-                <p>{{titleView[type.id/1].desc}} <strong class="red">X {{type.betTypes[0].odds}}</strong></p>
+                <p>{{titleView[type.id/1].desc}} <strong class="red">{{type.betTypes[0].odds}}</strong></p>
             </dt>
             <dd v-for="(betType,index) in  type.betTypes" v-if="betType.name>=0"
                 @click="toBetChoice(betType,betType.id,type.id)" :class="{'active':betType.active}">
                 <i>{{betType.name}}</i>
-                <span v-if="betType.active">¥<strong class="betting-money">{{kgLottery.totalMoney}}</strong> 元</span>
+                <!-- <span v-if="betType.active">¥<strong class="betting-money">{{kgLottery.totalMoney}}</strong> 元</span> -->
             </dd>
         </dl>
     </div>

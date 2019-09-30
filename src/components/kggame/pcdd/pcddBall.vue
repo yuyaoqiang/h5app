@@ -10,9 +10,9 @@
                             'ball-green':ballColor.green.indexOf(betType.name)!=-1,
                             'ball-blue':ballColor.blue.indexOf(betType.name)!=-1,
                             'ball-gray':ballColor.gray.indexOf(betType.name)!=-1}">{{betType.name}}</i>
-                        <span class="red">x {{betType.odds}}</span>
+                        <span class="red">{{betType.odds}}</span>
                     </p>
-                    <p class="betting-money" v-if="betType.active">¥{{kgLottery.totalMoney}}元</p>
+                    <!-- <p class="betting-money" v-if="betType.active">¥{{kgLottery.totalMoney}}元</p> -->
                 </div>
             </li>
         </ul>
