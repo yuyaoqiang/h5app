@@ -51,6 +51,8 @@
         data () {
             return {
                 user: {
+                    nickName:'',
+                    email:''
                 }
             }
         },
@@ -82,7 +84,9 @@
                         UserInfor.baseInfo(params, (res) => {
                             if (res.code == 200) {
                                 _this.lalterSuccess(res.msg);
-                                _this.user.nickName = value;
+                               const obj =  Object.assign({},_this.user,{nickName:value})
+                               _this.user=obj;
+                          
                             } else {
                                 _this.lalterWarning(res.msg);
                             }
@@ -101,7 +105,8 @@
                         UserInfor.baseInfo(params,(res)=>{
                             if(res.code == 200){
                                 _this.lalterSuccess(res.msg);
-                                _this.user.email=value;
+                                   const obj =  Object.assign({},_this.user,{email:value})
+                                  _this.user=obj;
                             }else{
                                 _this.lalterWarning(res.msg);
                             }

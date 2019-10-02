@@ -14,7 +14,7 @@
                     <span v-if="levelActive.isopen&&user.isShiWan==false" class="levelActive">({{levelActive.name}})</span>
                 </div>
                 <ul class="account-money">
-                    <li class="account-wallet">¥ {{user.walletBal}} 元</li>
+                    <li class="account-wallet">¥ {{user.walletBal | fixedTo2}} 元</li>
                     <router-link class="account-money-icon"  tag="li" to="quotaConversion"> <i class="iconfont icon-zhanghu_zhuanhuan"></i>额度转换</router-link>
                 </ul>
             </header>

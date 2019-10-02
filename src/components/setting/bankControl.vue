@@ -127,7 +127,7 @@
                 if (this.locked){
                     return this.lalterWarning("添加新银行卡需用户联系客服解锁已绑定的银行卡!")
                 }
-                this.$router.push({path:'addBankcard'});
+                this.$router.push({path:'addBankcard',query:{withdrawHours:this.listPlatformBank.addBankCardNHWithdraw}});
             },
             openOnlineService:function () {
                 userBusiness.openCustomerService();

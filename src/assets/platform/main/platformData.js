@@ -3,7 +3,7 @@ export default {
         code: "my",
         name: "亚博彩票",
         title: "亚博彩票",
-        url: "http://xxxxxx.com/",
+        url: "http://ybcp918.com/",
         allowTryPlay: true,
         allowRemoteUrl: true,
         mlink: '', //唤醒app

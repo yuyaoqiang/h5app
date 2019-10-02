@@ -88,7 +88,10 @@ Vue.filter('time', function(value) {
 Vue.filter('fixed', function(value, len, defaultVal) {
     return numberUtil.toFixed(value, len ? len : 3, defaultVal);
 })
-
+//小数点  | fixed(number)
+Vue.filter('fixedTo2', function(value, len, defaultVal) {
+    return numberUtil.toFixed(value, len ? len : 2, defaultVal);
+})
 Vue.filter('toInteger', function(value, len, defaultVal) {
         return numberUtil.toIntger(value);
     })

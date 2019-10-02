@@ -156,5 +156,7 @@
     }
 </script>
 <style scoped>
-
+    input::placeholder{
+        color: #999999 !important;
+    }
 </style>

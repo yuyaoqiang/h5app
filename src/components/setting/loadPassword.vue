@@ -88,3 +88,8 @@
         }
     }
 </script>
+<style scoped>
+ input::placeholder {
+  color: #999 !important;
+}
+</style>

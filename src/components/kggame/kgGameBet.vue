@@ -39,7 +39,7 @@
             <ul class="display-flex lottery-odds-box" v-show="kgLottery.zhushu>0">
                 <li>
                     <div class="lottery-odds-input">
-                        <input type="number" maxlength="5" v-model.trim="kgLottery.totalMoney" class="lottery-odds" @keyup="multipleChange" @blur="multipleBlur">
+                        <input type="number" maxlength="5" v-model.trim="kgLottery.totalMoney" class="lottery-odds lottery-odds-money-wrap" @keyup="multipleChange" @blur="multipleBlur">
                     </div>
                 </li>
                 <li><p>元</p></li>
