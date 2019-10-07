@@ -63,10 +63,10 @@
                         </select>
                     </li>
                 </ul>
-                <ul class="display-flex">
+                <!-- <ul class="display-flex">
                     <li class="inpitem-name">资金密码</li>
                     <li class="flex-box bank-input"><input  type="password" v-model.trim="password" class="entry"  placeholder="请输入资金密码"/></li>
-                </ul>
+                </ul> -->
                 <ul class="display-flex">
                     <li class="inpitem-name">转账金额</li>
                     <li class="flex-box bank-input"><input  type="number" v-model.trim="money" class="entry"  placeholder="请输入转账金额"/></li>
@@ -288,16 +288,16 @@
                 if (falg) {
                     return;
                 }
-                var password = _this.password;
+                // var password = _this.password;
                 var money = _this.money / 1;
                 if (money < 1) {
                     this.lalterWarning("请输入有效的转账金额");
                     return;
                 }
-                if (password.length <= 0) {
-                    this.lalterWarning("请输入资金密码");
-                    return;
-                }
+                // if (password.length <= 0) {
+                //     this.lalterWarning("请输入资金密码");
+                //     return;
+                // }
 
                 var transferout = _this.transferout;
                 var transferin = _this.transferin;
@@ -306,7 +306,7 @@
                     "money": money,
                     "transferout": transferout,
                     "transferin": transferin,
-                    "password": password,
+                    // "password": password,
                     "token": token
                 };
                 this.lconfirm('您是否要转换', null, () => {
@@ -315,7 +315,7 @@
                         _this.lalterSuccess(resp.msg);
                         _this.token = resp.data
                         if (resp.code == 200) {
-                            _this.password = "";
+                            // _this.password = "";
                             _this.money = "";
                             _this.loadUser();
                             _this.refreshTrdBal(false);

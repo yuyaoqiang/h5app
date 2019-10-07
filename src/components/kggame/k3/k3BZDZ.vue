@@ -2,7 +2,7 @@
     <div class="kg-lottery-main">
         <section class="kg-betting-niu"  v-if="kgLottery.playTypes!=null && type.isBZDZ==true" v-for="type in kgLottery.playTypes">
             <h2  class="kg-betting-title">{{type.desc}}</h2>
-            <dl v-for="(betType,index) in  type.betTypes">
+            <dl v-for="(betType,index) in  type.betTypes" :class="(type.desc=='豹子'&& type.betTypes.length-1 ==index) ?'kg-lottery-bzdz':''">
                 <dd @click="toBetChoice(betType,betType.id)" :class="{'active':betType.active}">
                     <div>
                         <p>{{betType.name}}</p>
@@ -76,3 +76,8 @@
 
     }
 </script>
+<style scoped>
+.kg-betting-niu >.kg-lottery-bzdz div :nth-child(1){
+        font-size: 18px;
+    }
+</style>
