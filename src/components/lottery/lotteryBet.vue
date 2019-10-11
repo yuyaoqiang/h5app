@@ -120,8 +120,8 @@
                                     pcddBallColor.gray.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-gray':
                                     pcddBallColor.blue.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-blue':'',
                                 ]">{{n}}</b>
-                                <b v-if="lottery.type.name == 'k3rules'" class="ball-gray">{{item.bs}}</b>
-                                <b v-if="lottery.type.name == 'k3rules'" class="ball-pink">{{item.sd}}</b>
+                                <b v-if="lottery.type.name == 'k3rules'" :class="item.bs=='大'?'ball-gray':'ball-pink'">{{item.bs}}</b>
+                                <b v-if="lottery.type.name == 'k3rules'" :class="item.sd=='单'?'ball-gray':'ball-pink'">{{item.sd}}</b>
                                 <b v-if="lottery.type.name == 'k3rules'" class="ball-green">{{item.count}}</b>
                                 <span v-if="lottery.type.name == 'pcdd'">= <b>{{item.nums.split(' ')[0]/1 + item.nums.split(' ')[1]/1 + item.nums.split(' ')[2]/1}}</b></span>
                             </li>

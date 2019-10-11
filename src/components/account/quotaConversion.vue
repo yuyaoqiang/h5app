@@ -112,7 +112,7 @@
                     kgBal: 0,
                 },
                 transferout: 0,
-                transferin: 1,
+                transferin: 2,
                 money: null,
                 password: '',
                 token: '',
@@ -144,10 +144,9 @@
             
             var platforms = [
                 {name: "wallet", desc: "钱包中心", value: 0, isOwn: true, opened: true,permission:true},
-                {name: "lottery", desc: "彩票平台", value: 1, isOwn: true, opened: true,permission:true}
+                // {name: "lottery", desc: "彩票平台", value: 1, isOwn: true, opened: true,permission:true}
             ];
             _this.transferPlatformList = userBusiness.getTrdPlatforms();
-            
             arrayUtil.forEach(platformData.trdPlatforms, item => {
 
                 if (item.enabled == false) return;
@@ -185,7 +184,7 @@
                 
                 if (this.transferout == this.transferin) {
                     if (this.transferin == 0) {
-                        this.transferout = 1;
+                        this.transferout = 2;
                     } else {
                         this.transferout = 0;
                     }
@@ -200,7 +199,7 @@
             transferoutChanged(){
                 if (this.transferout == this.transferin) {
                     if (this.transferout == 0) {
-                        this.transferin = 1;
+                        this.transferin = 2;
                     } else {
                         this.transferin = 0;
                     }
@@ -334,8 +333,8 @@
                 var platforms = _this.transferPlatformList;
 
                 if (user.isOpenKg == true) {
-                    var kgPlatform = {name: "kg", desc: "KG彩票", value: 8, isOwn: true, opened: true,permission:true};
-                    arrayUtil.insertAt(platforms, 2, kgPlatform);
+                    // var kgPlatform = {name: "kg", desc: "KG彩票", value: 8, isOwn: true, opened: true,permission:false};
+                    // arrayUtil.insertAt(platforms, 2, kgPlatform);
                 }
 
                 if (user.isOpenDividends == true) {

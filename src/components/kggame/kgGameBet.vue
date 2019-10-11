@@ -69,7 +69,7 @@
                 </li>
                 <li class="flex-box lottery-betting-money">
                     <p v-if="user.init==true">已选: <b class="orange">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 <b class="orange">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
-                    <p v-if="user.init==true">余额: <b class="orange">{{user.kgBal}}</b></p>
+                    <p v-if="user.init==true">余额: <b class="orange">{{user.walletBal}}</b></p>
                     <p v-if="user.init==false">已选: <b class="orange">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 </p>
                     <p v-if="user.init==false">总计：<b class="orange">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
                     <!-- <div class="icon-refresh"><img src="../../assets/images/icon_refresh.png" @click="loadUser()"/></div> -->
@@ -122,7 +122,7 @@
                 </div>
                 <ul class="display-box alert-btn-box">
                     <li class="alert-cancel"  @click="showBetList = false">取 消</li>
-                    <li @click="bet">
+                    <li class="alert-entry"  @click="bet">
                         {{zhuihaoInfor.zhuihaoQishu>0 ? '追号' : '投注'}}
                     </li>
                 </ul>
@@ -164,7 +164,7 @@
                 </div>
                 <ul class="display-box alert-btn-box">
                     <li class="alert-cancel"  @click="showBetList02 = false">取 消</li>
-                    <li @click="bet">
+                    <li class="alert-entry" @click="bet" >
                         {{zhuihaoInfor.zhuihaoQishu>0 ? '追号' : '投注'}}
                     </li>
                 </ul>
@@ -291,6 +291,7 @@
     import xyxzSB from "./xyxz/lhcSB.vue"
     import xyxzTWS from "./xyxz/lhcTWS.vue"
     import xyxzHX from "./xyxz/lhcHX.vue"
+    import _ from 'lodash';
     export default {
 
         data () {
@@ -396,6 +397,8 @@
                 user:{
                     kgBal:0,
                     kjlotteryBal:0,
+                    walletBal:0,
+
                 },
                 setMoney: [{
                     value: 1,
@@ -1078,8 +1081,7 @@
                     userBusiness.enableCache=cache;
                 }
                 userBusiness.getUser(_this,function (user) {
-                    _this.user=user;
-                    //_this.$emit('loadUser',user);
+                    _this.user = _.assign({},user);
                 })
             },
             toTrend(){

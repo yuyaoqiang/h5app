@@ -6,7 +6,7 @@
                     <li class="slippery-top-img"><img src="../../assets/images/icon29.png"></li>
                     <li class="flex-box slippery-top-mid">
                         <p>{{user.isShiWan?'试玩用户':user.userName}}</p>
-                        彩票余额: ¥ {{user.lotteryBal}} 元
+                        钱包余额: ¥ {{user.walletBal}} 元
                     </li>
                 </ul>
                 <ul v-if="user.init==false"  class="slippery-account">

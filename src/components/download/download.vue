@@ -3,11 +3,10 @@
 
 
     <div class="download-bg">
-        <div class="down-bg" v-if="isWX==false">
+        <div :class="device!='android'?'down-bg-apple':'down-bg-android'" v-if="isWX==false" @click.self.prevent="downLoad(device)">
             <section class="download-main">
-                <article class="download-btn" v-if="!device">
+                <!-- <article class="download-btn" v-if="!device"> 
                     <a :href="item.url[0]" v-for="item in apps" v-if="item.url[0] != null && item.url[0].trim()!=''">
-                        <!-- v-if="item.device.indexOf(device)!=-1&&item.url[0] != null && item.url[0].trim()!=''" -->
                         <img :src="require(`../../assets/images/${item.img[0]}`)" alt="">
                     </a>
                     <a :href="item.url[1]" v-for="item in apps" v-if="item.url[1] != null && item.url[1].trim()!=''">
@@ -17,15 +16,15 @@
                 </article>
                 <article class="download-btn" v-if="device">
                     <a :href="item.url[0]" v-for="item in apps" v-if="item.device.indexOf(device)!=-1&&item.url[0] != null && item.url[0].trim()!=''">
-                        <!-- v-if="item.device.indexOf(device)!=-1&&item.url[0] != null && item.url[0].trim()!=''" -->
                         <img :src="require(`../../assets/images/${item.img[0]}`)" alt="">
                     </a>
                     <a :href="item.url[1]" v-for="item in apps" v-if="item.device.indexOf(device)!=-1&&item.url[1] != null && item.url[1].trim()!=''">
 
                         <img :src="require(`../../assets/images/${item.img[1]}`)" alt="">
                     </a>
-                </article>
+                </article> -->
             </section>
+               <p class="goback-home" @click="goback">返回首页</p>
         </div>
         <div class="down-wx" v-if="isWX==true"></div>
     </div>
@@ -107,19 +106,35 @@
                 }else{
                     this.isWX = false;
                 }
+            },
+            goback(){
+
+                this.$router.push('/index');
+            },
+            downLoad(isIOS){
+                if(isIOS=='ios'){
+                  window.open(this.apps[1].url[0]);
+                }else{
+                    window.open(this.apps[0].url[0]);
+                }
             }
         }
     }
 </script>
 
 <style>
-.down-bg{
+.down-bg-apple{
     width: 100%;
     height: 100%;
     position: relative;
-    background:url("../../assets/platform/main/images/down-bg.png") no-repeat center;
-        /* background: -webkit-linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%); */
-    /* background: linear-gradient(135deg, #ff5050 1%, #ff2b2c 32%, #e83c3d 70%, #eb3c23 100%); */
+    background:url("../../assets/platform/main/images/down-bg-apple.png") no-repeat center;
+    background-size: cover;
+}
+.down-bg-android{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background:url("../../assets/platform/main/images/down-bg-android.png") no-repeat center;
     background-size: cover;
 }
 .down-wx{
@@ -128,5 +143,14 @@
     position: relative;
     background:url("../../assets/images/wx_download.jpg") no-repeat center;
     background-size: contain;
+}
+.goback-home{
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+    color: #cca869;
+    border: 1px solid #c6a262;
+    padding: 0.05rem;
+    border-radius: 0.03rem;
 }
 </style>

@@ -109,7 +109,7 @@
                 </li>
                 <li class="flex-box lottery-betting-money">
                     <p v-if="user.init==true">已选: <b class="orange">{{areaData.betQty}}</b> 注 <b class="orange">{{areaData.betAmount | fixedMoney }}</b> 元</p>
-                    <p v-if="user.init==true">余额：<b class="orange">{{user.lotteryBal}}</b> </p>
+                    <p v-if="user.init==true">余额：<b class="orange">{{user.walletBal}}</b> </p>
                     <p v-if="user.init==false">已选: <b class="orange">{{areaData.betQty}}</b> 注 </p>
                     <p v-if="user.init==false">总计：<b class="orange">{{areaData.betAmount | fixedMoney }}</b> 元</p>
                 </li>
@@ -803,11 +803,11 @@
                 // _this.user = {};
                 // _this.user.lotteryBal = '--';
                 if(cache != undefined){
-                    userBusiness.enableCache=cache;
+                    userBusiness.enableCache=cache;  
                 }
                 userBusiness.getUser(_this,function (user) {
-                    _this.user=user;
-                    //_this.$emit('loadUser',user);
+                     _this.user = _.assign({},user);
+                    // _this.$emit('loadUser',user);
                 })
             },
             switchMissing() {

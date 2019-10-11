@@ -9,7 +9,7 @@
         <div class="recharge-slide-left" :class="openSlide == true?'slide_active':''">
             <ul class="recharge-type">
                 <li @click="rechType(item)" v-bind:key="item.id" class="display-flex" v-for="item in rechargeList" v-if="item.list.length>0">
-                  <i class="rechicon iconfont" :class="item.icon" :style="{color:item.color}"></i>  <p class="flex-box pay-flex">{{item.desc}}<span v-if="item.type=='zxwy'" class="red-color">(额外赠送1%)</span></p> <p class="report-icon"><i class="el-icon-arrow-right"></i></p>
+                  <i class="rechicon iconfont" :class="item.icon" :style="{color:item.color}"></i>  <p class="flex-box pay-flex">{{item.desc}}<span v-if="item.type =='zxwy'|| item.type  =='ysf'" class="red-color">(额外赠送1%)</span></p> <p class="report-icon"><i class="el-icon-arrow-right"></i></p>
                 </li>
             </ul>
         </div>
@@ -187,7 +187,7 @@
                     <dd v-if="bankInfo.bankname == '线下微信'">
                         请确认填写姓名与您的付款姓名一致,否则会无法自动到账,充值金额一定要带2位小数点才会及时到账，否则无法及时到账，正确充值金额方式，例如：
                         <span class="red">120.05元</span>，<span class="red">988.02元</span></dd>
-                    <dd v-else>请确认填写姓名与您的付款姓名一致,否则会无法自动到账</dd>
+                    <dd v-else>请在【账户名】处备注您的真实姓名-提交订单-为您快速入账！</dd>
                 </dl>
 
                 <div class="recharge-btn-box">
@@ -222,6 +222,12 @@
                         <p>1.点击“我要充值”跳转网银登录 » 2.登录网银账号 » 3.复制收款人与金额信息进入转账 » 4.提交审核信息 » 5.转账成功后，可在充值记录中查看</p>
                     </dd>
                 </dl>
+                <dl class="recharge-step" v-if="bankInfo.mark == 'xxysf'">
+                    <dt><b>充值步骤：</b></dt>
+                    <dd>
+                        <p>打开云闪付APP-享优惠页面-转账-转到云闪付用户-复制平台云闪付账号-姓名-支付-在账户名处备注您的真实姓名-实时到账</p>
+                    </dd>
+                </dl>
             </section>
 
         </div>
@@ -251,6 +257,7 @@
                     {desc:'QQ充值',type:'qq',list:[],icon:'icon-tengxunqq',color:'#fd6969'},
                     {desc:'微信充值',type:'wx',list:[],icon:'icon-weixinzhifu',color:'#00de00'},
                     {desc:'支付宝充值',type:'zfb',list:[],icon:'icon-umidd17',color:'#00c2ff'},
+                    {desc:'云闪付',type:'ysf',list:[],icon:'icon-ysf',color:'#00c2ff'},
                 ],
                 payPlatformList:[], //当前选择充值列表
                 inMoneyType:'0', //账户类型
@@ -327,7 +334,7 @@
                             if(item.descript==null){
                                 item.descript = item.bankname
                             }
-                            var types=['银联','QQ','微信','支付宝'];
+                            var types=['银联','QQ','微信','支付宝','云闪付'];
                             var count = 0;
                             //遍历自定义的类型 筛选出符合名称的分类 未匹配则统一为在线网银
                             types.forEach(function(tp,index){
@@ -522,7 +529,10 @@
                             });
                             }
                         }
-
+                        if(_this.bankInfo.bank.name.indexOf('云闪付')>-1){
+                            _this.bankInfo.markName = '云闪付转账'
+                            _this.bankInfo.mark = 'xxysf'
+                        }
                         if(_this.bankInfo.bank.name.indexOf('支付宝')>-1 && _this.bankInfo.bank.name.indexOf('添加好友')>-1){
                             _this.isTjhy = true;
                             _this.bankInfo.markName = '支付宝'
@@ -787,5 +797,13 @@
     .red-color{
         font-size: 12px;
         color: red;
+    }
+    .icon-ysf{
+        background-image: url('../../assets/images/ysf-icon.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 0.28rem;
+        height: 0.3rem;
+        margin-top:0.06rem;
     }
 </style>
