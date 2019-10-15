@@ -29,7 +29,7 @@
             </section>
             <section class="flex-box activity-main" v-if="list.length==0">
                 <div class="no-active">
-                   暂 无 活 动
+                   正在加载中
                 </div>
             </section>
         </div>

@@ -24,9 +24,9 @@
             </li>
 
             <li>
-                <p><span>KG团队余额:</span>{{statisticalData.termKJBalance | fixedMoney}}</p>
+                <!-- <p><span>KG团队余额:</span>{{statisticalData.termKJBalance | fixedMoney}}</p> -->
                 <p><span>团队钱包余额:</span>{{statisticalData.termCapitalCenterBalance| fixedMoney}}</p>
-                <p><span>团队彩票余额:</span>{{statisticalData.termLotteryBalance | fixedMoney}}</p>
+                <!-- <p><span>团队彩票余额:</span>{{statisticalData.termLotteryBalance | fixedMoney}}</p> -->
             </li>
             <li>
                 <p><span>彩票投注金额:</span>{{statisticalData.lotteryBetAmount | fixedMoney}}</p>

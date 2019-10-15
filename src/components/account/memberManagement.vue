@@ -350,8 +350,8 @@
                             <dt>团队钱包余额:<br/>{{statisticalData.termCapitalCenterBalance| fixedMoney}}</dt>
                         </dl>
                         <dl class="display-flex">
-                            <dt>KG团队余额:<br/>{{statisticalData.termKJBalance| fixedMoney}}</dt>
-                            <dt>团队彩票余额:<br/>{{statisticalData.termLotteryBalance | fixedMoney}}</dt>
+                            <!-- <dt>KG团队余额:<br/>{{statisticalData.termKJBalance| fixedMoney}}</dt> -->
+                            <!-- <dt>团队彩票余额:<br/>{{statisticalData.termLotteryBalance | fixedMoney}}</dt> -->
                         </dl>
                         <dl class="display-flex">
                             <dt>团队盈亏:<br/>{{statisticalData.termProfitloss | fixedMoney}}</dt>

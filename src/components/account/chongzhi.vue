@@ -187,17 +187,19 @@
                     <dd v-if="bankInfo.bankname == '线下微信'">
                         请确认填写姓名与您的付款姓名一致,否则会无法自动到账,充值金额一定要带2位小数点才会及时到账，否则无法及时到账，正确充值金额方式，例如：
                         <span class="red">120.05元</span>，<span class="red">988.02元</span></dd>
-                    <dd v-else>请在【账户名】处备注您的真实姓名-提交订单-为您快速入账！</dd>
+                    <dd  v-if="bankInfo.bankname != '线下微信'&& bankInfo.bankname != '支付宝口令'">请在【账户名】处备注您的真实姓名-提交订单-为您快速入账！</dd>
+                    <dd  v-if="bankInfo.bankname == '支付宝口令'">请在【账户名】处备注您生成的红包口令（数字，文字）-提交订单-为您快速入账！</dd>
+                
                 </dl>
 
                 <div class="recharge-btn-box">
-                    <button type="button" @click="recharge(isScanCode)">发起申请</button>
+                    <button type="button" @click="recharge(isScanCode)">提交订单</button>
                 </div>
 
                 <dl class="recharge-step" v-if="bankInfo.mark == 'zfb' || bankInfo.mark=='wx'">
                     <dt><b>充值步骤：</b></dt>
                     <dd>
-                        <p>第一步：提交申请</p>
+                        <p>第一步：提交订单</p>
                         <p>第二步：登录【手机{{bankInfo.markName}}】</p>
                         <p>第三步：点击【转账】</p>
                         <p>第四步：点击【转账到银行卡】</p>
@@ -228,6 +230,12 @@
                         <p>打开云闪付APP-享优惠页面-转账-转到云闪付用户-复制平台云闪付账号-姓名-支付-在账户名处备注您的真实姓名-实时到账</p>
                     </dd>
                 </dl>
+                 <dl class="recharge-step" v-if="bankInfo.mark == 'zfbklhb'">
+                    <dt><b>充值步骤：</b></dt>
+                    <dd>
+                        <p>请您进入支付宝首页，点击【红包】 → 【口令红包】 →【 填写金额】 → 红包个数 1 个 → （任何人可领）→ 点击【塞钱进红包】 → 选择【生成数字口令】，平台发起相符金额申请备注口令即可火速到账~</p>
+                    </dd>
+                </dl>
             </section>
 
         </div>
@@ -254,10 +262,11 @@
                 rechargeList:[
                     {desc:'网银充值',type:'zxwy',list:[],icon:'icon-wangyin',color:'#9E9E9E'},
                     {desc:'银联充值',type:'yl',list:[],icon:'icon-yinlian',color:'#fd217b'},
+                    {desc:'云闪付',type:'ysf',list:[],icon:'icon-ysf',color:'#00c2ff'},
                     {desc:'QQ充值',type:'qq',list:[],icon:'icon-tengxunqq',color:'#fd6969'},
                     {desc:'微信充值',type:'wx',list:[],icon:'icon-weixinzhifu',color:'#00de00'},
                     {desc:'支付宝充值',type:'zfb',list:[],icon:'icon-umidd17',color:'#00c2ff'},
-                    {desc:'云闪付',type:'ysf',list:[],icon:'icon-ysf',color:'#00c2ff'},
+                    {desc:'支付宝口令',type:'zfbkl',list:[],icon:'icon-umidd17',color:'#00c2ff'},
                 ],
                 payPlatformList:[], //当前选择充值列表
                 inMoneyType:'0', //账户类型
@@ -334,12 +343,16 @@
                             if(item.descript==null){
                                 item.descript = item.bankname
                             }
-                            var types=['银联','QQ','微信','支付宝','云闪付'];
+                            var types=['银联','云闪付','QQ','微信','支付宝','支付宝口令'];
                             var count = 0;
                             //遍历自定义的类型 筛选出符合名称的分类 未匹配则统一为在线网银
                             types.forEach(function(tp,index){
                                 if(item.descript.toUpperCase().indexOf(types[index]) != '-1'){
+                                    if(types[index] =='支付宝' && item.descript=='支付宝口令'){
+                                        return;
+                                    }
                                     _this.rechargeList[index+1].list.push(item);
+                                    console.log(_this.rechargeList[index + 1])
                                 }else{
                                     count++
                                 }
@@ -546,6 +559,10 @@
                         if(_this.bankInfo.bankname=='支付宝'){
                             _this.bankInfo.markName = '支付宝'
                             _this.bankInfo.mark = 'zfb'
+                        }
+                         if(_this.bankInfo.bankname=='支付宝口令'){
+                            _this.bankInfo.markName = '支付宝口令'
+                            _this.bankInfo.mark = 'zfbklhb'
                         }
                         if(_this.bankInfo.bankname=='微信充值' || _this.bankInfo.bankname=='微信转银行卡'){
                             _this.bankInfo.markName = '微信'

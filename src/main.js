@@ -19,9 +19,8 @@ Vue.use(messageBox);
 import { carousel, carouselItem, } from 'element-ui'
 Vue.use(carousel)
 Vue.use(carouselItem)
-
-
-
+import Vue2TouchEvents from 'vue2-touch-events'
+Vue.use(Vue2TouchEvents)
 import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard)
 

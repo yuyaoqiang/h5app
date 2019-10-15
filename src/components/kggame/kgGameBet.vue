@@ -1,40 +1,39 @@
 <template>
     <div class="slide-right">
-        <section class="betting-main" v-if="kgLottery.init==true" :class="{'kg-lottery-container':submenuType=='xglhc'||submenuType=='xyxz','betting-main-active':kgLottery.zhushu>=1}">
-            <!--六合彩一级菜单-->
-            <div class="kg-lottery-menu" v-if="submenuType=='xglhc'||submenuType=='xyxz'">
-                <ul>
-                    <li :class="{'active':playType==item.viewType}"
-                        v-for="(item,index) in kgLottery.playTypes"
-                        @click="changeType(item.viewType,index)" v-if="item.permission&&item.betTypes.length>0">
-                        {{item.name}}
-                    </li>
-                </ul>
-            </div>
-            <div :class="{'kg-lottery-submenu':submenuType=='xglhc'||submenuType=='xyxz'}" class="clearfix">
-                <div class="kg-menu">
+            <section v-touch:swipe.right='swiperleft' class="betting-main" v-if="kgLottery.init==true" :class="{'kg-lottery-container':submenuType=='xglhc'||submenuType=='xyxz','betting-main-active':kgLottery.zhushu>=1}">
+                <!--六合彩一级菜单-->
+                <div class="kg-lottery-menu" v-if="submenuType=='xglhc'||submenuType=='xyxz'">
                     <ul>
-                        <li  :class="{'active':playType==item.type}" v-if="submenuType !='xglhc'&&submenuType!='xyxz' && item.permission&&item.list.length>0"
-                             v-for="item in submenu[submenuType]" @click="changeType(item.type,null)" :key="item.type">
-                            {{item.desc}}
-                        </li>
-                        <!--六合彩二级菜单-->
-                        <li  :class="{'active':item.name == kgLottery.showDesc}"  v-if="submenuType=='xglhc' ||submenuType=='xyxz'"
-                             v-for="(item,index) in kgLottery.playTypes[kgLottery.menuIndex].betTypes" @click="changeDesc(item,index)" :key="item.name">
+                        <li :class="{'active':playType==item.viewType}"
+                            v-for="(item,index) in kgLottery.playTypes"
+                            @click="changeType(item.viewType,index)" v-if="item.permission&&item.betTypes.length>0">
                             {{item.name}}
                         </li>
                     </ul>
                 </div>
-            </div>
-            <!--投注区域-->
+                <div :class="{'kg-lottery-submenu':submenuType=='xglhc'||submenuType=='xyxz'}" class="clearfix">
+                    <div class="kg-menu">
+                        <ul>
+                            <li  :class="{'active':playType==item.type}" v-if="submenuType !='xglhc'&&submenuType!='xyxz' && item.permission&&item.list.length>0"
+                                v-for="item in submenu[submenuType]" @click="changeType(item.type,null)" :key="item.type">
+                                {{item.desc}}
+                            </li>
+                            <!--六合彩二级菜单-->
+                            <li  :class="{'active':item.name == kgLottery.showDesc}"  v-if="submenuType=='xglhc' ||submenuType=='xyxz'"
+                                v-for="(item,index) in kgLottery.playTypes[kgLottery.menuIndex].betTypes" @click="changeDesc(item,index)" :key="item.name">
+                                {{item.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--投注区域-->
+                
+                <component :is="betType" :kgLottery="kgLottery" :submenuType="submenuType" :class="{'kg-xglhc-submenu':submenuType=='xglhc'||submenuType=='xyxz'}"></component>
+                
+                
             
-            <component :is="betType" :kgLottery="kgLottery" :submenuType="submenuType" :class="{'kg-xglhc-submenu':submenuType=='xglhc'||submenuType=='xyxz'}"></component>
-            
-            
-           
-            
-        </section>
-
+                
+            </section>
         <footer class="lottery-footer">
             <ul class="display-flex lottery-odds-box" v-show="kgLottery.zhushu>0">
                 <li>
@@ -453,6 +452,9 @@
             this.mixins = window.outerHeight;
         },
         methods: {
+            swiperleft(){
+                this.$router.push('/index')
+            },
             multipleChange() {
                 
                 var _this = this;

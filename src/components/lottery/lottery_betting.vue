@@ -1,6 +1,6 @@
 <template>
     <div class="slide-right">
-        <section class="betting-main" :class="{'betting-main-active':areaData.betQty>=1}">
+        <section  v-touch:swipe.right='swiperleft' class="betting-main" :class="{'betting-main-active':areaData.betQty>=1}">
             <ul class="lottery-checkbox display-box" v-if="areaData.customBit">
                 <li v-for="c in areaData.customBit">
                     <input :checked="c.checked==true" @click="customCheckChange(c)" type="checkbox" :id="c.id"
@@ -215,6 +215,13 @@
             
         },
         methods: {
+            swiperleft(){
+            this.$router.push('/index')
+            },
+            swiperright(){
+              console.log(2);
+              alert(2)
+            },
             initLottery(){
                 let _this = this;
                 let id = _this.$route.query.gameId;
