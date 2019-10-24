@@ -18,31 +18,37 @@
             <article class="quota-platform">
                 <ul class="pr" v-if="i>0" v-for="(item,i) in transferPlatformList">
 
-
-                    <li v-show="item.opened" class="platform-money">
-                        {{(item.isOwn == true ? user[item.name + 'Bal'] : item.bal) | fixedMoney}}
-                    </li>
-                    <li class="pb10 platform-name">
-                        {{item.desc==='AGIN'?'AG':item.desc}}(元)
+                    <li class="pb10 platform-name lott-column">
+                       <span :class="item.opened == false?'platform-not-open':''"> {{item.desc==='AGIN'?'AG':item.desc}}(元)</span>
                         <button type="button" class="platform-opened" v-show="item.opened==false" @click="openTrdGame(item.name)">开通</button>
                     </li>
-
-                    <li v-if="item.isOwn == false && item.opened==true"  @click="refreshTrdBal(true,item.name)" class="quota-refresh">
-                        <img src="../../assets/images/icon_refresh.png"/>
+                    <li v-show="item.opened" class="platform-money">
+                        {{(item.isOwn == true ? user[item.name + 'Bal'] : item.bal) | fixedTo2}}
                     </li>
+                    <li v-show="item.opened">
+                        <button type="button"   class="platform-style" @click="submitIn(item.value)">转入</button>
+                    </li>
+                      <li v-show="item.opened">
+                        <button type="button"  class="platform-style" @click="submitOut(item.value,item.bal)">转出</button>
+                    </li>
+                       <li v-show="item.opened">
+                        <button type="button"  class="platform-style platform-width"  @click="toThirdGame">进入游戏</button>
+                    </li>
+                    <!-- <li v-if="item.isOwn == false && item.opened==true"  @click="refreshTrdBal(true,item.name)" class="quota-refresh">
+                        <img src="../../assets/images/icon_refresh.png"/>
+                    </li> -->
                 </ul>
             </article>
 
         </div>
         <section class="recording-height" style="padding-top:0">
             <div class="account-list">
-                <ul class="display-flex">
+                <!-- <ul class="display-flex">
                     <li class="inpitem-name">转出平台</li>
                     <li class="flex-box bank-select">
                         <span class="transfer-icon">
                             <i class="iconfont" :class="iconlist[transferout]"></i>
                         </span>
-                       <!-- <img :src="require('../../assets/images/account/platform-icon-'+transferout+'.png')" alt="" class="platform-icon">-->
                         <select  v-model="transferout" @change="transferoutChanged">
                             <option v-if="item.opened&&item.permission" :label="item.desc" :value="item.value"
                                     v-for="item in transferPlatformList">
@@ -53,7 +59,6 @@
                 <ul class="display-flex">
                     <li class="inpitem-name">转入平台</li>
                     <li class="flex-box bank-select">
-                      <!--  <img :src="require('../../assets/images/account/platform-icon-'+transferin+'.png')" alt="" class="platform-icon">-->
                         <span class="transfer-icon" >
                               <i class="iconfont" :class="iconlist[transferin]"></i>
                         </span>
@@ -62,12 +67,12 @@
                                     v-for="item in transferPlatformList">{{item.desc}}</option>
                         </select>
                     </li>
-                </ul>
+                </ul> -->
                 <!-- <ul class="display-flex">
                     <li class="inpitem-name">资金密码</li>
                     <li class="flex-box bank-input"><input  type="password" v-model.trim="password" class="entry"  placeholder="请输入资金密码"/></li>
                 </ul> -->
-                <ul class="display-flex">
+                <!-- <ul class="display-flex">
                     <li class="inpitem-name">转账金额</li>
                     <li class="flex-box bank-input"><input  type="number" v-model.trim="money" class="entry"  placeholder="请输入转账金额"/></li>
                 </ul>
@@ -75,11 +80,11 @@
                     <li  @click="setMoney(100)" :class="money=='100'?'active':''">100元</li>
                     <li  @click="setMoney(200)" :class="money=='200'?'active':''">200元</li>
                     <li  @click="setMoney(500)" :class="money=='500'?'active':''">500元</li>
-                </ul>
+                </ul> -->
 
-                <div class="quota-btn-box">
+                <!-- <div class="quota-btn-box">
                     <button type="button" @click="submit">提交</button>
-                </div>
+                </div> -->
             </div>
         </section>
     </div>
@@ -96,7 +101,7 @@
 
     import platformData from "../../assets/platform/main/platformData"
     import kgBusiness from "../../assets/js/business/lottery/kg/kgBusiness"
-
+    import _ from 'lodash';
     export default {
         data () {
             return {
@@ -161,11 +166,7 @@
                 };
                 platforms.push(trdPlatform);
             });
-            
-            _this.transferPlatformList=platforms;
-            
-            
-
+            _this.transferPlatformList = platforms;
         },
         methods: {
             goback(){
@@ -177,6 +178,7 @@
 
                 userBusiness.getUser(_this, function (user) {
                     _this.user = user;
+                    _this.userInitAfter();
                 })
             },
 
@@ -281,25 +283,50 @@
             setMoney(val){
                 this.money = val;
             },
-            submit(){
-                var _this = this;
-                var falg = userBusiness.checkIsTryPlayer();
-                if (falg) {
-                    return;
+            submitOut(value,balance){
+               var _this = this;
+               if(parseInt(balance) == 0 ){
+                    _this.lalterWarning('最低转换额度为一元整');
+                    return false;
                 }
-                // var password = _this.password;
-                var money = _this.money / 1;
-                if (money < 1) {
-                    this.lalterWarning("请输入有效的转账金额");
-                    return;
-                }
-                // if (password.length <= 0) {
-                //     this.lalterWarning("请输入资金密码");
-                //     return;
-                // }
+                var money = parseInt(balance);
+                var transferout = value;
+                var transferin = 0;
+                var token = _this.token;
+                var params = {
+                    "money": money,
+                    "transferout": transferout,
+                    "transferin": transferin,
+                    // "password": password,
+                    "token": token
+                };
+                this.lconfirm('您是否要转换', null, () => {
 
-                var transferout = _this.transferout;
-                var transferin = _this.transferin;
+                    bankApi.capitalTransfer(params, (resp) => {
+                        _this.lalterSuccess(resp.msg);
+                        _this.token = resp.data
+                        if (resp.code == 200) {
+                            // _this.password = "";
+                            _this.money = "";
+                            _this.loadUser();
+                            _this.refreshTrdBal(false);
+
+                        }
+                    });
+                });
+            },
+            toThirdGame(){
+                this.$router.push({path: 'thirdGame'});
+            },
+            submitIn(value){
+                var _this = this;
+                var money = parseInt(_this.user.walletBal);
+                if(parseInt(money) == 0 ){
+                _this.lalterWarning('最低转换额度为一元整');
+                return false;
+                }
+                var transferout = 0;
+                var transferin = value;
                 var token = _this.token;
                 var params = {
                     "money": money,
@@ -349,7 +376,10 @@
                         item.opened = val == "1";
                     }
                 });
-
+                const sortAfter=  platforms.sort((a,b)=>{
+                    return b.opened/1 - a.opened/1
+                })
+                _this.transferPlatformList=sortAfter;
                 _this.refreshTrdBal(false);
 
                 this.grzxPermissions = userBusiness.getAccountMenuPermissions();
@@ -419,7 +449,7 @@
 
     .platform-money{
         color: rgb(51,51,51);
-        font-size: 0.16rem;
+        font-size: 0.12rem;
         font-weight: bold;
     }
     .platform-name{
@@ -434,7 +464,7 @@
         margin: 0.1rem;
         padding-top:0.88rem;
         border-radius: 0.06rem 0.06rem 0 0;
-        background: #fff;
+        // background: #fff;
     }
     .inpitem-name{
         position: relative;
@@ -487,5 +517,23 @@
         border: 1px solid #e8e8e8;
         border-radius: 0.05rem;
     }
-
+    .lott-column{
+        display: flex;
+    }
+    .platform-width{
+        width: 0.5rem !important;
+    }
+    .platform-not-open{
+        margin-right: 0.95rem;
+    }
+    .platform-style{
+        background: none;
+        border: none;
+        box-shadow: 0 0 0 1px #ddba7d inset;
+        -webkit-box-shadow: 0 0 0 1px #ddba7d inset;
+        color: #ddba7d;
+        width: 0.45rem;
+        height: 0.2rem;
+        border-radius: 5px;
+    }
 </style>

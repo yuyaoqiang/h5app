@@ -188,8 +188,6 @@
                 if(userBusiness.checkIsTryPlayer()){
                     return;
                 }
-                
-               
                 var platform =item.platform;
                 var openedPropName="isOpen"+platform;
                 var opened = this.user[openedPropName];
@@ -215,8 +213,16 @@
                     userInfoApi.getTrdGameLoginInfo(params, function (resp) {
                         _this.lcloseWait()
                         if (resp.code == 200) {
+                            if(platform=='VR'){
+                                var protocol = window.location.protocol;
+                                var val = resp.data.url;
+                                var arr = val.split('://');
+                                var src = protocol+'//'+ arr[1];
+                                _this.jump(src,platform);
+                            }else{
                             var url =resp.data.url;
                             _this.jump(url,platform);
+                            }
                         } else {
                             _this.lalterError(resp.msg);
                         }
@@ -249,6 +255,8 @@
                         $form.attr("action", obj.jumpUrl+"/gameplay/login_jump");
                     }
                     $form.submit();
+                }else if(platform == "VR"){
+                       window.open(val)
                 } else {
                     var $form = $("#game_form");
 

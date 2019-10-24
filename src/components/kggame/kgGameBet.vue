@@ -68,7 +68,7 @@
                 </li>
                 <li class="flex-box lottery-betting-money">
                     <p v-if="user.init==true">已选: <b class="orange">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 <b class="orange">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
-                    <p v-if="user.init==true">余额: <b class="orange">{{user.walletBal}}</b></p>
+                    <p v-if="user.init==true">余额: <b class="orange">{{walletBal}}</b></p>
                     <p v-if="user.init==false">已选: <b class="orange">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 </p>
                     <p v-if="user.init==false">总计：<b class="orange">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
                     <!-- <div class="icon-refresh"><img src="../../assets/images/icon_refresh.png" @click="loadUser()"/></div> -->
@@ -392,11 +392,10 @@
                     "xyxz":[]
                 },
                 submenuType:'sscrules',
-
+                walletBal:0,    
                 user:{
                     kgBal:0,
                     kjlotteryBal:0,
-                    walletBal:0,
 
                 },
                 setMoney: [{
@@ -1077,13 +1076,11 @@
             },
             loadUser(cache){
                 var _this=this;
-                // _this.user = {};
-                // _this.user.kgBal = '--';
                 if(cache != undefined){
                     userBusiness.enableCache=cache;
                 }
                 userBusiness.getUser(_this,function (user) {
-                    _this.user = _.assign({},user);
+                    _this.user = user
                 })
             },
             toTrend(){
@@ -1190,6 +1187,9 @@
                 lztData.list = list;
                 this.lztData = lztData;
 
+            },
+            getCatalog(){
+                this.walletBal = this.user.walletBal
             },
             buildLztData(lzballActive, lztypeActive){
                 var history = this.buildAnalysisHistory();
@@ -1506,6 +1506,9 @@
                     _this.chipsShow = false;
                 }
             },true)
+            this.$watch('user', this.getCatalog, {
+                deep: true,
+            });
 
         },
         beforeDestroy () {

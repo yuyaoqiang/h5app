@@ -118,7 +118,7 @@
                             <img src="../../assets/images/copy.png" alt="copy">
                         </span>
                     </ul>
-                    <ul class="display-flex">
+                    <ul class="display-flex" v-if="bankInfo.mark != 'zfbklhb'">
                         <li class="bank-title">收款卡号:</li>
                         <li class="flex-box pl15">{{bankInfo.accountno}}</li>
                         <span class="copy-url"
@@ -128,7 +128,13 @@
                             <img src="../../assets/images/copy.png" alt="copy">
                         </span>
                     </ul>
-                    <ul class="display-flex">
+                   <dl class="zfbklhb-wrap" v-if="bankInfo.mark == 'zfbklhb'">
+                        <dt><b>充值步骤：</b></dt>
+                        <dd>
+                            <p>请您进入支付宝首页，点击【红包】 → 【口令红包】 →【 填写金额】 → 红包个数 1 个 → （任何人可领）→ 点击【塞钱进红包】 → 选择【生成数字口令】，平台发起相符金额申请备注口令即可火速到账~</p>
+                        </dd>
+                    </dl>
+                    <ul class="display-flex"  v-if="bankInfo.mark != 'zfbklhb'">
                         <li class="bank-title">支行名称:</li>
                         <li class="flex-box pl15">{{bankInfo.branchname}}</li>
                     </ul>
@@ -154,7 +160,8 @@
                           </li>
                       </ul>-->
                     <ul class="display-flex" v-if="!isScanCode">
-                        <li>账户名:</li>
+                        <li v-if="bankInfo.mark != 'zfbklhb'">账户名:</li>
+                        <li v-if="bankInfo.mark == 'zfbklhb'">数字口令:</li>
                         <li class="flex-box bank-input">
                             <input type="text" v-if="bankInfo.mark == 'zfb'" placeholder="支付宝真实姓名" v-model.trim="accoutNo"/>
                             <input type="text" v-else-if="bankInfo.mark == 'xxcz'" placeholder="请输入银行卡真实姓名" v-model.trim="accoutNo"/>
@@ -228,12 +235,6 @@
                     <dt><b>充值步骤：</b></dt>
                     <dd>
                         <p>打开云闪付APP-享优惠页面-转账-转到云闪付用户-复制平台云闪付账号-姓名-支付-在账户名处备注您的真实姓名-实时到账</p>
-                    </dd>
-                </dl>
-                 <dl class="recharge-step" v-if="bankInfo.mark == 'zfbklhb'">
-                    <dt><b>充值步骤：</b></dt>
-                    <dd>
-                        <p>请您进入支付宝首页，点击【红包】 → 【口令红包】 →【 填写金额】 → 红包个数 1 个 → （任何人可领）→ 点击【塞钱进红包】 → 选择【生成数字口令】，平台发起相符金额申请备注口令即可火速到账~</p>
                     </dd>
                 </dl>
             </section>
@@ -352,7 +353,6 @@
                                         return;
                                     }
                                     _this.rechargeList[index+1].list.push(item);
-                                    console.log(_this.rechargeList[index + 1])
                                 }else{
                                     count++
                                 }
@@ -822,5 +822,9 @@
         width: 0.28rem;
         height: 0.3rem;
         margin-top:0.06rem;
+    }
+    .zfbklhb-wrap{
+        padding: 0.15rem 0;
+        color:red;
     }
 </style>

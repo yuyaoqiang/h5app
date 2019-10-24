@@ -1,9 +1,9 @@
 export default {
     setting: {
         code: "my",
-        name: "辉煌国际",
-        title: "辉煌国际",
-        url: "http://xxxxxx.com/",
+        name: "润发彩票",
+        title: "润发彩票",
+        url: "http://ybcp918.com/",
         allowTryPlay: true,
         allowRemoteUrl: true,
         mlink: '', //唤醒app
@@ -24,11 +24,13 @@ export default {
     ],
 
     lotteryGames: [
-        { id: 205, name: "欢乐球", logo: "icon_hlffc.png", type: "sscrules" },
+
+        // { id: 205, name: "欢乐球", logo: "icon_hlffc.png", type: "sscrules" },
         { id: 63, name: "腾讯分分彩", logo: "icon_txffc.png", type: "sscrules" },
         { id: 202, name: "五分PK10", logo: "bdb5fpk10.png", type: "pk10rules", displayType: "klc", },
         // { id: 70, name: "新腾讯分分彩", logo: "icon_xtxffc.png", type: "sscrules" },
-        { id: 1, name: "重庆时时彩", logo: "icon_cqssc.png", type: "sscrules", },
+        { id: 1, name: "欢乐生肖", logo: "icon_hlsx.jpg", type: "sscrules", },
+        { id: 208, name: "重庆时时彩", logo: "icon_cqssc.png", type: "sscrules", },
         { id: 9, name: "新疆时时彩", logo: "icon_xjssc.png", type: "sscrules", },
         { id: 10, name: "天津时时彩", logo: "icon_tjssc.png", type: "sscrules", },
         { id: 17, name: "东方五分彩", logo: "df5.png", type: "sscrules", },
@@ -63,7 +65,9 @@ export default {
         { id: 201, name: "二分PK10", logo: "bdb2fpk10.png", type: "pk10rules", displayType: "klc", },
         { id: 200, name: "极速PK10", logo: "bdb1fpk10.png", type: "pk10rules", displayType: "klc", },
 
-        { id: 204, name: "幸运快三", logo: "xyk3.png", type: "k3rules", },
+        { id: 204, name: "五分快三", logo: "wfk3.png", type: "k3rules", },
+        { id: 206, name: "一分快三", logo: "yfk3.png", type: "k3rules", },
+        { id: 207, name: "三分快三", logo: "sfk3.png", type: "k3rules", },
         { id: 28, name: "江苏快三", logo: "icon_jsk3.png", type: "k3rules", },
         { id: 29, name: "安徽快三", logo: "icon_awk3.png", type: "k3rules", },
         { id: 31, name: "湖北快三", logo: "icon_hbk3.png", type: "k3rules", },
@@ -98,10 +102,18 @@ export default {
         { code: "BBIN", desc: "BBIN", value: 3 },
         { code: "MG", desc: "MG", value: 4 },
         { code: "PT", desc: "PT", value: 5 },
+        { code: "VR", desc: "VR", value: 9 },
         { code: "SB", desc: "沙巴", value: 10 },
-        { code: "KY", desc: "棋牌", value: 12 },
+        { code: "KY", desc: "棋牌", value: 19 },
     ],
-    trdGames: [{
+    trdGames: [
+        // { code:'VR',name: "VR", permissionKey: "VR彩票", desc: "VR彩票",image: "index_live.png",
+        // list: [
+        //     { id: 10003, vrId: 12, name: "火星5分彩", platform: "VR",permissionKey: "火星5分彩",image: "bbin_live.png",type: 2},
+        // ]
+        // },
+
+        {
             code: "live",
             name: "视讯",
             permissionKey: "视讯直播",
@@ -119,7 +131,7 @@ export default {
             list: [
                 { platform: "AG", name: "AG电子", permissionKey: "AG电子", image: "ag_elec.png",},
                 { platform: "AG", name: "AG捕鱼", permissionKey: "AG捕鱼", image: "ag_fish.png", type: "6" },
-                { platform: "BBIN", name: "BBIN电子", permissionKey: "BBIN电子", image: "bbin_elec.png", type: "game" },
+                // { platform: "BBIN", name: "BBIN电子", permissionKey: "BBIN电子", image: "bbin_elec.png", type: "game" },
                 { platform: "PT", name: "PT电子", permissionKey: "PT电子", image: "pt_elec.png",path:'pt_elec'},
                 { platform: "MG", name: "MG电子", permissionKey: "MG电子", image: "mg_elec.png",path:'mg_elec'}
             ]

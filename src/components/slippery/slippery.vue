@@ -6,7 +6,7 @@
                     <li class="slippery-top-img"><img src="../../assets/images/icon29.png"></li>
                     <li class="flex-box slippery-top-mid">
                         <p>{{user.isShiWan?'试玩用户':user.userName}}</p>
-                        钱包余额: ¥ {{user.walletBal}} 元
+                        钱包余额: ¥ {{walletBal}} 元
                     </li>
                 </ul>
                 <ul v-if="user.init==false"  class="slippery-account">
@@ -83,6 +83,7 @@
                 kgFlag: false,
                 types: [],
                 user: {},
+                walletBal:0,
                 tagIndex:0,
                 collectionLotter:[],
 
@@ -135,6 +136,9 @@
             goHome(){
                 this.slideHide();
                 this.$router.push({path: 'index'});
+            },
+            getCatalog(){
+                 this.walletBal = this.user.walletBal
             },
             // toKgLotteryBet(lottery){
             //     this.$router.push({path: 'kgGameBet', query: {gameId: lottery.id}});
@@ -190,6 +194,11 @@
                     _this.lotteryList  =indexLotteryList
                    }
             })
+        },
+        mounted() {
+            this.$watch('user', this.getCatalog, {
+                deep: true,
+            });
         },
         watch:{
             "user.isShiWan":function(){

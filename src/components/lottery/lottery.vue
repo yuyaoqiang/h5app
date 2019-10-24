@@ -73,7 +73,7 @@
                             <h2>我的收藏</h2>
                         </div>
                     </li>
-                    <li v-for="item in lotteryList" v-if="item.openTradition==true || item.openKg==true"
+                    <li v-for="item in lotteryList" v-if="item.openTradition==true || item.openKg==true || item.displayType=='VR'&&item.permission"
                         @click="toGame(item)">
                         <div>
                             <img :src="require('../../assets/images/lottery/'+item.logo)">
@@ -226,7 +226,6 @@
                         var ids = arrayUtil.join(indexLotteryList, item => {
                             return item.id;
                         }, ",");
-
                         lotteryApi.getBettingTimeList({gameIds: ids}, function (resp) {
                             if (resp.code == 200) {
                                 //todo
@@ -244,7 +243,6 @@
                             l.indexCountdown.content ="玩法新颖 惊喜不断"
                         });*/
                     }
-
                     _this.lotteryList = indexLotteryList;
                 });
             },

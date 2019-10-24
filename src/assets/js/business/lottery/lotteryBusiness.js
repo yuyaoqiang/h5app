@@ -418,13 +418,7 @@ export default {
                             indexLotteryList.push(lot);
                         }
                     }
-                    // _this.indexLotteryList = indexLotteryList.sort((a,b)=>{return a.deep<b.deep?1:-1})
                      _this.indexLotteryList = _.sortBy(indexLotteryList,item=>-item.deep)
-                    _this.indexLotteryList.map(item=>{
-                        if(item.permission && item.openKg){
-                            console.log(item.name)
-                        }
-                    })
                     callback(_this.indexLotteryList);
                 } else {
                     console.error("获取首页推荐采种失败:" + resp.msg);

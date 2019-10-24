@@ -20,7 +20,9 @@ import { carousel, carouselItem, } from 'element-ui'
 Vue.use(carousel)
 Vue.use(carouselItem)
 import Vue2TouchEvents from 'vue2-touch-events'
-Vue.use(Vue2TouchEvents)
+Vue.use(Vue2TouchEvents,{ 
+    swipeTolerance :100 
+} )
 import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard)
 

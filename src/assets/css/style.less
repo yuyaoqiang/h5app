@@ -83,7 +83,8 @@
   width: 100%;
   // height: 100%;
   position: relative;
-  background:url("../../assets/images/login-bg.jpg") no-repeat center ;
+  background:url("../../assets/platform/main/images/login-bg.jpg") no-repeat center ;
+  
   background-size: 100% 100%;
   -webkit-overflow-scrolling: touch;
 }
@@ -2134,7 +2135,7 @@ span.link-address{
   // left: 0;
   // top: 0.44rem;
   // bottom: 0;
-  padding-top: 0.44rem;
+  // padding-top: 0.44rem;
   width: 100%;
   padding-bottom: 0.1rem;
   transition: all 0.3s;
@@ -2174,14 +2175,33 @@ span.link-address{
   overflow: hidden;
 }
 .quota-platform ul{
-  width: 50%;
-  float: left;
+  // width: 50%;
+  // float: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 0.5rem;
   padding-top: 0.05rem;
+  padding: 0 10px;
   background: #ffffff;
   box-sizing: border-box;
   box-shadow: 0 -1px 0 #f4f4f4 inset;
   -webkit-box-shadow: 0 -1px 0 #f4f4f4 inset;
+  li:nth-child(1){
+    flex:0.6rem;
+  }
+  li:nth-child(2){
+    flex:35%
+  }
+  li:nth-child(3){
+    flex:20%
+  }
+  li:nth-child(4){
+    flex:20%
+  }
+  li:nth-child(5){
+    flex:22%
+  }
 }
 .quota-platform ul:nth-child(odd){
   box-shadow: -1px 0 0 #f4f4f4 inset, 0 -1px 0 #f4f4f4 inset;
@@ -2194,7 +2214,7 @@ span.link-address{
   right: 0;
   width: 0.3rem;
   height: 0.3rem;
-  line-height: 0.3rem;
+  line-height: 0.5rem;
   text-align: center;
 }
 .quota-refresh img{

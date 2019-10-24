@@ -11,7 +11,6 @@ export default {
         var _this = this;
 
         amq.init(user, function(msg) {
-
             var data = JSON.parse(msg.data);
             _this.pushEvent(data);
         });

@@ -109,7 +109,7 @@
                 </li>
                 <li class="flex-box lottery-betting-money">
                     <p v-if="user.init==true">已选: <b class="orange">{{areaData.betQty}}</b> 注 <b class="orange">{{areaData.betAmount | fixedMoney }}</b> 元</p>
-                    <p v-if="user.init==true">余额：<b class="orange">{{user.walletBal}}</b> </p>
+                    <p v-if="user.init==true">余额：<b class="orange">{{walletBal}}</b> </p>
                     <p v-if="user.init==false">已选: <b class="orange">{{areaData.betQty}}</b> 注 </p>
                     <p v-if="user.init==false">总计：<b class="orange">{{areaData.betAmount | fixedMoney }}</b> 元</p>
                 </li>
@@ -199,6 +199,7 @@
                     showMissing: false,
                     showMissingAndColdHot: false,
                 },
+                walletBal:0,
                 user:{
                     lotteryBal:0
                 },
@@ -597,6 +598,9 @@
 
                 doConfirm();
             },
+            getCatalog(){
+                this.walletBal = this.user.walletBal
+            },
             clearBetBall() {
                 if (this.areaData.type == "text") {
                     this.areaData.betContent = "";
@@ -862,6 +866,9 @@
         mounted() {
             //var mixins = window.outerHeight;
             //document.querySelector(".slide-right").style.minHeight = mixins + "px"
+        this.$watch('user', this.getCatalog, {
+                deep: true,
+            });
         },
         beforeDestroy() {
             if (this.$parent.isDestory && this.isDestory) {

@@ -51,7 +51,6 @@ export default {
         this.getUser(view, compelete, quickCallback);
     },
     getUser(view, compelete, quickCallback) {
-        
         var callBack = function (user) {
             if (compelete) {
                 compelete(user);
@@ -190,8 +189,6 @@ export default {
                             });
 
                         });
-
-
                         //初始化彩票菜单权限
                         var lotteryMenu = menuData["彩票游戏"];
                         if (lotteryMenu == null) {
@@ -200,7 +197,6 @@ export default {
                         lotteryMenu = lotteryMenu || {};
                         //lotteryMenu={all:false,"韩国1.5分彩":true,"福彩3D":true,"波兰11选5":null};
                         var lotteryList = _this.getLotteryList();
-
                         arrayUtil.forEach(lotteryList, item => {
                             if (lotteryMenu.all == true) {
                                 item.permission = false;
