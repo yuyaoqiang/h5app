@@ -503,7 +503,7 @@ export default {
 
 
     checkIsTryPlayer() {
-
+        
         if (this.user.isShiWan) {
             appContext.current.lalterWarning("试玩账号不允许此操作")
             return true;

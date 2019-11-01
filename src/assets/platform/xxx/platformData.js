@@ -7,6 +7,7 @@ export default {
         allowTryPlay: true,
         allowRemoteUrl: true,
         mlink: '', //唤醒app
+        staticResourceUrl: "https://555n9.com",
     },
     accountMenus: [
         { code: "recharge", name: "充值", permissionKey: "充值提现" },
@@ -101,10 +102,17 @@ export default {
         { code: "BBIN", desc: "BBIN", value: 3 },
         { code: "MG", desc: "MG", value: 4 },
         { code: "PT", desc: "PT", value: 5 },
+        { code: "VR", desc: "VR", value: 9 },
         { code: "SB", desc: "沙巴", value: 10 },
         { code: "KY", desc: "棋牌", value: 19 },
     ],
-    trdGames: [{
+    trdGames: [
+        { 
+            code:'VR',name: "VR", permissionKey: "VR彩票", desc: "VR彩票",image: "index_live.png",
+            list: [
+            { id: 10003, vrId: 1, name: "火星5分彩", platform: "VR",permissionKey: "火星5分彩",image: "vr_cp.png",type: 1},
+            ]
+        },{
             code: "live",
             name: "视讯",
             permissionKey: "视讯直播",

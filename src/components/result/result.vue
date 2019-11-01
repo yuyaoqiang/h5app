@@ -19,7 +19,7 @@
             <v-slippery :user="user" ref="tagIndex"></v-slippery>
         </div>
         <section class="result-height" v-if="list.length>0">
-            <article class="result-list" v-for="item in list"  v-if="item.openTradition||item.openKg">
+            <article class="result-list" v-for="item in lotteryList"  v-if="item.openTradition||item.openKg">
                 <ul class="display-flex">
                     <li class="lottery-logo">
                         <img :src="require('../../assets/images/lottery/'+item.logo)">

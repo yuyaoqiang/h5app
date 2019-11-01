@@ -26,6 +26,9 @@
                     <li class="flex-box pr">修改资金密码 <span class="setting-no" v-if='user.hasWallerPwd==false'>未设置</span></li>
                     <li class="account-arrow-right"><i class="el-icon-arrow-right"></i></li>
                 </ul>
+                <ul @click="closeSound"  class="display-flex">
+                    <li class="flex-box pr">{{soundState}}中奖语音提醒 </li>
+                </ul>
             </div>
 
             <router-link tag="div" to="moreInfo" class="account-list mt15">
@@ -47,6 +50,7 @@
     import UserInfor from "../../assets/js/api/userInfo"
     import userBusiness from "../../assets/js/business/user/userBusiness"
     import appContext from "../../assets/js/context/appContext"
+    import cacheUtil from "../../assets/js/util/cacheUtil"
     export default {
         props: {
             user: {
@@ -57,10 +61,17 @@
             return {
                 postUrl:"/login/loginOut.mvc",
                 msg:'',
+                soundState:'',
             }
         },
         created(){
             var _this=this;
+           const state =  cacheUtil.getLocalStorage('soundState');
+           if(state){
+               this.soundState ='关闭'
+           }else{
+               this.soundState ='开启'
+           }
         },
         methods: {
 
@@ -159,7 +170,19 @@
                         appContext.destroy();
                     })
                 });
+            },
+            closeSound:function(){
+                var _this = this;
+                const state =  cacheUtil.getLocalStorage('soundState');
+                this.lconfirm(`您是否确定${this.soundState}声音？`, null, () => {
+                    cacheUtil.setLocalStorage('soundState',!state);
+                    if(!state){
+                        this.soundState ='关闭'
+                    }else{
+                        this.soundState ='开启'
+                    }
+                });
             }
-        }
+        },
     }
 </script>

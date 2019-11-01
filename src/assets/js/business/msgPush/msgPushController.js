@@ -3,6 +3,7 @@ import lmsWebsocket from "./lmsWebsocket";
 import appContext from '../../context/appContext'
 import userBusiness from '../../business/user/userBusiness'
 import soundController from '../../business/sound/soundController'
+import cacheUtil from "../../../js/util/cacheUtil"
 import MessageBoxs from '../../../../controls/messageBox'
 import { MessageBox } from 'mint-ui';
 import { debug } from "util";
@@ -67,8 +68,10 @@ export default {
             <p>中奖注数：<font style="color:red;">${data.winOrderCount}</font></p>
             <p>中奖金额：<font style="font-weight: bold;color:red;">${data.winMoney.toFixed(3)}元</font></p>
             `, '中奖消息');
-           
-            soundController.play("message.mp3");
+            const state =  cacheUtil.getLocalStorage('soundState');
+            if(state){
+                soundController.play("message.mp3"); 
+            }
 
         } else if (data.code == 400) {
             userBusiness.logout();

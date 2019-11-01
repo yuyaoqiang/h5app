@@ -184,10 +184,6 @@
                 if(userBusiness.checkIsNotLoginPlayer()){
                     return;
                 }
-
-                if(userBusiness.checkIsTryPlayer()){
-                    return;
-                }
                 var platform =item.platform;
                 var openedPropName="isOpen"+platform;
                 var opened = this.user[openedPropName];
@@ -202,7 +198,7 @@
                     return false;
                 }
                 var path = item.path;
-                if (path == null) {
+                if (path == null || path == 'undefined') {
                     var params={
                         platform:platform,
                         gameType: item.type,
@@ -255,16 +251,16 @@
                         $form.attr("action", obj.jumpUrl+"/gameplay/login_jump");
                     }
                     $form.submit();
-                }else if(platform == "VR"){
-                       window.open(val)
-                } else {
+                    }else if(platform == "VR"){
+                    window.open(val,'_self')
+                    } else {
                     var $form = $("#game_form");
-
                     if(platform=="AG"){
-                        $form.attr("method","post")
+                        $form.attr("method","post");
+                          $form.submit();
                     }
                     if( platform=="KY"){
-                        window.open(val)
+                         window.open(val,'_self')
                         return;
                     }
                     $form.attr("action", val);

@@ -1,12 +1,13 @@
 export default {
     setting: {
         code: "my",
-        name: "润发彩票",
-        title: "润发彩票",
+        name: "亚博彩票",
+        title: "亚博彩票",
         url: "http://ybcp918.com/",
         allowTryPlay: true,
         allowRemoteUrl: true,
         mlink: '', //唤醒app
+        staticResourceUrl: "https://555n9.com",
     },
     accountMenus: [
         { code: "recharge", name: "充值", permissionKey: "充值提现" },
@@ -24,7 +25,6 @@ export default {
     ],
 
     lotteryGames: [
-
         // { id: 205, name: "欢乐球", logo: "icon_hlffc.png", type: "sscrules" },
         { id: 63, name: "腾讯分分彩", logo: "icon_txffc.png", type: "sscrules" },
         { id: 202, name: "五分PK10", logo: "bdb5fpk10.png", type: "pk10rules", displayType: "klc", },
@@ -107,13 +107,12 @@ export default {
         { code: "KY", desc: "棋牌", value: 19 },
     ],
     trdGames: [
-        // { code:'VR',name: "VR", permissionKey: "VR彩票", desc: "VR彩票",image: "index_live.png",
-        // list: [
-        //     { id: 10003, vrId: 12, name: "火星5分彩", platform: "VR",permissionKey: "火星5分彩",image: "bbin_live.png",type: 2},
-        // ]
-        // },
-
-        {
+        { 
+            code:'VR',name: "VR", permissionKey: "VR彩票", desc: "VR彩票",image: "index_live.png",
+            list: [
+            { id: 10003, vrId: 1, name: "火星5分彩", platform: "VR",permissionKey: "火星5分彩",image: "vr_cp.png",type: 1},
+            ]
+        },{
             code: "live",
             name: "视讯",
             permissionKey: "视讯直播",

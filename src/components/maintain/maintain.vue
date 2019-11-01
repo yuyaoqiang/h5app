@@ -1,6 +1,6 @@
 <template>
     <div class="maintain-bg"
-         :style="'background: url('+require('../../assets/platform/main/images/maintain-bg.jpg')+') no-repeat center;background-size: cover;'">
+         :style="'background: url('+require('../../assets/platform/main/images/maintain-bg1.jpg')+') no-repeat center;background-size: cover;'">
         <div class="maintain-header">
             <div class="maintain-logo">
                 <img src="../../assets/platform/main/images/logo.png"/>
@@ -17,7 +17,7 @@
         <div class="maintain-service" @click="openOnlineService">
             <img src="../../assets/images/icon13.png">在线客服
         </div>
-        <div class="maintain-footer">Copyright @ 2018{{platformSetting.name}} 版权所有 ALL Right Reserved</div>
+        <div class="maintain-footer">Copyright @ 2015{{platformSetting.name}} 版权所有 ALL Right Reserved</div>
     </div>
 </template>
 <script>
