@@ -101,7 +101,6 @@
 
     import platformData from "../../assets/platform/main/platformData"
     import kgBusiness from "../../assets/js/business/lottery/kg/kgBusiness"
-    import _ from 'lodash';
     export default {
         data () {
             return {

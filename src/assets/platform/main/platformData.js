@@ -1,9 +1,9 @@
 export default {
     setting: {
         code: "my",
-        name: "亚博彩票",
-        title: "亚博彩票",
-        url: "http://ybcp918.com/",
+        name: "润发彩票",
+        title: "润发彩票",
+        url: "http://rf012.com/",
         allowTryPlay: true,
         allowRemoteUrl: true,
         mlink: '', //唤醒app
@@ -25,6 +25,7 @@ export default {
     ],
 
     lotteryGames: [
+
         // { id: 205, name: "欢乐球", logo: "icon_hlffc.png", type: "sscrules" },
         { id: 63, name: "腾讯分分彩", logo: "icon_txffc.png", type: "sscrules" },
         { id: 202, name: "五分PK10", logo: "bdb5fpk10.png", type: "pk10rules", displayType: "klc", },
@@ -112,7 +113,9 @@ export default {
             list: [
             { id: 10003, vrId: 1, name: "火星5分彩", platform: "VR",permissionKey: "火星5分彩",image: "vr_cp.png",type: 1},
             ]
-        },{
+        },
+
+        {
             code: "live",
             name: "视讯",
             permissionKey: "视讯直播",

@@ -290,7 +290,6 @@
     import xyxzSB from "./xyxz/lhcSB.vue"
     import xyxzTWS from "./xyxz/lhcTWS.vue"
     import xyxzHX from "./xyxz/lhcHX.vue"
-    import _ from 'lodash';
     export default {
 
         data () {

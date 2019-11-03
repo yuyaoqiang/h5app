@@ -17,7 +17,7 @@ var objPlatform = {
 var index = 0;//index=0 本机开发； index=1 本机打包
 
 //打包的平台编码  
-var lotteryPlatform = objPlatform[3];
+var lotteryPlatform = objPlatform[1];
 
 if(!lotteryPlatform){
     console.log('平台不存在')
@@ -102,10 +102,6 @@ var webpackConfig = {
                 );
             }
         }),
-        new webpack.ProvidePlugin({
-            jQuery: "jquery",
-            $: "jquery",
-        }),
     ],
     // 加载器
     module: {
@@ -155,9 +151,12 @@ var webpackConfig = {
                     name: outputStaticPath + '/img/[name].[ext]'
                 }
             }
-        ]
+        ],
     },
-
+    externals:{
+        jQuery: "jquery",
+        $: "jquery",
+    }
 };
 
 
