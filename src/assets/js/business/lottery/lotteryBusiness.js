@@ -11,7 +11,7 @@ import lotteryTypeData from '../../data/lotteryTypeData';
 import objectUtil from './../../util/objectUtil';
 import appContext from './../../context/appContext';
 import fileLoader from './../../util/fileLoader';
-import _ from 'lodash'
+import sortBy from 'lodash/sortBy'
 
 export default {
     STATUS_LIST: {
@@ -418,7 +418,7 @@ export default {
                             indexLotteryList.push(lot);
                         }
                     }
-                     _this.indexLotteryList = _.sortBy(indexLotteryList,item=>-item.deep)
+                     _this.indexLotteryList = sortBy(indexLotteryList,item=>-item.deep)
                     callback(_this.indexLotteryList);
                 } else {
                     console.error("获取首页推荐采种失败:" + resp.msg);

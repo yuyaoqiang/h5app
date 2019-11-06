@@ -10,7 +10,6 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
-import Vuex from 'vuex'
 
 import messageBox from "./controls/messageBox";
 // 使用
@@ -71,13 +70,10 @@ Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 // Vue.use(MuseUI)
 
-Vue.use(Vuex)
 
 //数据中心
-import store from './store/storeData';
 import numberUtil from './assets/js/util/numberUtil'
 import dateUtil from './assets/js/util/dateUtil'
-Vue.use(Vuex);
 
 
 //自定义过滤器
@@ -110,6 +106,5 @@ Vue.filter('toBoolean', function(value) {
 const app = new Vue({
     router,
     el: '#app',
-    store,
     render: h => h(App)
 })
