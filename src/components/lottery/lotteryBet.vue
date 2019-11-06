@@ -107,19 +107,31 @@
                     <h1 class="alert-title">开奖记录</h1>
                     <div class="history-content">
                         <span class="loaing-text" v-if="lotteryHistoryList===null">正在加载中....</span>
-                        <ul class="display-flex" v-for="item in lotteryHistoryList">
+                        <ul class="display-flex align-items" v-for="item in lotteryHistoryList">
                             <li :class="[lottery.type.numLen===10?'history-alert-issue-10':'',
                                          lottery.type.numLen===8?'history-alert-issue-8':'',
                                          lottery.type.numLen===5?'history-alert-issue':'',
-                                         lottery.type.numLen===5?'history-alert-issue':'']">{{item.issueno}}</li>
-                            <li class="flex-box-history">
-                                <b v-for="n in item.nums.split(' ')"
+                                         lottery.type.numLen===5?'history-alert-issue':'']">{{item.issueno}}
+                            </li>
+
+                            <li class="flex-box-history"  v-if="lottery.type.name != 'pk10rules'">
+                                <b v-for="n in item.nums.split(' ')" :key="n"
                                    :class="[
                                     pcddBallColor.red.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-red':
                                     pcddBallColor.green.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-green':
                                     pcddBallColor.gray.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-gray':
                                     pcddBallColor.blue.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-blue':'',
                                 ]">{{n}}</b>
+                                <b v-if="lottery.type.name == 'k3rules'" :class="item.bs=='大'?'ball-gray':'ball-pink'">{{item.bs}}</b>
+                                <b v-if="lottery.type.name == 'k3rules'" :class="item.sd=='单'?'ball-gray':'ball-pink'">{{item.sd}}</b>
+                                <b v-if="lottery.type.name == 'k3rules'" class="ball-green">{{item.count}}</b>
+                                <span v-if="lottery.type.name == 'pcdd'">= <b>{{item.nums.split(' ')[0]/1 + item.nums.split(' ')[1]/1 + item.nums.split(' ')[2]/1}}</b></span>
+                            </li>
+
+                            <li class="pk10rules-wrap"  v-if="lottery.type.name == 'pk10rules'">
+                                <b :key="n" v-for="n in item.nums.split(' ')"
+                                    :class="['square'+n]"></b>
+                                
                                 <b v-if="lottery.type.name == 'k3rules'" :class="item.bs=='大'?'ball-gray':'ball-pink'">{{item.bs}}</b>
                                 <b v-if="lottery.type.name == 'k3rules'" :class="item.sd=='单'?'ball-gray':'ball-pink'">{{item.sd}}</b>
                                 <b v-if="lottery.type.name == 'k3rules'" class="ball-green">{{item.count}}</b>
@@ -973,5 +985,17 @@
 }
 .bigNum dl:last-child {
     margin-right: 0;
+}
+.history-content .pk10rules-wrap b{
+    display: inline-block;
+    text-align: center;
+    width: 0.25rem;
+    height: 0.25rem;
+    line-height: 0.9rem;
+    margin-left: 0.04rem;
+    border-radius:0;
+}
+.align-items{
+    align-items: center;
 }
 </style>

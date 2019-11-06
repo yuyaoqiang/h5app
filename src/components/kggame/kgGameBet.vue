@@ -360,10 +360,10 @@
                         {name: "pk8", "desc": '冠亚和', "type": 'pk8GYH', "permission": false,'control':'isGYH','list':[]}
                     ],
                     "pk10rules":[
+                        {name:"pk10","prdesc": '冠亚和',"desc":'冠亚和',"type":'pkGYH',"permission":false,'control':'isGYH','list':[]},
                         {name:"pk10","prdesc": '两面盘',"desc":'两面盘',"type":'pkTwoface',"permission":false,'control':'isLmp','list':[]},
                         {name:"pk10","prdesc": '1-10名',"desc":'1~5名',"type":'pkBall0105',"permission":false,'control':'isBall0105','list':[]},
                         {name:"pk10","prdesc": '1-10名',"desc":'6~10名',"type":'pkBall0610',"permission":false,'control':'isBall0610','list':[]},
-                        {name:"pk10","prdesc": '冠亚和',"desc":'冠亚和',"type":'pkGYH',"permission":false,'control':'isGYH','list':[]}
                     ],
                     "k3rules":[
                         {name:"k3","prdesc": '和值',"desc":'和值',"type":'k3HZ',"permission":false,'control':'isHZ','list':[]},

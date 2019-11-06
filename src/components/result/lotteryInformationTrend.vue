@@ -32,9 +32,13 @@
             <div class="history-box" v-for="item in history">
                 <p class="history-issue">第{{item.issueno}}期</p>
                 <div class="display-flex">
-                    <div class="clearfix" :class="[gameId==28 || gameId==29 || gameId==31?'history-k3':'']">
+                    <div class="clearfix"  v-if="gameId!=40" :class="[gameId==28 || gameId==29 || gameId==31?'history-k3':'']">
                         <p class="history-num" v-for="n in item.nums.split(' ')" :class="['history-dice-'+n]">
                             {{n}}
+                        </p>
+                    </div>
+                    <div class="clearfix xyft-style"   v-if="gameId==40">
+                        <p  v-for="n in item.nums.split(' ')" :class="['square'+n]">
                         </p>
                     </div>
                     <div class="history-k3-value"  v-if="gameId==28 || gameId==29 || gameId==31">
@@ -129,5 +133,12 @@
 </script>
 
 <style>
-
+    .xyft-style p {
+            display: inline-block;
+            text-align: center;
+            width: 0.25rem;
+            height: 0.25rem;
+            line-height: 0.9rem;
+            margin-left: 0.04rem;
+        }   
 </style>

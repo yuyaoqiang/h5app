@@ -245,14 +245,15 @@
                     }
                     _this.lshowWait()
                     if(platform == "SB"){
-                        $form.attr("action", obj.jumpUrl+"/shaba/login_jump");
+                        window.open(obj.phonUrl,'_self')
+                        return;
                     }
                     if(platform == "GP"){
                         $form.attr("action", obj.jumpUrl+"/gameplay/login_jump");
                     }
                     $form.submit();
                     }else if(platform == "VR"){
-                    window.open(val,'_self')
+                    window.open(val,'_self');
                     } else {
                     var $form = $("#game_form");
                     if(platform=="AG"){

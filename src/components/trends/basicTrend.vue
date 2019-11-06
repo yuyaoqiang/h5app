@@ -14,9 +14,12 @@
 
                 <div class="trend-issue-number" v-show="selectType===-1">
                     <div class="trend-header">开奖号码</div>
-                    <div class="trend-issue-table">
-                        <ul>
+                    <div class="trend-issue-table pk10rules-table-wrap">
+                        <ul  v-if="lottery.type.name != 'pk10rules'">
                             <li  v-for="(item,index) in tableList" v-show="index<removeOffsetHistoryEnd">{{item.nums}}</li>
+                        </ul>
+                         <ul class="trend-pk10rules-wrap" v-if="lottery.type.name == 'pk10rules'" :key="item"  v-for="(item,index) in tableList">
+                            <li  v-show="index<removeOffsetHistoryEnd" :key="n" v-for="n in item.nums.split(' ')" :class="['square'+n]"></li>
                         </ul>
                     </div>
                 </div>
@@ -241,3 +244,22 @@
         }
     }
 </script>
+<style>
+.trend-pk10rules-wrap{
+    line-height: 0.3rem;
+    height: 0.3rem;
+    margin-top: 0;
+    vertical-align: middle;
+}
+.pk10rules-table-wrap{
+    margin-top: 0.08rem;
+}
+.trend-pk10rules-wrap li{
+    display: inline-block;
+    text-align: center;
+    width: 0.21rem;
+    height: 0.3rem;
+    border-radius:0;
+    transform: scale(0.7);
+}
+</style>
