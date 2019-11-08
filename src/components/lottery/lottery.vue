@@ -76,7 +76,7 @@
                     <li v-for="item in lotteryList" v-if="item.openTradition==true || item.openKg==true || item.displayType=='VR'&&item.permission"
                         @click="toGame(item)">
                         <div>
-                            <img :src="require('../../assets/images/lottery/'+item.logo)">
+                            <img v-lazy="require('../../assets/images/lottery/'+item.logo)">
                         </div>
                         <div class="hot-name">
                             <h2>{{item.name}} <i class="hot-icon" v-if="item.hot"></i></h2>

@@ -7,7 +7,7 @@ var lotteryPlatforms = require('./lotteryPlatforms');
 var webpack = require('webpack');
 const path = require('path'); // 导入路径包
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 // -----------------------------------------------------------------------------
 
 var objPlatform = {
@@ -79,7 +79,7 @@ var webpackConfig = {
     },
 
     plugins: [
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         new HtmlWebpackPlugin({
             filename: path.resolve(__dirname, outputBasePath + '/index.html'),
             template: 'index.html',
