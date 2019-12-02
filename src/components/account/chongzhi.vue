@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="header-box">
-            <div class="header-arrow-box" @click="goback">
+            <div class="header-arrow-box" @click="goback()">
                 <i class="el-icon-arrow-left"></i>
             </div>
             <h1>充值中心</h1>
@@ -319,7 +319,7 @@
                 if(this.openSlide){
                     this.openSlide =false;
                 }else{
-                    this.$router.go(-1);
+                    this.$router.goBack('/index')
                 }
             },
             initBank(){

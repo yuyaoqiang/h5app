@@ -54,7 +54,7 @@
                 userInfoApi.syncLoginThir(params, function (resp) {
                    
                     if (resp.code == 200) {
-                        window.open(resp.data.url);
+                        window.open(resp.data.url,'_self');
                     } else {
                         _this.lalterWarning(resp.msg);
                     }

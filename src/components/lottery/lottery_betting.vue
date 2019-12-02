@@ -24,7 +24,7 @@
                     </li>
                 </ul>
             </article>
-            <article v-else class="pt10">
+            <article v-else>
                 <div v-for="(item,index) in areaData.bits" class="lottery-select-main">
                     <div class="display-flex pr14">
                         <div class="lottery-select-msg">
@@ -42,7 +42,7 @@
                             <li @click="quickSelect(item.name,'Clear')">清</li>
                         </ul>
                     </div>
-                    <div class="display-flex mt10">
+                    <div class="display-flex">
                         <ul :data-po="index" class="flex-box lottery-select-number">
                             <li v-for="(obj,subIndex) in item.bitNumObjs"
                                 :class="{'active':obj.selected,'ylactive':setting.showMissing||setting.showColdHot,'odds-margin':(areaData.isOddLH||areaData.isOddKS)?true:false}"
@@ -59,7 +59,7 @@
             </article>
         </section>
         <footer class="lottery-footer">
-            <ul class="display-flex lottery-odds-box " v-if="areaData.betQty>=1">
+            <ul class="display-flex-betting lottery-odds-box " v-if="areaData.betQty>=1">
                 <li><p>倍数</p></li>
                 <li>
                     <div class="lottery-odds-input">
@@ -149,6 +149,7 @@
     import appContext from  "../../assets/js/context/appContext";
     import userBusiness from  "../../assets/js/business/user/userBusiness";
     import platformData from '../../assets/platform/main/platformData'
+    import assign from 'lodash/assign'
     export default {
         data() {
             return {
@@ -817,7 +818,7 @@
                     userBusiness.enableCache=cache;  
                 }
                 userBusiness.getUser(_this,function (user) {
-                     _this.user = _.assign({},user);
+                     _this.user = assign({},user);
                     // _this.$emit('loadUser',user);
                 })
             },

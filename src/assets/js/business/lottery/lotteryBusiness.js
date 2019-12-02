@@ -398,7 +398,7 @@ export default {
         var _this = this;
         if (this.indexLotteryList == null) {
          await   userBussiness.initLotteryList();
-                 lotteryApi.getIndexLotteryList(function(resp) {
+         await   lotteryApi.getIndexLotteryList(function(resp) {
                 if (resp.code == 200) {
                     var indexLotteryList = [];
                     var data = (resp.data || []).reverse();
@@ -425,7 +425,7 @@ export default {
                 }
             })
         }
-        callback(_this.indexLotteryList);
+        callback(_this.indexLotteryList||[]);
     },
     getHistoryNums(params, callback) {
         var lotteryList = userBussiness.getLotteryList();

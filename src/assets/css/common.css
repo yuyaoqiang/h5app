@@ -261,8 +261,6 @@ textarea {
 }
 .display-flex{
     padding: 0.05rem 0 0;
-    box-shadow: 0 1px 0 #e8e8e8 inset;
-    -webkit-box-shadow: 0 1px 0 #e8e8e8 inset;
     box-sizing: border-box;
     display: flex;
     align-items: end;
@@ -420,4 +418,7 @@ iframe {
     height: 1.4rem;
     max-width: 100%;
     vertical-align: bottom;
+}
+.mint-toast{
+    z-index: 9999;
 }

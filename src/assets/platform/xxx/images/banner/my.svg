@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="24px" viewBox="0 0 22 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>标签栏icon/我的-点亮</title>
+    <desc>Created with Sketch.</desc>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="标签栏icon/我的-点亮" transform="translate(-1.000000, 0.000000)">
+            <g>
+                <rect id="矩形" fill="#FFECEC" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <g id="我的" transform="translate(1.000000, 0.000000)">
+                    <path d="M15.6493333,12.815 L6.35066667,12.815 C5.69555556,12.815 5.09422222,13.1816667 4.79111111,13.7634444 L0.899555556,21.2434444 C0.288444444,22.4167778 1.13911111,23.815 2.45911111,23.815 L19.5408889,23.815 C20.8608889,23.815 21.7115556,22.4167778 21.1004444,21.2434444 L17.2088889,13.7634444 C16.9106667,13.1816667 16.3093333,12.815 15.6493333,12.815 L15.6493333,12.815 Z" id="路径" fill="#FF004F"></path>
+                    <path d="M4.4,7.535 C4.4,11.1800793 7.35492065,14.135 11,14.135 C14.6450793,14.135 17.6,11.1800793 17.6,7.535 C17.6,3.88992065 14.6450793,0.935 11,0.935 C7.35492065,0.935 4.4,3.88992065 4.4,7.535 Z" id="路径" fill="#FF004F"></path>
+                    <path d="M9,8 C9,9.1045695 9.8954305,10 11,10 C12.1045695,10 13,9.1045695 13,8" id="路径" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

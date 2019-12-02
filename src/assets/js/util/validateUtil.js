@@ -35,5 +35,16 @@ export default{
     isMoney(amount){
         var reg=/^[0-9]*(\.[0-9]{1,2})?$/;
         return reg.test(amount);
-    }
+    },
+    judgeMobeil() {
+        let client = '';
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {  //判断iPhone|iPad|iPod|iOS
+          client = 'IOS';
+        } else if (/(Android)/i.test(navigator.userAgent)) {  //判断Android
+          client = 'Android';
+        } else {
+          client = 'PC';
+        }
+        return client != 'PC'? true : false
+      },
 }

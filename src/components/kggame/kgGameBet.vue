@@ -38,7 +38,7 @@
             <ul class="display-flex lottery-odds-box" v-show="kgLottery.zhushu>0">
                 <li>
                     <div class="lottery-odds-input">
-                        <input type="number" maxlength="5" v-model.trim="kgLottery.totalMoney" class="lottery-odds lottery-odds-money-wrap" @keyup="multipleChange" @blur="multipleBlur">
+                        <input type="number" maxlength="5" v-model.trim="kgLottery.totalMoney" class="lottery-odds lottery-odds-money-wrap" @click="multipleClike"  @keyup="multipleChange" @blur="multipleBlur">
                     </div>
                 </li>
                 <li><p>元</p></li>
@@ -62,7 +62,7 @@
                     <button type="button"  @click="winStop" :class="{'active':zhuihaoInfor.stop}">中奖停止</button>
                 </li>
             </ul>
-            <ul class="display-flex lottery-betting-nav">
+            <ul class="display-flex-betting lottery-betting-nav">
                 <li class="lottery-machine" @click="rangSelect" v-if="kgLottery.init==true && kgLottery.type.hasLzt==true">
                     <img src="../../assets/images/icon1.png">
                 </li>
@@ -453,8 +453,10 @@
             swiperleft(){
                 this.$router.push('/index')
             },
+            multipleClike(){
+                this.kgLottery.totalMoney =''
+            },
             multipleChange() {
-                
                 var _this = this;
                 var result = businessValidateUtil.multipleChangeCheck(_this.kgLottery.totalMoney, m => {
                     _this.kgLottery.totalMoney = m;
@@ -462,7 +464,6 @@
                 if (result == false) {
                     return;
                 }
-                
             },
             multipleBlur() {
                 var _this = this;
@@ -1520,6 +1521,12 @@
     }
 </script>
 <style>
+    .display-flex-betting{
+        box-sizing: border-box;
+        display: flex;
+        align-items: end;
+        justify-content: space-evenly;
+    }
     .chatroom-area{
         overflow-x: hidden;
         

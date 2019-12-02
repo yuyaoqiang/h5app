@@ -83,15 +83,16 @@
   width: 100%;
   // height: 100%;
   position: relative;
-  background:url("../../assets/platform/main/images/login-bg.jpg") no-repeat center ;
+  background-color: #f6f6f6;
   
   background-size: 100% 100%;
   -webkit-overflow-scrolling: touch;
 }
 .login-logo {
   width: 100%;
-  height: 0.8rem;
+  height: 0.45rem;
   position: relative;
+  background: #ff464b;
   box-sizing: border-box;
 }
 .login-logo  .login-left{
@@ -124,8 +125,9 @@
   
 }
 .login-container {
-  padding: 0.5rem 0.15rem 0;
-  // height: 3.5rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   height:83vh;
   min-height: -webkit-calc(100% - 31.6rem);
   min-height: -moz-calc(100% - 31.6rem);
@@ -154,23 +156,32 @@
 }
 .login-input input{
   width: 100%;
-  height: 0.4rem;
+  height: 0.36rem;
   color: @font-main-color;
   background: none;
-  border: none;
   box-sizing: border-box;
-  font-size: 0.14rem;
+  font-size: 0.12rem;
+  border-radius: 20px;
+  background-color: transparent!important;
+  border: 1px solid #eee;
+  margin-bottom: 8px;
+  padding: 12px 15px;
+  color: #3d3d3d;
+  background-position: 15px 12px;
 
 }
 .login-container input::-webkit-input-placeholder {
-  color: @font-main-color;
+  color: #c3c3c3;
 }
 .login-container input::placeholder {
-  color: @font-main-color;
+  color: #c3c3c3;
 }
 .login-code{
   width: 0.8rem;
   box-sizing: border-box;
+  position: absolute;
+  right: 0.03rem;
+  top: 0.09rem;
 }
 .login-code img{
   width: 100%;
@@ -180,10 +191,11 @@
 
 .login-msg{
   display: flex;
-  color: @font-main-color;
+  color: #666;
   box-sizing: border-box;
-  padding-top: 0.15rem;
-  padding-bottom: 0.15rem;
+  padding-top: 0.1rem;
+  margin: 0 0.1rem;
+  font-size: 0.10rem;
   p{
     flex: 1;
   }
@@ -202,15 +214,13 @@
 }
 .login-btn{
   width: 100%;
-  height: 0.4rem;
+  height: 0.34rem;
   border: none;
   font-size: 0.16rem;
-  font-weight: bold;
-  
-  background: linear-gradient(left, @login-btn-bg-color-left , @login-btn-bg-color-right);
-  background: -webkit-linear-gradient(left, @login-btn-bg-color-left , @login-btn-bg-color-right);
-
-  color: @login-btn-color;
+  color: #292c35;
+  border-radius: 0.2rem;
+  color: #fff;
+  background: #ff464b;
 }
 .login-footer {
   position: absolute;
@@ -218,7 +228,7 @@
   transform: translate(-50%);
   bottom: 0.15rem;
   font-size: 0.1rem;
-  color: @font-main-color;
+  color: #666;
   text-align: center;
   box-sizing: border-box;
   overflow: hidden;
@@ -255,15 +265,19 @@
 
   //注册页面
 .register-container {
-  padding: .4rem 0.15rem 0;
-  height: 5.5rem;
   min-height: -webkit-calc(100% - 31.6rem);
   min-height: -moz-calc(100% - 31.6rem);
   min-height: calc(100% - 31.6rem);
   box-sizing: border-box;
+  margin: 0 0.2rem;
+  width: 88%;
+  background: #fff;
+  border-radius: .08rem;
+  padding-top:0.3rem;
 }
 .reg-account-wrap{
-  box-shadow: none;
+  widows: 90%;
+  margin: 0 0.16rem;
 }
 .register-box dt{
   color: @reg-input-title;
@@ -307,7 +321,7 @@
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
-  background: #fff;
+  background: #e4e4e4;
   -webkit-border-radius: 2px;
   border-radius: 2px;
   box-sizing: border-box;
@@ -332,11 +346,11 @@
 
 .register-msg{
   padding-top: 0.1rem;
-  color: @reg-input-title;
+  color: #636363;
   text-align: center;
 }
 .register-service{
-  color: @reg-input-title;
+  color: #636363;
   line-height: 0.2rem;
   padding: 0.1rem 0;
   text-align: right;
@@ -417,17 +431,17 @@
   width: 100%;
   height: 0.24rem;
   box-sizing: border-box;
-  color: #333333;
+  margin-left: -0.05rem;
   overflow: hidden;
   position: relative;
   transition: all 0.1s linear;
+  color: #6d6d6d !important;
+  font-size: 0.11rem !important;
   -webkit-transition: all 0.1s linear;
 }
 
 .lottery-note-box p{
   overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-text-overflow: ellipsis;
   white-space:nowrap;
 }
 .lottery-note-more{
@@ -560,7 +574,7 @@
   -webkit-transform: translate(-50%,-50%);
 }
 .lottery-list-box{
-  padding: 0 0.12rem;
+  padding: 0 0.12rem 0.5rem;
 }
 .hot-lottery{
   margin-top: 1px;
@@ -616,11 +630,11 @@
   position: fixed;
   bottom:0;
   left:0;
-  z-index: 97;
+  z-index: 2019;
   width:100%;
-  height:0.48rem;
+  // height:0.48rem;
   padding-top: 0.05rem;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   background: @footer-bg;
   box-shadow: 0 -1px 5px #dcdcdc;
   -webkit-box-shadow: 0 -1px 5px #dcdcdc;
@@ -1047,8 +1061,9 @@
 }
 //个人中心
 .account-header{
-  background: linear-gradient(left, @header-bg-left , @header-bg-right);
-  background: -webkit-linear-gradient(left, @header-bg-left , @header-bg-right);
+  background-image: url('../../assets/images/newImg/lottery-bg2.png');
+  background-size: 150% auto;
+  background-repeat: no-repeat;
   text-align: center;
   color: @font-main-color;
   padding-top: 0.15rem;
@@ -1105,13 +1120,12 @@
   // right: 0;
   // bottom:0.48rem;
   padding-top: 0.5rem;
-  overflow-y: auto;
+  // overflow-y: auto;
 }
 .account-list{
   background: #fff;
   padding-left: .15rem;
-  box-shadow: inset 0 1px 0 #e8e8e8, inset 0 -1px 0 #e8e8e8;
-  -webkit-box-shadow: 0 1px 0 #e8e8e8 inset, 0 -1px 0 #e8e8e8 inset;
+  border-radius: 0.08rem;
 }
 .account-list ul{
   // height: .44rem;
@@ -1827,6 +1841,7 @@ span.link-address{
 .setting-btn-box{
   margin-top: 0.15rem;
   padding: 0 0.15rem;
+  margin-bottom: 0.5rem;
 }
 .setting-btn-box button{
   width: 100%;
@@ -2441,8 +2456,8 @@ span.link-address{
   // left: 0;
   // right: 0;
   // z-index: 4;
-  background: linear-gradient(left, @header-bg-left , @header-bg-right);
-  background: -webkit-linear-gradient(left, @header-bg-left , @header-bg-right);
+  // background: linear-gradient(left, @header-bg-left , @header-bg-right);
+  // background: -webkit-linear-gradient(left, @header-bg-left , @header-bg-right);
   color: rgba(51,51,51,1);
   // height: 0.36rem;
   text-align: center;
@@ -2540,13 +2555,6 @@ span.link-address{
   margin: 0 auto;
 }
 .betting-main{
-  // position: absolute;
-  // top:1.16rem;
-  // left: 0;
-  // right: 0;
-  // bottom: 0.88rem;
-  // position: relative;
-  //display:inline;
   padding-top:1.5rem;
   padding-bottom: 0.55rem;
   background: rgba(240,242,245,1);
@@ -2781,7 +2789,7 @@ span.link-address{
   -webkit-transform: rotate(-45deg);
 }
 .lottery-select-main{
-  padding: 0 0 0.1rem 0.14rem;
+  padding: 0 0 0 0.14rem;
 }
 .lottery-select-msg{
   width: 0.85rem;
@@ -4139,7 +4147,7 @@ span.link-address{
 }
 .kg-menu{ 
   position: fixed;
-  top:1.5rem;
+  top:1.48rem;
   left: 0;
   right: 0;
   z-index: 2;
@@ -4289,7 +4297,7 @@ span.link-address{
 //斗牛
 .kg-betting-niu{
   overflow: hidden;
-  padding-top: 0.1rem;
+  // padding-top: 0.1rem;
 }
 .kg-betting-niu dl{
   width: 20%;
@@ -4301,7 +4309,7 @@ span.link-address{
 }
 
 .kg-betting-niu dd{
-  height: 0.6rem;
+  height: 0.5rem;
   background: #ffffff;
   border-radius: 0.08rem;
   position: relative;
@@ -4317,7 +4325,7 @@ span.link-address{
  font-size: 20px;
 }
 .kg-betting-niu div :nth-child(2){
-  margin-top:0.05rem;
+  // margin-top:0.05rem;
  font-size: 14px;
 }
 .kg-betting-niu .active,.kg-betting-area .active{
@@ -4343,7 +4351,7 @@ span.link-address{
   padding-top: 0.1rem;
 }
 .kg-betting-title{
-  padding-bottom: 0.05rem;
+  padding-bottom: 0.02rem;
   font-weight: normal;
   text-align: center;
   font-size: 0.14rem;
@@ -4721,7 +4729,7 @@ line-height: 0.3rem;
   width: 25%;
   float: left;
   background: #ffffff;
-  height: 0.45rem;
+  height: 0.4rem;
   box-shadow: -1px 0 0 #f4f4f4 inset, 0 -1px 0 #f4f4f4 inset;
   -webkit-box-shadow: -1px 0 0 #f4f4f4 inset, 0 -1px 0 #f4f4f4 inset;
   text-align: center;
@@ -4977,7 +4985,7 @@ line-height: 0.3rem;
   overflow-x: hidden;
   padding-bottom: 0.48rem;
   padding-top: 0.44rem;
-  background: #f0f2f5;
+  background: #fff;
   transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transition: all 0.3s linear;
@@ -5009,11 +5017,15 @@ line-height: 0.3rem;
 .lottery-box-header{
   height: 1.48rem;
   overflow: hidden;
+  background-image: url('../../assets/images/newImg/lottery-bg2.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
 }
 .index-header-box .logo-header{
-  height: 0.44rem;
+  height: 0.34rem;
   display: inline-block;
   margin-left: 50%;
+  margin-top: 0.05rem;
   transform: translateX(-50%)
 }
 .column-icon-box{
@@ -5101,7 +5113,7 @@ line-height: 0.3rem;
 }
 .index-menu li{
   padding-top: 0.06rem;
-  height: 0.76rem;
+  height: 0.66rem;
   box-sizing: border-box;
 }
 
@@ -5207,9 +5219,9 @@ line-height: 0.3rem;
   line-height: 0.36rem;
   padding: 0 0.12rem;
   text-align: center;
-  background: linear-gradient(left, @header-bg-left , @header-bg-right);
-  background: -webkit-linear-gradient(left, @header-bg-left , @header-bg-right);
-  color: @font-lottery-tag;
+  // background: linear-gradient(left, @header-bg-left , @header-bg-right);
+  // background: -webkit-linear-gradient(left, @header-bg-left , @header-bg-right);
+  color: #864727;
   font-size: 0.13rem;
 }
 .lottery-tab-box i{
@@ -5382,7 +5394,7 @@ line-height: 0.3rem;
   left: 0.12rem;
   right: 0.12rem;
   bottom: -0.32rem;
-  z-index: 999;
+  z-index: 88;
 }
 .account-header{
   padding-bottom: 0.52rem;
@@ -6826,4 +6838,13 @@ line-height: 0.3rem;
 }
 .square10 {
   background: url(../images/bjpknum.d505bd5.png) -318px -196px no-repeat !important;
+}
+.mint-indicator-wrapper{
+  z-index: 999 !important;
+}
+.mint-toast .is-placebottom{
+  z-index: 10000  !important;
+}
+.mint-indicator-mask{
+  z-index: 9999;
 }

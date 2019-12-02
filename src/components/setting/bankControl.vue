@@ -118,7 +118,7 @@
         methods: {
             goback: function () {
                 if(this.showBank){
-                    this.$router.push("/setting");
+                    this.$router.push("/account");
                 }else{
                     this.showBank = true;
                 }

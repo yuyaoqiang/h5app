@@ -5,57 +5,52 @@
                 <div class="login-left" @click="goback">
                     <i class="el-icon-arrow-left"></i>
                 </div>
-                <section>
-                    <img src="../../assets/platform/main/images/logo.png" :class="platformSetting.code+'_img'">
-                </section>
+                <h1>登录</h1>
             </header>
             <div class="login-container">
-                <dl class="display-flex login-input-wrap">
-                    <dt class="login-icon">
-                        <!-- <img src="../../assets/images/icon11.png">-->
-                        <i class="iconfont icon-dibu_zhanghu_hover"></i>
-                    </dt>
-                    <dd class="flex-box login-input">
-                        <input type="text" placeholder="账号" name="username" v-model.trim="newUserInfo.userName"/>
-                    </dd>
-                </dl>
-                <dl class="display-flex">
-                    <dt class="login-icon">
-                        <!-- <img src="../../assets/images/icon12.png">-->
-                        <i class="iconfont icon-suodingmima"></i>
-                    </dt>
-                    <dd class="flex-box login-input">
-                        <input type="password" placeholder="密码"  v-model.trim="newUserInfo.password"/>
-                    </dd>
-                </dl>
-                 <dl class="display-flex pt15">
-                    <label class="mint-checklist-label remember-checkbox">
-                       <span class="mint-checkbox">
-                            <input class="mint-checkbox-input out-line" type="checkbox"  v-model="remember"/>
-                            <span class="mint-checkbox-core"></span>
-                       </span>
-                    </label>
-                   <dd class="flex-box remember-text">记住密码</dd>
-                </dl>
-                <dl v-if="loginNeedValidateCode != false" class="display-flex pt15">
-                    <dt class="login-icon">
-                        <img src="../../assets/images/yzm.png">
-                    </dt>
-                    <dd class="flex-box login-input">
-                        <input type="text" maxlength="4" placeholder="验证码" name="validate" v-model.trim="newUserInfo.validate"/>
-                    </dd>
-                    <dd class="login-code">
-                        <img title="点击刷新" id="randImage" :src="validateUrl" @click="refreshCode">
-                    </dd>
-                </dl>
-
-                <div class="login-btnbox">
-                    <button type="button" class="login-btn"  @click="logins">登 录</button>
+                <div class="login-container-top">
+                 <section class="container_img">
+                    <img src="../../assets/platform/main/images/logo.png" :class="platformSetting.code+'_img'">
+                    <img src="https://cdn.haobinfen.com/3f3ce093-f7e0-49a3-9d15-c7fc89c94740.png" :class="platformSetting.code+'_img'">
+                </section>
                 </div>
-                <div class="login-msg clearfix">
-                    <p><span @click="openOnlineService" class="fl">在线客服</span></p>
-                    <p><span v-if="regUrl != ''&& regUrl!=null" @click="openRegUrl">立即注册</span></p>
-                    <p><span v-if="platformSetting.allowTryPlay==true" @click="loginShiWan" class="fr">立即试玩</span></p>
+                <div class="login-shape"></div>
+                <div class="login-main-wrap">
+                    <dl class="display-flex login-input-wrap">
+                        <dd class="flex-box login-input">
+                            <input type="text" placeholder="请输入账号" name="username" v-model.trim="newUserInfo.userName"/>
+                        </dd>
+                    </dl>
+                    <dl class="display-flex login-input-wrap">
+                        <dd class="flex-box login-input">
+                            <input type="password" placeholder="请输入密码"  v-model.trim="newUserInfo.password"/>
+                        </dd>
+                    </dl>
+                    <dl v-if="loginNeedValidateCode != false" class="display-flex  login-input-wrap verification-line-wrap">
+                        <dd class="flex-box login-input">
+                            <input type="text" maxlength="4" placeholder="验证码" name="validate" v-model.trim="newUserInfo.validate"/>
+                        </dd>
+                        <dd class="login-code">
+                            <img title="点击刷新" id="randImage" :src="validateUrl" @click="refreshCode">
+                        </dd>
+                    </dl>
+                   <dl class="display-flex rember-wrap">
+                        <label class="mint-checklist-label remember-checkbox">
+                        <span class="mint-checkbox">
+                                <input class="mint-checkbox-input out-line" type="checkbox"  v-model="remember"/>
+                                <span class="mint-checkbox-core"></span>
+                        </span>
+                        </label>
+                    <dd class="flex-box remember-text">记住密码</dd>
+                    </dl>
+                    <div class="login-btnbox">
+                        <button type="button" class="login-btn"  @click="logins">登 录</button>
+                    </div>
+                     <div class="login-msg clearfix">
+                        <p><span @click="openOnlineService" class="fl">在线客服</span></p>
+                        <p><span v-if="regUrl != ''&& regUrl!=null" @click="openRegUrl">立即注册</span></p>
+                        <p><span v-if="platformSetting.allowTryPlay==true" @click="loginShiWan" class="fr">立即试玩</span></p>
+                    </div>
                 </div>
             </div>
             <div class="login-dloadbanner">
@@ -247,9 +242,9 @@
             goback(){
                 var _this=this;
                 if(_this.$route.query.ref){
-                    _this.$router.go(-1);
+                    _this.$router.goBack('/index')
                 }else {
-                    _this.$router.push({path:"index"});
+                     _this.$router.goBack('/index')
                 }
             },
 
@@ -302,9 +297,10 @@
 
     }
 </script>
-<style>
+<style lang="less">
     .login-btnbox{
-        margin-top: 0.30rem;
+        margin-top: 0.12rem;
+        margin: 0 0.1rem;
     }
     .remember-checkbox{
         width: 0.6rem;
@@ -312,19 +308,64 @@
         box-sizing: border-box;
     }
     .remember-text{
-        color: #fff;
+        color: #666;
         background: none;
         border: none;
         box-sizing: border-box;
     }
     .mint-checkbox-core{
-        background-color: #ffffff !important;
-        border-color: #ffffff !important;
+        background-color: #c6c6c6  !important;
+        border-color: #c6c6c6  !important;
     }
     .mint-checkbox-input:checked + .mint-checkbox-core::after{
-            border-color: #ff5050;
+            border-color: #fff;
     }
     .login-input-wrap{
         box-shadow: none;
+        margin: 0 0.1rem;
+    }
+    .login-container-top{
+        height: 1.3rem;
+        color: #666;
+        display: flex;
+        width: 100vw;
+        justify-content: center;
+        background: #ff464b;
+        .container_img{
+            width: 50%;
+            margin: 0 auto .5rem;
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .login-shape{
+        border-top: 14vw solid #1c1b21;
+        border-top-color: #ff464b;
+        width: 0;
+        height: 0;
+        margin-bottom: -14vw;
+        border-left: 50vw solid transparent;
+        border-right: 50vw solid transparent;
+    }
+    .login-main-wrap{
+        background-color: #fff; 
+        padding: 0.2rem 0 0.2rem;
+        border-radius: .1rem;
+        width: 84%;
+    }
+    .verification-line-wrap{
+        position: relative;
+    }
+    .rember-wrap{
+        padding-bottom: 0.05rem;
+    }
+    .login-logo h1{
+        height: 0.45rem;
+        line-height: 0.45rem;
+        font-size: 0.16rem;
+        font-weight: normal;
+        text-align: center;
+        color: #fff;
     }
 </style>

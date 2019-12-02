@@ -28,6 +28,7 @@ export default {
         amq.addListener("num", myDestinationNum, function(message) {
             recMsg(message)
         });
+        amq.removeListener('num',myDestinationNum);
         amq.addListener("msg", myDestination, function(message) {
             recMsg(message)
         });

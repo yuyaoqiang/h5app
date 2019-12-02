@@ -552,6 +552,12 @@ export default {
         }
         appContext.current.$router.push({path: 'bonusDetails'});
     },
+    toEdzh() {
+        if (this.checkIsTryPlayer()) {
+            return;
+        }
+        appContext.current.$router.push({path: 'quotaConversion'});
+    },
     toLotteryLimited() {
         if (this.checkIsTryPlayer()) {
             return;

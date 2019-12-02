@@ -3,39 +3,37 @@
         <div class="login-box">
             <header class="login-logo" :class="platformSetting.code">
                 <div class="login-left" @click="goback">
-                    <i class="el-icon-arrow-left"></i>
+                    <i class="el-icon-arrow-left"></i> 
                 </div>
-                <section>
-                    <img src="../../assets/platform/main/images/logo.png" :class="platformSetting.code+'_img'">
-                </section>
-               
-                <div :class="['login-right',platformSetting.code+'_color']" @click="toLogin">
-                    登陆
-                </div>
+                <h1>注册</h1>
             </header>
+        <div class="login-container">
+            <div class="login-container-top">
+                 <section class="container_img">
+                    <img src="../../assets/platform/main/images/logo.png" :class="platformSetting.code+'_img'">
+                    <img src="https://cdn.haobinfen.com/3f3ce093-f7e0-49a3-9d15-c7fc89c94740.png" :class="platformSetting.code+'_img'">
+                </section>
+            </div>
+             <div class="login-shape"></div>
             <section class="register-container" :style="platformSetting.userTelephone && platformSetting.useEmail?'height: 4.1rem':''">
                 <dl class="display-flex register-box reg-account-wrap">
-                    <dt><span class="red">*</span> 账号:</dt>
                     <dd class="flex-box">
-                        <input v-model.trim="data.username"  placeholder="必须在5-12位字符之间" type="text"/>
+                        <input v-model.trim="data.username"  placeholder="请输入账号" type="text"/>
                     </dd>
                 </dl>
                 <dl class="display-flex pt10 register-box">
-                    <dt><span class="red">*</span> 密码:</dt>
                     <dd class="flex-box">
-                        <input v-model.trim="data.password"  placeholder="必须在6-16个字符之间" type="password"/>
+                        <input v-model.trim="data.password"  placeholder="请输入密码" type="password"/>
                     </dd>
                 </dl>
                 <dl class="display-flex pt10 register-box">
-                    <dt><span class="red">*</span> 确认密码:</dt>
                     <dd class="flex-box">
-                        <input v-model.trim="data.repassword"  placeholder="必须在6-16个字符之间" type="password">
+                        <input v-model.trim="data.repassword"  placeholder="请输入确认密码" type="password">
                     </dd>
                 </dl>
                 <dl class="display-flex pt10 register-box">
-                    <dt><span class="red">*</span> 昵称:</dt>
                     <dd class="flex-box">
-                        <input v-model.trim="data.nickname"  placeholder="不能超过16位字符" type="text"/>
+                        <input v-model.trim="data.nickname"  placeholder="请输入昵称" type="text"/>
                     </dd>
                 </dl>
                 <!-- <dl  class="display-flex pt10 register-box"  v-if="regRestrict.regEmailConfig != -1">
@@ -57,15 +55,13 @@
                     </dd>
                 </dl> -->
                 <dl class="display-flex pt10 register-box">
-                    <dt><span class="red">*</span> 推荐码:</dt>
                     <dd class="flex-box">
                         <input v-model.trim="data.regCode"  placeholder="请输入有效的推荐码" type="text"/>
                     </dd>
                 </dl>
                 <dl class="display-flex pt10 register-box">
-                    <dt><span class="red">*</span> 验证码:</dt>
                     <dd class="flex-box">
-                        <input v-model.trim="data.verifyCode" placeholder="验证码" type="text">
+                        <input v-model.trim="data.verifyCode" placeholder="请输入验证码" type="text">
                     </dd>
                     <dd class="register-code-img"  @click="refreshCode">
                         <img title="点击刷新" :src="validateUrl">
@@ -92,7 +88,7 @@
                     
                 </div>
             </section>
-            
+        </div>
             <!-- <footer class="login-footer">
                 <p>Copyright © 2018 {{platformSetting.name}} 版权所有 All Right Reserved</p>
             </footer> -->
@@ -374,12 +370,20 @@
         },
     }
 </script>
-<style>
-    .noSelect{
+<style lang="less" scoped>
+    .login-logo h1{
+        height: 0.45rem;
+        line-height: 0.45rem;
+        font-size: 0.16rem;
+        font-weight: normal;
+        text-align: center;
+        color: #fff;
+    }
+        .noSelect{
         background: #999;
     }
     .login-logo{
-        height: 0.8rem;
+        height: 0.45rem;
     }
     .radius{
         border-radius: 24px;
@@ -408,6 +412,47 @@
         margin-top:0.2rem;
     }
     input::-webkit-input-placeholder{
-        color:#fff !important;
+        color:#757575 !important;
+    }
+    .login-container-top{
+        height: 1.3rem;
+        color: #666;
+        display: flex;
+        width: 100vw;
+        justify-content: center;
+        background: #ff464b;
+        .container_img{
+            width: 50%;
+            margin: 0 auto .5rem;
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .login-container{
+       height: 84vh;
+    }
+    .login-shape{
+        border-top: 14vw solid #1c1b21;
+        border-top-color: #ff464b;
+        width: 0;
+        height: 0;
+        margin-bottom: -14vw;
+        border-left: 50vw solid transparent;
+        border-right: 50vw solid transparent;
+    }
+    dd input{
+        border: 1px solid #eee;
+        background-color: rgba(0, 0, 0, 0);
+        color: #909090;
+        border-radius: 20px;
+    }
+    .register-box{
+        margin: 0 0.16rem;
+    }
+    .register-service{
+        span{
+            margin-right: 0.2rem;
+        }
     }
 </style>

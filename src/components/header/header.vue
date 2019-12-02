@@ -1,15 +1,16 @@
 <template>
     <header>
         <section class="index-header-box">
-            <div class="column-icon-box" @click="leftSlide" v-if="user.init==true">
-                <i class="column-icon"></i>
+            <div class="column-icon-box" v-if="user.init==true && currentUrl!='/account'">
+                <span class="name">{{user.userName}}</span>
+                <span class="money">￥{{user.walletBal}}</span>
             </div>
             <img class="logo-header" src="../../assets/platform/main/images/logo.png"></img>
             <div class="index-login-to" v-if="user.apiReqFinish==true&&user.init==false"><a @click="toLogin">登录</a></div>
             <div class="index-login-try" v-if="user.apiReqFinish==true&&user.init==false"><a href="javascript:void(0);" @click="loginShiWan">试玩</a></div>
-            <div class="down-load-app" v-if="user.init==true">
+            <div class="down-load-app" v-if="user.init==true && !isMobeil">
                 <a href="javascript:void(0);" @click="toDownloadBanner">APP</a>
-                <i class="download-icon"></i>
+                <i class="download-icon"></i> 
             </div>
         </section>
     </header>
@@ -17,6 +18,7 @@
 <script>
     import userBusiness  from '../../assets/js/business/user/userBusiness';
     import arrayUtil  from '../../assets/js/util/arrayUtil';
+    import validateUtil  from '../../assets/js/util/validateUtil';
     import viewUtil from '../../assets/js/business/common/viewUtil';
     import userInfoApi from '../../assets/js/api/userInfo';
     import bus from '../eventBus'
@@ -28,19 +30,31 @@
                     lotteryBal:0,
                     init:false,
                 },
+                isMobeil:false,
+                currentUrl:'',
             }
         },
         created(){
             let _this = this;
+            this.isMobeilFun();
             userBusiness.getUser(this,function (user) {
                 _this.user=user;
             });
+        },
+        mounted(){
+         this.getCurrent();
         },
         beforeCreate(){
            // userBusiness.initLotteryList(); 
         },
 
         methods:{
+            getCurrent(){
+               this.currentUrl= this.$route.path;
+            },
+            isMobeilFun(){
+               this.isMobeil = validateUtil.judgeMobeil()
+            },
             leftSlide(){
                 this.$parent.$parent.slideFlag=!this.$parent.$parent.slideFlag
                 if(this.$parent.$parent.slideFlag){
@@ -145,12 +159,28 @@
             },
         },
         watch:{
-            
+            "$route":function(to,from){
+                this.currentUrl = to.fullPath;
+            }
         }
         
     }
 </script>
 <style lang="scss" scoped>
+    .column-icon-box{
+        color: #fff;
+        margin-left: 0.1rem;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        width: 0.56rem;
+        .name{
 
+        }
+        .money{
+
+        }
+    }
 </style>
 

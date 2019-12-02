@@ -355,11 +355,11 @@
                         </dl>
                         <dl class="display-flex">
                             <dt>团队盈亏:<br/>{{statisticalData.termProfitloss | fixedMoney}}</dt>
-                            <dt>KG投注金额:<br/>{{statisticalData.kjBetAmount | fixedMoney}}</dt>
+                            <dt>传统彩投注金额:<br/>{{statisticalData.kjBetAmount | fixedMoney}}</dt>
                         </dl>
                         <dl class="display-flex">
-                            <dt>KG返点金额:<br/>{{statisticalData.kjRebateAmount| fixedMoney}}</dt>
-                            <dt>KG中奖金额:<br/>{{statisticalData.kjWinAmount | fixedMoney}}</dt>
+                            <dt>传统彩返点金额:<br/>{{statisticalData.kjRebateAmount| fixedMoney}}</dt>
+                            <dt>传统彩中奖金额:<br/>{{statisticalData.kjWinAmount | fixedMoney}}</dt>
                         </dl>
                         <dl class="display-flex">
                             <dt>VR投注金额:<br/>{{statisticalData.vrBetAmount| fixedMoney}}</dt>
@@ -412,7 +412,7 @@
                             <dt>代理返点总金额:<br/>{{statisticalData.agentbonusmoneytotal | fixedMoney}}</dt>
                         </dl>
                         <dl class="display-flex">
-                            <dt>KG代理返点金额:<br/>{{statisticalData.kjagentbonusmoneytotal| fixedMoney}}</dt>
+                            <dt>传统彩代理返点金额:<br/>{{statisticalData.kjagentbonusmoneytotal| fixedMoney}}</dt>
                             <dt>彩票返点金额:<br/>{{statisticalData.lotteryRebateAmount | fixedMoney}}</dt>
                         </dl>
                         <!-- <dl class="display-flex">

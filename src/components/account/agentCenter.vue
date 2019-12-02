@@ -27,11 +27,11 @@
                 <li class="report-icon"><i class="el-icon-arrow-right"></i></li>
             </router-link>
             <router-link  tag="ul" to="teamLottery"  class="display-flex report-list">
-                <li class="flex-box">团队彩票</li>
+                <li class="flex-box">团队官方彩票</li>
                 <li class="report-icon"><i class="el-icon-arrow-right"></i></li>
             </router-link>
             <router-link  tag="ul" to="teamKGLottery"  class="display-flex report-list">
-                <li class="flex-box">团队KG</li>
+                <li class="flex-box">团队传统彩</li>
                 <li class="report-icon"><i class="el-icon-arrow-right"></i></li>
             </router-link>
         </section>

@@ -7,7 +7,11 @@ const login = () => import("./components/login/login.vue")
 // import guid from './components/guid/guid.vue';
 const guid = () => import("./components/guid/guid.vue")
 // import index from './components/index/index.vue';
-const index = () => import("./components/index/index.vue")
+const index = () => import("./components/index/newIndex.vue")
+
+// import index from './components/index/index.vue';
+// const index = () => import("./components/index/index.vue")
+
 // import jumpIndex from './components/index/jumpIndex.vue';
 const jumpIndex = () => import("./components/index/jumpIndex.vue")
 // import register from './components/register/register.vue';
@@ -19,7 +23,10 @@ const chatroom = () => import("./components/chatroom/chatroom.vue")
 
 //index 下面子路由
 // import lottery from './components/lottery/lottery.vue'; //首页
+
 const lottery = () => import("./components/lottery/lottery.vue")
+const newLottery = () => import("./components/lottery/newLottery.vue")
+
 // import result from './components/result/result.vue'; //开奖
 const result = () => import("./components/result/result.vue")
 // import account from './components/account/account.vue'; //账户
@@ -218,6 +225,16 @@ import ptElec from './components/trdPlatform/ptElec.vue'
 const routes = [
     { path: '/', component: boot },
     {
+        path: '/games',
+        component: lottery,
+        name:'indexH5app',
+        meta: {
+            title: "HelloWorld",
+            show: true,
+            index: 1,
+        },
+    },
+    {
         path: '/index',
         component: index,
         meta: {
@@ -227,7 +244,7 @@ const routes = [
         },
         children: [{
             path: '/',
-            component: lottery,
+            component: newLottery,
             name:'indexH5app',
             meta: {
                 title: "HelloWorld",
@@ -235,16 +252,6 @@ const routes = [
                 index: 1,
             },
         },
-
-            {
-                path: '/account',
-                component: account,
-                meta: {
-                    title: "个人中心",
-                    show: true,
-                    index: 3,
-                },
-            },
             {
                 path: '/setting',
                 component: setting,
@@ -264,6 +271,15 @@ const routes = [
                 },
             },
         ]
+    },
+    {
+        path: '/account',
+        component: account,
+        meta: {
+            title: "个人中心",
+            show: true,
+            index: 3,
+        },
     },
     {
         path: '/lotteryTrend',
@@ -323,7 +339,7 @@ const routes = [
     },
     {
         path: '/result',
-        component: result,
+        component: lottery,
         meta: {
             title: "购彩大厅",
             show: true,

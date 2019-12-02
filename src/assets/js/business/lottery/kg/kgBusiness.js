@@ -22,12 +22,12 @@ export default {
         var _this = this;
         var lotteryList = userBusiness.getLotteryList();
 
-        var initLottery = arrayUtil.findFirst(lotteryList, function(item) {
+        var initLottery = arrayUtil.findFirst(lotteryList, function (item) {
             return item.id == kgLottery.id;
         });
 
         if (initLottery == null) {
-            initLottery = arrayUtil.findFirst(lotteryList, function(item) {
+            initLottery = arrayUtil.findFirst(lotteryList, function (item) {
                 return item.openKg == true;
             });
         }
@@ -45,7 +45,7 @@ export default {
         initLottery.status = lotteryBussiness.STATUS_LIST.init;
         initLottery.firstHistory = { issueno: "0000-00-00" }
         initLottery.history = [];
-        initLottery.currentLottery={issueno:"0000-00-00",nums: "- - - - -"}
+        initLottery.currentLottery = { issueno: "0000-00-00", nums: "- - - - -" }
         var emptyNums = "";
         var zeroNums = "";
         var eNumLen = initLottery.type.fullNums[0].length;
@@ -95,11 +95,10 @@ export default {
             //console.log(initLottery,333);
 
             //非六合彩(id:66)的彩种封装玩法数据源
-            if (lotteryId != 66 && lotteryId != 74&&lotteryId!=203) {
+            if (lotteryId != 66 && lotteryId != 74 && lotteryId != 203 && lotteryId != 210 && lotteryId != 211) {
                 var kgType = arrayUtil.findFirst(_this.getKgTypes(), item => {
                     return item.name == initLottery.type.name
                 });
-
                 var playTypes = [];
                 arrayUtil.forEach(kgType.bits, bit => {
 
@@ -127,17 +126,17 @@ export default {
                 initLottery.playTypes = playTypes;
             } else {
                 //遍历接口返回的playType 根据gametypoe==1 找到一级玩法菜单
-          
+
                 var playType = data.playType;
                 //一级菜单数组
                 var playTypes = [];
                 //baseData 定义一级菜单对应的组件名称
                 var kgLhcPlayTypes;
 
-                if(lotteryId==66||lotteryId==203){
+                if (lotteryId == 66 || lotteryId == 203 || lotteryId == 210 || lotteryId == 211) {
                     kgLhcPlayTypes = baseData.kgLhcPlayTypes;
                 }
-                if(lotteryId==74){
+                if (lotteryId == 74) {
                     kgLhcPlayTypes = baseData.kgXyxzPlayTypes;
                 }
                 for (var key in playType) {
@@ -145,15 +144,15 @@ export default {
                     if (playType[key].gametype == 1) {
                         //遍历kgLhcPlayTypes 通过id 给对应的一级菜单添加一个组件名称标识
                         arrayUtil.forEach(kgLhcPlayTypes, item => {
-                                if (item.id == playType[key].id) {
-                                    playType[key].viewType = item.viewType;
-                                    //将满足条件的对象保存到playTypes 中
-                                    var currentPlayType = playType[key];
-                                    currentPlayType.betTypes = [];
-                                    playTypes.push(currentPlayType);
-                                }
-                            })
-                            
+                            if (item.id == playType[key].id) {
+                                playType[key].viewType = item.viewType;
+                                //将满足条件的对象保存到playTypes 中
+                                var currentPlayType = playType[key];
+                                currentPlayType.betTypes = [];
+                                playTypes.push(currentPlayType);
+                            }
+                        })
+
 
                     }
                 }
@@ -220,7 +219,7 @@ export default {
                 });
 
                 var lastHistory = initLottery.data.history[initLottery.data.history.length - 1];
-                initLottery.currentLottery=lastHistory;
+                initLottery.currentLottery = lastHistory;
                 for (var key in lastHistory) {
                     initLottery.firstHistory[key] = lastHistory[key];
                 }
@@ -272,7 +271,7 @@ export default {
     hideOdds(id) {
         var hideFlag = "--";
         let playTypes = this.kgLottery.playTypes;
-        if (id != 66&&id!=203&&id!=74) {
+        if (id != 66 && id != 203 && id != 74) {
             arrayUtil.forEach(playTypes, pt => {
                 arrayUtil.forEach(pt.betTypes, bt => {
                     if (bt.odds != hideFlag) {

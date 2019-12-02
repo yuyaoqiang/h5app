@@ -4,7 +4,7 @@
 
         <!-- <v-suspension></v-suspension> -->
         <div class="index-header-box lottery-box-header">
-            <header class="header-box betting-header">
+            <header class=" betting-header">
                 <div class="column-icon-box" @click="leftSlide">
                     <i class="column-icon"></i>
                 </div>
@@ -251,8 +251,8 @@
                 lotteryHistoryList: [],
                 betting:null,
                 menuList:[
-                    {code:"Kg",name:"KG投注",icon:"icon-youxi_K",isOpen:false,type:"v-kg-betting",active:true},
-                    {code:"Tradition",name:"彩票投注",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:false},
+                    {code:"Kg",name:"传统彩",icon:"icon-youxi_K",isOpen:false,type:"v-kg-betting",active:true},
+                    {code:"Tradition",name:"官方彩",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:false},
                     {code:"Chatroom",name:"聊天室",icon:"icon-youxi_liaotianshi",isOpen:false,type:"v-chatroom",active:false},
                 ],
                 menuSetting:{
@@ -303,6 +303,7 @@
                     lottery.currentLottery.nums = data.nums;
                     //lottery.history.unshift({issueno: data.issueno, nums: data.nums});
                     this.startLotteryNumAnim();
+                    this.showHistory(undefined,lottery.type.name,lottery)
                 }
             },
             startLotteryNumAnim() {
@@ -735,9 +736,7 @@
                 lotteryBusiness.getIndexLotteryList(function (indexLotteryList) {
                     if (indexLotteryList && indexLotteryList.length > 0 && indexLotteryList.length <= 200) {
                        _this.lotteryList  = ltyList = indexLotteryList
-                    }
-                })
-                    id =id==null? _this.$route.query.gameId:id;
+                                          id =id==null? _this.$route.query.gameId:id;
                     var lty = arrayUtil.findFirst(ltyList,item=>{return item.id==id});
                     _this.collection = lty.favorited;
                     if(_this.menuList[1] && _this.menuList[1].active){
@@ -772,7 +771,9 @@
                             closeOnClickModal: false
                         });
                     }
-                }
+                    }
+                })
+              }
             }
         },
         components: {

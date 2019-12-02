@@ -11,7 +11,7 @@
                 <ul @click="toBankContr({path:'bankControl'})"  class="display-flex">
                     <li class="flex-box">银行卡管理</li>
                     <li class="account-arrow-right"><i class="el-icon-arrow-right"></i></li>
-                </ul>
+                </ul> 
             </div>
             <div class="account-list mt15">
                 <ul  @click="toUserInfor({path:'userInfor'})"  class="display-flex">

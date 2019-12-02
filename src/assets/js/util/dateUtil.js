@@ -1,19 +1,19 @@
 
-export default  {
-    getSearchDateLimit(beforeDay){
+export default {
+    getSearchDateLimit(beforeDay) {
 
         var begin = this.getBeforeDayDate(0 - (beforeDay - 1), new Date());
         var end = this.getBeforeDayDate(1, new Date());
-        var result = {"beginTime": begin, "endTime": end};
+        var result = { "beginTime": begin, "endTime": end };
         return result;
     },
 
-    getBeforeDayDate(beforeDay, beginDate){
+    getBeforeDayDate(beforeDay, beginDate) {
         var date = beginDate == null ? new Date() : beginDate;
         date.setDate(date.getDate() + beforeDay);
         return this.toYYYY_MM_DD(date);
     },
-    toYYYY_MM_DDHHmmss(date){
+    toYYYY_MM_DDHHmmss(date) {
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var day = date.getDate();
@@ -25,24 +25,32 @@ export default  {
 
         return fullDateStr;
     },
-    toYYYY_MM_DD(date){
+    toMM_DDHHmmss(date) {
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        return this.toFriendlyDateStyle(month) + "." + this.toFriendlyDateStyle(day) + " "
+            + this.toFriendlyDateStyle(date.getHours()) + ":"
+            + this.toFriendlyDateStyle(date.getMinutes()) + ":"
+            + this.toFriendlyDateStyle(date.getSeconds())
+    },
+    toYYYY_MM_DD(date) {
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var day = date.getDate();
         return year + "-" + this.toFriendlyDateStyle(month) + "-" + this.toFriendlyDateStyle(day);
     },
-    toFriendlyDateStyle(val){
-        return val < 10 ? ( "0" + val) : val;
+    toFriendlyDateStyle(val) {
+        return val < 10 ? ("0" + val) : val;
     },
-    secondsToDDHHMMSS(seconds){
-        var d = Math.floor(seconds/86400);
-        var h = Math.floor((seconds%86400)/3600);
-        var m = Math.floor(((seconds%86400)%3600)/60);
-        var s = Math.floor(((seconds%86400)%3600)%60);
-        return this.toFriendStr(d,false,true)+this.toFriendStr(h,false,true)+this.toFriendStr(m,true,true)+this.toFriendStr(s);
+    secondsToDDHHMMSS(seconds) {
+        var d = Math.floor(seconds / 86400);
+        var h = Math.floor((seconds % 86400) / 3600);
+        var m = Math.floor(((seconds % 86400) % 3600) / 60);
+        var s = Math.floor(((seconds % 86400) % 3600) % 60);
+        return this.toFriendStr(d, false, true) + this.toFriendStr(h, false, true) + this.toFriendStr(m, true, true) + this.toFriendStr(s);
     },
     buildCountdown(seconds) {
-        var d = Math.floor(seconds/ 86400) ;
+        var d = Math.floor(seconds / 86400);
         var h = Math.floor((seconds % 86400) / 3600);
         var m = Math.floor(((seconds % 86400) % 3600) / 60);
         var s = Math.floor(((seconds % 86400) % 3600) % 60);
@@ -53,11 +61,11 @@ export default  {
             secondes: this.toFriendStr(s),
         }
     },
-   toFriendStr(val,defaultDisplay,splitFlag) {
-        if(defaultDisplay==false && val<1){
+    toFriendStr(val, defaultDisplay, splitFlag) {
+        if (defaultDisplay == false && val < 1) {
             return "";
         }
-        return (val<10?("0"+val):val)+(splitFlag?":":"");
+        return (val < 10 ? ("0" + val) : val) + (splitFlag ? ":" : "");
     }
 }
 

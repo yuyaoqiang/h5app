@@ -19,7 +19,7 @@
                 <ul class="pr" v-if="i>0" v-for="(item,i) in transferPlatformList">
 
                     <li class="pb10 platform-name lott-column">
-                       <span :class="item.opened == false?'platform-not-open':''"> {{item.desc==='AGIN'?'AG':item.desc}}(元)</span>
+                       <p ><span :class="item.opened == false?'platform-not-open':''"> {{item.desc==='AGIN'?'AG':item.desc}}(元)</span></p>
                         <button type="button" class="platform-opened" v-show="item.opened==false" @click="openTrdGame(item.name)">开通</button>
                     </li>
                     <li v-show="item.opened" class="platform-money">
@@ -39,11 +39,10 @@
                     </li> -->
                 </ul>
             </article>
-
         </div>
-        <section class="recording-height" style="padding-top:0">
+        <!-- <section class="recording-height" style="padding-top:0">
             <div class="account-list">
-                <!-- <ul class="display-flex">
+                <ul class="display-flex">
                     <li class="inpitem-name">转出平台</li>
                     <li class="flex-box bank-select">
                         <span class="transfer-icon">
@@ -67,12 +66,12 @@
                                     v-for="item in transferPlatformList">{{item.desc}}</option>
                         </select>
                     </li>
-                </ul> -->
-                <!-- <ul class="display-flex">
+                </ul>
+                <ul class="display-flex">
                     <li class="inpitem-name">资金密码</li>
                     <li class="flex-box bank-input"><input  type="password" v-model.trim="password" class="entry"  placeholder="请输入资金密码"/></li>
-                </ul> -->
-                <!-- <ul class="display-flex">
+                </ul>
+                <ul class="display-flex">
                     <li class="inpitem-name">转账金额</li>
                     <li class="flex-box bank-input"><input  type="number" v-model.trim="money" class="entry"  placeholder="请输入转账金额"/></li>
                 </ul>
@@ -80,13 +79,13 @@
                     <li  @click="setMoney(100)" :class="money=='100'?'active':''">100元</li>
                     <li  @click="setMoney(200)" :class="money=='200'?'active':''">200元</li>
                     <li  @click="setMoney(500)" :class="money=='500'?'active':''">500元</li>
-                </ul> -->
+                </ul> 
 
-                <!-- <div class="quota-btn-box">
+                 <div class="quota-btn-box">
                     <button type="button" @click="submit">提交</button>
-                </div> -->
+                </div> 
             </div>
-        </section>
+        </section> -->
     </div>
 </template>
 
@@ -98,7 +97,7 @@
 
     import objectUtil  from '../../assets/js/util/objectUtil';
     import cacheUtil  from '../../assets/js/util/cacheUtil';
-
+    import { Indicator } from 'mint-ui';
     import platformData from "../../assets/platform/main/platformData"
     import kgBusiness from "../../assets/js/business/lottery/kg/kgBusiness"
     export default {
@@ -213,12 +212,9 @@
 
             refreshTrdBal(showWait){
                 let _this = this;
-                if (showWait == true) {
-                    _this.lshowWait();
-                }
+                Indicator.open('加载中...');
                 bankApi.thirBalancer((res) => {
-                    _this.lcloseWait();
-
+                    Indicator.close();
                     if (res.code == 200) {
                         var data = res.data;
                         arrayUtil.forEach(_this.transferPlatformList, item => {
@@ -315,7 +311,7 @@
                 });
             },
             toThirdGame(){
-                this.$router.push({path: 'thirdGame'});
+                this.$router.push({path: '/result'});
             },
             submitIn(value){
                 var _this = this;
@@ -355,14 +351,7 @@
                 if (user.init == false) {
                     return;
                 }
-
                 var platforms = _this.transferPlatformList;
-
-                if (user.isOpenKg == true) {
-                    // var kgPlatform = {name: "kg", desc: "KG彩票", value: 8, isOwn: true, opened: true,permission:false};
-                    // arrayUtil.insertAt(platforms, 2, kgPlatform);
-                }
-
                 if (user.isOpenDividends == true) {
                     var kgPlatform = {name: "dividends", desc: "分红账号", value: 7, isOwn: true, opened: true,permission:true};
                     arrayUtil.insertAt(platforms, 3, kgPlatform);
@@ -428,9 +417,8 @@
         color:@font-main-color;
     }
     .account-header-wrap{
-        padding-bottom: 0.05rem;
-        // height: 3.5rem;
-        // overflow-y: auto;
+        height: 100vh;
+        padding-top: 0.98rem;
     }
     .recording-height{
         // position: absolute;
@@ -445,7 +433,6 @@
         border-radius: 0.08rem 0.08rem 0 0;
         overflow: initial;
     }
-
     .platform-money{
         color: rgb(51,51,51);
         font-size: 0.12rem;
@@ -461,8 +448,7 @@
         text-align: center;
         overflow: hidden;
         margin: 0.1rem;
-        padding-top:0.88rem;
-        border-radius: 0.06rem 0.06rem 0 0;
+        border-radius: 0.06rem ;
         // background: #fff;
     }
     .inpitem-name{
@@ -523,7 +509,10 @@
         width: 0.5rem !important;
     }
     .platform-not-open{
-        margin-right: 0.95rem;
+        // margin-right: 0.95rem;
+        display: inline-block;
+        width: 0.5rem;
+        margin-right: 0.9rem;
     }
     .platform-style{
         background: none;

@@ -74,7 +74,7 @@
                     UserInfor.updateLoginPwd(params,(res) =>{
                         if(res.code == 200){
                             _this.lalterSuccess(res.msg);
-                            _this.$router.push('/setting');
+                            _this.$router.push('/account');
                         }else{
                             _this.newUserPassword.loginPassword = '';
                             _this.newUserPassword.newLoginPassword ='';

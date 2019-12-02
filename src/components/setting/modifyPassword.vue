@@ -66,7 +66,7 @@
         },
         methods:{
             back(){
-                this.$router.push({path:"setting"});
+                this.$router.push({path:"account"});
             },
             ensure(){
                 var _this = this;
@@ -106,7 +106,7 @@
                     userInfo.takePassword(params,function(res){
                         if(res.code == 200){
                             _this.lalterSuccess(res.msg);
-                            _this.$router.push('/setting');
+                            _this.$router.push('/account');
                         }else{
 
                             _this.newUserPassword.CurrentPassword='';
@@ -147,7 +147,7 @@
                     userInfo.updatePwd(params, (res) =>{
                         if(res.code == 200){
                             _this.lalterSuccess(res.msg);
-                            _this.$router.push('/setting');
+                            _this.$router.push('/account');
                         }else{
                             _this.lalterWarning(res.msg);
                         }
