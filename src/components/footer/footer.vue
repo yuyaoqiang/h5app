@@ -132,7 +132,7 @@
                 </div>
                 <div class="cname">娱乐手游领导者</div> -->
                 <div class="win-list-wrap polaroid">
-                    <img src="../../assets/images/receive.png" >
+
                     <vueSeamless :data="listData" class="seamless-warp" :class-option="classOption" :step="5">
                         <ul class="win-item-wrap">
                             <li v-for="item in listData" :key="item.id">
@@ -284,7 +284,7 @@ import messageBox from '../../controls/messageBox';
 
 <style lang="less" scoped>
     .seamless-warp {
-        height: 53vw;
+        height: 51vw;
         width: 100%;
         text-align: center;
         overflow: hidden;
@@ -309,18 +309,15 @@ import messageBox from '../../controls/messageBox';
         display: flex;
         justify-content: center;
         width: 100%;
-        height: auto;
+        height: 100vw;
         padding-top: 5vh;
         transform: scale(1.1);
-        img{
-          display: inline-block;
-          width: 100%;  
-          height: auto;
-        }
-        // background-image: url('../../assets/images/receive.png');
-        // background-size: 100%;
-        // background-repeat: no-repeat;
-        // margin-top: 25vw;
+        background-image: url("../../assets/images/receive.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        -webkit-background-size:cover;
+        -webkit-background-repeat:cover;
+        
         .win-item-wrap{
             li{
                 color: #Fff;
