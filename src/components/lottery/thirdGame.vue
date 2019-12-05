@@ -171,7 +171,7 @@
                 userBusiness.getUser(this, user => {
                     _this.user = user;
                     _this.initGames(type);
-                    _this.refreshTrdBal();
+                    // _this.refreshTrdBal();
                     _this.initThridGamesState();              
                 })
             },
@@ -379,11 +379,11 @@
                     messageBox.alterWarning('该游戏正在维护中')
                     return;
                 }
-                const thridAccount = this.checkAccount({platform:'MG'});
-                if(thridAccount.bal<1){
-                   this.tranlateVisibel = true; 
-                   return;
-                }   
+                // const thridAccount = this.checkAccount({platform:'MG'});
+                // if(thridAccount.bal<1){
+                //    this.tranlateVisibel = true; 
+                //    return;
+                // }   
                 Indicator.open({text: '加载中...'});              
                 var params = "platFormId=4&gameType="+code+"&tryPlay="+tryPlay;
                 setTimeout(() => {
@@ -413,11 +413,11 @@
                     this.ptJump(code, false);
                     return;
                 }
-                const thridAccount = this.checkAccount({platform:'PT'});
-                if(thridAccount.bal<1){
-                   this.tranlateVisibel = true; 
-                   return;
-                }    
+                // const thridAccount = this.checkAccount({platform:'PT'});
+                // if(thridAccount.bal<1){
+                //    this.tranlateVisibel = true; 
+                //    return;
+                // }    
                 Indicator.open('加载中...');
                 var params = "platFormId=5&gameType=" + code + "";
                 setTimeout(() => {
@@ -461,11 +461,11 @@
                     _this.lalterWarning("该游戏暂时关闭,若有疑问请联系客服!");
                     return false;
                 }
-                const thridAccount = this.checkAccount(item);
-                if(thridAccount.bal<1){
-                   this.tranlateVisibel = true; 
-                   return;
-                }                
+                // const thridAccount = this.checkAccount(item);
+                // if(thridAccount.bal<1){
+                //    this.tranlateVisibel = true; 
+                //    return;
+                // }                
                 var path = item.path;
                 if (path == null || path == 'undefined') {
                     var params={

@@ -311,7 +311,7 @@
              userBusiness.getUser(this, function (user) {
                 _this.user = user;
                 _this.initThridGamesState();
-                _this.refreshTrdBal();
+                // _this.refreshTrdBal();
                 bus.$on('btnBoxMessage',function(val){
                     userInfoApi.notice((res) => {
                         
@@ -517,11 +517,11 @@
                     messageBox.alterWarning('该游戏正在维护中')
                     return;
                 }             
-                const thridAccount = this.checkAccount({platform:'PT'});
-                if(thridAccount.bal<1){
-                   this.tranlateVisibel = true; 
-                   return;
-                }   
+                // const thridAccount = this.checkAccount({platform:'PT'});
+                // if(thridAccount.bal<1){
+                //    this.tranlateVisibel = true; 
+                //    return;
+                // }   
                 var params = "platFormId=4&gameType="+code+"&tryPlay="+tryPlay;
                 Indicator.open({text: '加载中...'});
                 setTimeout(() => {
@@ -552,11 +552,11 @@
                     this.ptJump(code, false);
                     return;
                 }
-                const thridAccount = this.checkAccount({platform:'PT'});
-                if(thridAccount.bal<1){
-                   this.tranlateVisibel = true; 
-                   return;
-                }                 
+                // const thridAccount = this.checkAccount({platform:'PT'});
+                // if(thridAccount.bal<1){
+                //    this.tranlateVisibel = true; 
+                //    return;
+                // }                 
                 var params = "platFormId=5&gameType=" + code + "";
                 Indicator.open({text: '加载中...'});
                 setTimeout(() => {
@@ -590,11 +590,11 @@
                     messageBox.alterWarning('该游戏正在维护中')
                     return;
                 } 
-                const thridAccount = this.checkAccount(item);
-                if(thridAccount.bal<1){
-                   this.tranlateVisibel = true; 
-                   return;
-                }
+                // const thridAccount = this.checkAccount(item);
+                // if(thridAccount.bal<1){
+                //    this.tranlateVisibel = true; 
+                //    return;
+                // }
                 var platform =item.platform;
                 var openedPropName="isOpen"+platform;
                 var opened = this.user[openedPropName];

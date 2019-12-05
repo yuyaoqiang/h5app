@@ -3,8 +3,8 @@
         <div :class="redTimeFinish?' heart hongbao':'hongbao'"  @click="showHb(true)" v-if="redEnvelope.show==true &&redEnvelope.open==false && isShow==true">
             <img src="../../assets/images/hongbao/btn_lq1.png" alt="">
         </div>
-        <div class="cover-record-wrap" v-if="redRecordVisible==true">
-            <div class="record-list-wrap">
+        <div class="cover-record-wrap" @click="recordsVisibleFun" v-if="redRecordVisible==true"></div>
+            <div class="record-list-wrap" v-if="redRecordVisible==true">
                 <section class="record-list-continue">
                     <ul>
                         <li class="list" :key="item.receivetime" v-for="item in redRecords">
@@ -18,14 +18,20 @@
                 </section>
                 <p class="close" @click="recordsVisibleFun"></p>
             </div>
+
+        <div class="cover-record-roles-wrap" @click="recordsRolesVisibleFun" v-if="redRecordRolesVisible==true">
+
         </div>
-        <div class="cover-record-roles-wrap" v-if="redRecordRolesVisible==true">
-            <div class="record-roles-wrap">
-                
+        <div class="record-roles-wrap" v-if="redRecordRolesVisible==true">
+                <div class="record-roles-list">
+                    <ul>
+                        {{remark}}
+                    </ul>
+                </div>      
                 <p class="close" @click="recordsRolesVisibleFun"></p>
-            </div>
         </div>
-       <div class="cover-bg" v-if="redEnvelope.open==true">
+         <div class="cover-bg" @click="closeOpen"  v-if="redEnvelope.open==true"> </div>
+       <div  v-if="redEnvelope.open==true"> 
             <div :class="redEnvelope.isStepOne?'cover-lghb bounce-enter-red-pack-lfet heartAnimate':'cover-lghb bounce-enter-red-pack-lfet'">
                 <div class="lqhb" v-if="redEnvelope.isStepOne==true">
                     <p class="title">您有一个圣诞红包未领取!</p>
@@ -47,10 +53,6 @@
                     <p :class="[redEnvelope.showMoney==false?'title':'title-5']" >{{redEnvelope.text}}</p>
                     <p v-if="redEnvelope.showMoney" class="title-6">￥{{redEnvelope.money}}</p>
                     <p class="title title-3">距离下个红包倒计时：</p>
-
-
-
-
                     <p class="title title-4">
                         <span class="betting-day" v-if="redEnvelope.countdownContext.days>0">{{redEnvelope.countdownContext.days}}</span>
                         <span v-if="redEnvelope.countdownContext.days>0">:</span>
@@ -68,7 +70,7 @@
                 </div>
                 <!-- <div class="close" @click="closeHb"></div> -->
             </div>
-        </div>        
+       </div> 
     </div>
 </template>
 <script>
@@ -86,6 +88,7 @@
                 redRecordRolesVisible:false,
                 redRecords:[],
                 redTimeFinish:false,
+                remark:"",
                 redEnvelope:{
                     show:false,
                     open:false,
@@ -110,6 +113,9 @@
             }
         },
         methods:{
+            closeOpen(){
+                this.redEnvelope.open = false;
+            },
             recordsVisibleFun(){
                 this.redRecordVisible =!this.redRecordVisible;
                 if(this.redRecordVisible){
@@ -246,6 +252,7 @@
                         return;
                     }
                     var data = res.data;
+                    this.remark = data.remark;
                     var closeTimes = data.nexTime;
                     var serverTimes = data.curTime;
                     if(closeTimes==null&&val){
@@ -307,41 +314,52 @@
 
 
 <style lang="less" scoped>
-.cover-record-wrap,.cover-record-roles-wrap{
-  position: fixed;
-  top:0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 100;
-  background: rgba(0,0,0,0.5);
   .record-roles-wrap{
+        z-index: 1000;
         position: absolute;
-        width: 75%;
-        height: 60%;
+        width: 80%;
+        height: 100vw;
         top: 50%;
         left: 50%;
         border-radius: 0.2rem;
         transform: translate(-50%, -50%);
         background-image: url('../../assets/images/newImg/red-roles.png');
-        background-size: 100% auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+        .record-roles-list{
+            padding: 25vw 12vw 20vw;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            ul{
+                max-height: 55vw;
+                overflow: hidden;
+                overflow-y: auto;
+                color: #f56651;
+                li{
+                    padding: 1vw 0;
+                }
+            }
+        }
   }
-  .record-list-wrap{
+.record-list-wrap{
+        z-index: 1000;
         position: absolute;
-        width: 75%;
-        height: 60%;
+        width: 80%;
+        height: 100vw;
         top: 50%;
         left: 50%;
         border-radius: 0.2rem;
         transform: translate(-50%, -50%);
         background-image: url('../../assets/images/newImg/me-bg.png');
-        background-size: 100% auto;
+        background-size: cover;
+        background-repeat: no-repeat;
        .record-list-continue{
             width: 100%;
-            height: 52vw;
+            height: 57vw;
             padding: 0 0.2rem;
             overflow: auto;
-            margin: 0.7rem 0;
+            margin: 0.8rem 0;
             -webkit-overflow-scrolling: touch; 
             .list{
                 display: flex;
@@ -356,10 +374,20 @@
             }
        }
   }
+.cover-record-wrap,.cover-record-roles-wrap{
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.5);
+
+ 
          .close{
             position: absolute;
             left: 50%;
-            bottom: -0.33rem;
+            bottom: -0.3rem;
             width: 0.3rem;
             height: 0.3rem;
             border-radius: 0.1rem;

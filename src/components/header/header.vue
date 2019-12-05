@@ -2,8 +2,7 @@
     <header>
         <section class="index-header-box">
             <div class="column-icon-box" v-if="user.init==true && currentUrl!='/account'">
-                <span class="name">{{user.userName}}</span>
-                <span class="money">￥{{user.walletBal}}</span>
+              
             </div>
             <img class="logo-header" src="../../assets/platform/main/images/logo.png"></img>
             <div class="index-login-to" v-if="user.apiReqFinish==true&&user.init==false"><a @click="toLogin">登录</a></div>
