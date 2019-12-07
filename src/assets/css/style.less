@@ -409,7 +409,7 @@
   height: 0.24rem;
   line-height: 0.24rem;
   width: 100%;
-  padding: 0 0.14rem;
+  padding: 0 0.14rem 0 0;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -2264,14 +2264,18 @@ span.link-address{
   -webkit-box-shadow: 4px 0 0 -1px @main-color inset;
   padding-left: 0.1rem;
 }
-
+.collect-main{
+  margin-top: 0.05rem;
+}
 .collect-main ul{
-  width: 33.33%;
+  width: 30%;
   height: 0.97rem;
+  margin: 0.02rem 0.05rem;
   text-align: center;
   background: #fff;
   float: left;
   box-sizing: border-box;
+  border-radius: 0.2rem;
   box-shadow: 0 -1px 0 #eeeef0 inset, -1px 0 0 #eeeef0 inset;
   -webkit-box-shadow: 0 -1px 0 #eeeef0 inset, -1px 0 0 #eeeef0 inset;
 }
@@ -3036,8 +3040,8 @@ span.link-address{
   height: 0.28rem;
 }
 .lottery-betting-nav{
-  background: #2b2c34;
-  color: #cccccc;
+  background: #fff;
+  color: #666;
   height: 0.5rem;
   position: relative;
   z-index: 1;
@@ -3061,15 +3065,23 @@ span.link-address{
   -webkit-transform: translate(-50%,-50%);
 }
 .lottery-machine{
-  box-shadow: -1px 0 0 #4a4c55 inset;
-  -webkit-box-shadow: -1px 0 0 #4a4c55 inset;
+  box-shadow: -1px 0 0 #eeeff1 inset;
+  -webkit-box-shadow: -1px 0 0 #eeeff1 inset;
+  color: #ff4646;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i{
+    font-size: 0.3rem;
+    font-weight: 600;
+  }
 }
 .lottery-machine:active{
   background: @main-color;
 }
 .lottery-shopping{
-  box-shadow: 1px 0 0 #4a4c55 inset;
-  -webkit-box-shadow: 1px 0 0 #4a4c55 inset;
+  box-shadow: 1px 0 0 #b7b7b7 inset;
+  -webkit-box-shadow: 1px 0 0 #b7b7b7 inset;
 }
 .lottery-shopping i{
   font-style: normal;
@@ -3086,8 +3098,8 @@ span.link-address{
 .lottery-betting-btn{
   text-align: center;
   line-height: 0.5rem;
-  box-shadow: 1px 0 0 #4a4c55 inset;
-  -webkit-box-shadow: 1px 0 0 #4a4c55 inset;
+  background: #ff4646;
+  color: #fff;
   font-size: 0.15rem;
 }
 .lottery-betting-money{
@@ -4142,8 +4154,8 @@ span.link-address{
   text-align: center;
   line-height: 0.5rem;
   font-size: 0.15rem;
-  box-shadow: 1px 0 0 #4a4c55 inset;
-  -webkit-box-shadow: 1px 0 0 #4a4c55 inset;
+  box-shadow: 1px 0 0 #eeeff1 inset;
+  -webkit-box-shadow: 1px 0 0 #eeeff1 inset;
 }
 .kg-menu{ 
   position: fixed;
@@ -4329,13 +4341,17 @@ span.link-address{
  font-size: 14px;
 }
 .kg-betting-niu .active,.kg-betting-area .active{
-  background:#d6c89a;
+  background:#ff464b;
+  color: #fff;
   i{
     background: linear-gradient(left, @numball-color-left , @numball-color-right);
     background: -webkit-linear-gradient(left, @numball-color-left , @numball-color-right);
     // box-shadow: 0 0 0 2px  @numball-color-shadow inset;
     // -webkit-box-shadow: 0 0 0 2px  @numball-color-shadow inset;
     color: @font-main-color;
+  }
+  div :nth-child(2){
+    color: #fff;;
   }
 }
 .kg-betting-area .active span{
@@ -5036,6 +5052,22 @@ line-height: 0.3rem;
   width: 0.46rem;
   height: 0.44rem;
 }
+.column-icon-home{
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 4;
+  width: 0.46rem;
+  height: 0.44rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.column-icon-home i{
+  font-size: 0.25rem;
+  color: #fff;
+  font-weight: 600;
+}
 .column-icon{
   width: 0.2rem;
   height: 0.02rem;
@@ -5221,8 +5253,8 @@ line-height: 0.3rem;
   text-align: center;
   // background: linear-gradient(left, @header-bg-left , @header-bg-right);
   // background: -webkit-linear-gradient(left, @header-bg-left , @header-bg-right);
-  color: #864727;
   font-size: 0.13rem;
+  color: #fff;
 }
 .lottery-tab-box i{
   vertical-align: middle;

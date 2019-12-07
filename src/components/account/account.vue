@@ -21,25 +21,25 @@
                     <div>
                         <img src="../../assets/images/account/account_icon01_01.png">
                     </div>
-                    <p>投注记录</p>
+                    <p>传统投注</p>
                 </router-link>
                 <router-link tag="li" to="zuihaoRecord">
                     <div>
                         <img src="../../assets/images/account/account_icon01_02.png">
                     </div>
-                    <p>追号记录</p>
+                    <p>传统追号</p>
                 </router-link>
                 <router-link tag="li" to="KgBetrecord" v-if="user.isOpenKg==true" >
                     <div>
                         <img src="../../assets/images/account/account_icon02_01.png">
                     </div>
-                    <p>传统彩投注</p>
+                    <p>官方投注</p>
                 </router-link>
                 <router-link tag="li" to="KgZuihaoRecord" v-if="user.isOpenKg==true" >
                     <div>
                         <img src="../../assets/images/account/account_icon02_02.png">
                     </div>
-                    <p>传统彩追号</p>
+                    <p>官方追号</p>
                 </router-link>
             </ul>
         </div>

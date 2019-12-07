@@ -638,6 +638,7 @@
                     display: inline-block;
                     width: 100%;
                     float: none;
+                    border-radius: 0.1rem;
                 }
             }
             .name{
@@ -678,6 +679,7 @@
                         left: 50%;
                         -webkit-transform: translateX(-50%);
                         transform: translateX(-50%);
+                        border-radius: 0.1rem;
                     }
                 }
             }

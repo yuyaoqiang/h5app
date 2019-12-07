@@ -215,8 +215,8 @@
         created(){
             var _this = this;
             var platforms = [
-                {name: "lottery", desc: "彩票平台",},
-                {name: "kg", desc: "KG平台", },
+                {name: "lottery", desc: "传统玩法",},
+                {name: "kg", desc: "官方玩法", },
             ];
             arrayUtil.forEach(platformData.trdPlatforms, item => {
                 if (item.enabled == false) return;

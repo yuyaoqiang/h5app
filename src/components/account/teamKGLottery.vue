@@ -6,7 +6,7 @@
                 <div class="header-arrow-box" @click="goback">
                     <i class="el-icon-arrow-left"></i>
                 </div>
-                <h1>团队KG</h1>
+                <h1>团队官方玩法</h1>
             </div>
             <ul class="display-flex tdcp-serctitle">
                 <li style="width: 0.5rem" @click="showSearchCard('user')"><span>{{usernameQueryType}}</span></li>

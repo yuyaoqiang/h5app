@@ -64,13 +64,13 @@
             </ul>
             <ul class="display-flex-betting lottery-betting-nav">
                 <li class="lottery-machine" @click="rangSelect" v-if="kgLottery.init==true && kgLottery.type.hasLzt==true">
-                    <img src="../../assets/images/icon1.png">
+                    <i class="icon iconfont icon-tou_caidan"></i>
                 </li>
                 <li class="flex-box lottery-betting-money">
-                    <p v-if="user.init==true">已选: <b class="orange">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 <b class="orange">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
-                    <p v-if="user.init==true">余额: <b class="orange">{{walletBal}}</b></p>
-                    <p v-if="user.init==false">已选: <b class="orange">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 </p>
-                    <p v-if="user.init==false">总计：<b class="orange">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
+                    <p v-if="user.init==true">已选: <b class="ff4">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 <b class="ff4">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
+                    <p v-if="user.init==true">余额: <b class="ff4">{{walletBal}}</b></p>
+                    <p v-if="user.init==false">已选: <b class="ff4">{{kgLottery.zhushu?kgLottery.zhushu:0}}</b> 注 </p>
+                    <p v-if="user.init==false">总计：<b class="ff4">{{kgLottery.allMoney | fixedMoney }}</b> 元</p>
                     <!-- <div class="icon-refresh"><img src="../../assets/images/icon_refresh.png" @click="loadUser()"/></div> -->
                 </li>
                 <li class="kg-reset-btn"  @click="resetMoney">
@@ -1526,6 +1526,8 @@
         display: flex;
         align-items: end;
         justify-content: space-evenly;
+        box-shadow: 0 -1px 0 #eeeff1;
+        -webkit-box-shadow: 0 -1px 0 #eeeff1;
     }
     .chatroom-area{
         overflow-x: hidden;

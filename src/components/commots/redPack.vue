@@ -24,9 +24,7 @@
         </div>
         <div class="record-roles-wrap" v-if="redRecordRolesVisible==true">
                 <div class="record-roles-list">
-                    <ul>
-                        {{remark}}
-                    </ul>
+                    <ul v-html="remark"></ul>
                 </div>      
                 <p class="close" @click="recordsRolesVisibleFun"></p>
         </div>
@@ -34,7 +32,7 @@
        <div  v-if="redEnvelope.open==true"> 
             <div :class="redEnvelope.isStepOne?'cover-lghb bounce-enter-red-pack-lfet heartAnimate':'cover-lghb bounce-enter-red-pack-lfet'">
                 <div class="lqhb" v-if="redEnvelope.isStepOne==true">
-                    <p class="title">您有一个圣诞红包未领取!</p>
+                    <p class="title">您有一个红包未领取!</p>
                     <p class="title title-3" v-if="redEnvelope.limit==false"></p>
                     <p class="title title-4" v-if="redEnvelope.limit==false">领取中...</p>
                     <div class="btn_hb" @click="receiveRewards"></div>
@@ -45,7 +43,7 @@
                         <span>￥</span>{{redEnvelope.money}}
                     </p>
                     <p class="title-1">恭喜您</p>
-                    <p class="title title-2">获得2019圣诞节第一波福利</p>
+                    <!-- <p class="title title-2">获得2019圣诞节第一波福利</p> -->
                     <div class="btn_hb active" @click="closeHb"></div>
                 </div>
 
@@ -327,7 +325,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         .record-roles-list{
-            padding: 25vw 12vw 20vw;
+            padding: 25vw 11vw 20vw;
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -479,7 +477,7 @@
 }
 .cover-lghb .title-1{
     font-size: 0.26rem;
-    padding-top: 0.2rem;
+    padding-top: 0.4rem;
     text-align: center;
     color: #ffffff;
 }

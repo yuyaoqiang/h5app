@@ -5,7 +5,7 @@
                 <div class="header-arrow-box" @click="goback">
                     <i class="el-icon-arrow-left"></i>
                 </div>
-                <h1>投注记录</h1>
+                <h1>传统玩法投注记录</h1>
                 <div class="member-icon" @click="dialogDate=true">
                     <i class="iconfont icon-tou_riqixuanze"></i>
                 </div>

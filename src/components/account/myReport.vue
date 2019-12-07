@@ -19,12 +19,12 @@
                 <li class="report-icon"><i class="el-icon-arrow-right"></i></li>
             </ul>
             <ul class="display-flex report-list" @click="toCpzb({path:'cpzb'})">
-                <li class="flex-box">官方彩票账变</li>
+                <li class="flex-box">传统玩法账变</li>
                 <li class="report-icon"><i class="el-icon-arrow-right"></i></li>
             </ul>
 
             <ul class="display-flex report-list" @click="toZbmx({path:'kgzb'})">
-                <li class="flex-box">传统彩票账变</li>
+                <li class="flex-box">官方玩法账变</li>
                 <li class="report-icon"><i class="el-icon-arrow-right"></i></li>
             </ul>
 

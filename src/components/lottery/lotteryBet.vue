@@ -5,8 +5,8 @@
         <!-- <v-suspension></v-suspension> -->
         <div class="index-header-box lottery-box-header">
             <header class=" betting-header">
-                <div class="column-icon-box" @click="leftSlide">
-                    <i class="column-icon"></i>
+                <div class="column-icon-home" @click="goBack">
+                    <i class="icon iconfont icon-dibu_shouye"></i>
                 </div>
                 <h2 v-if="betting=='v-lottery-betting'">
                     <i :class="collection?'el-icon-star-on':'el-icon-star-off'" @click="collectionLottery(collection)" class="mr-l1"></i>
@@ -251,8 +251,8 @@
                 lotteryHistoryList: [],
                 betting:null,
                 menuList:[
-                    {code:"Kg",name:"传统彩",icon:"icon-youxi_K",isOpen:false,type:"v-kg-betting",active:true},
-                    {code:"Tradition",name:"官方彩",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:false},
+                    {code:"Kg",name:"官方玩法",icon:"icon-youxi_K",isOpen:false,type:"v-kg-betting",active:true},
+                    {code:"Tradition",name:"传统玩法",icon:"icon-youxi_",isOpen:false,type:"v-lottery-betting",active:false},
                     {code:"Chatroom",name:"聊天室",icon:"icon-youxi_liaotianshi",isOpen:false,type:"v-chatroom",active:false},
                 ],
                 menuSetting:{
@@ -573,6 +573,9 @@
                     this.$refs.bettingContainer.setting.showColdHot = false;
                     this.$refs.bettingContainer.initAreaData();
                 }
+            },
+            goBack(){
+                this.$router.push("/result")
             },
             leftSlide() {
                 
@@ -998,5 +1001,8 @@
 }
 .align-items{
     align-items: center;
+}
+.betting-header h2{
+    color:#fff;
 }
 </style>

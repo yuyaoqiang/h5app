@@ -29,14 +29,14 @@
                 <!-- <p><span>团队彩票余额:</span>{{statisticalData.termLotteryBalance | fixedMoney}}</p> -->
             </li>
             <li>
-                <p><span>官方彩票投注金额:</span>{{statisticalData.lotteryBetAmount | fixedMoney}}</p>
-                <p><span>官方彩票返点金额:</span>{{statisticalData.lotteryRebateAmount | fixedMoney}}</p>
-                <p><span>官方彩票中奖金额:</span>{{statisticalData.lotteryWinAmount | fixedMoney}}</p>
+                <p><span>传统玩法投注金额:</span>{{statisticalData.lotteryBetAmount | fixedMoney}}</p>
+                <p><span>传统玩法返点金额:</span>{{statisticalData.lotteryRebateAmount | fixedMoney}}</p>
+                <p><span>传统玩法中奖金额:</span>{{statisticalData.lotteryWinAmount | fixedMoney}}</p>
             </li>
             <li>
-                <p><span>传统彩投注金额:</span>{{statisticalData.kjBetAmount | fixedMoney}}</p>
-                <p><span>传统彩返点金额:</span>{{statisticalData.kjRebateAmount | fixedMoney}}</p>
-                <p><span>传统彩中奖金额:</span>{{statisticalData.kjWinAmount | fixedMoney}}</p>
+                <p><span>官方玩法投注金额:</span>{{statisticalData.kjBetAmount | fixedMoney}}</p>
+                <p><span>官方玩法返点金额:</span>{{statisticalData.kjRebateAmount | fixedMoney}}</p>
+                <p><span>官方玩法中奖金额:</span>{{statisticalData.kjWinAmount | fixedMoney}}</p>
             </li>
             <li>
                 <p><span>VR投注金额:</span>{{statisticalData.vrBetAmount | fixedMoney}}</p>

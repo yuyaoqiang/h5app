@@ -64,6 +64,12 @@
                         </div>
                         <p  class="name">{{platform.name}}</p>
                     </li>
+                    <li v-if="thridGame.platform!='PT' && thridGame.platform!='MG' && thridGame.type=='elec'" class="item"  :key="platform.name" v-for="platform in thridGame.platforms" @click="playGame(platform)">
+                        <div  class="img-wrap">
+                            <img  alt="" v-lazy="require('../../assets/platform/main/images/newImgs/'+platform.image)">
+                        </div>
+                        <p  class="name">{{platform.name}}</p>
+                    </li>
                     <li v-if="thridGame.platform=='PT'" class="item"  :key="platform.name" v-for="platform in thridGame.platforms" @click="ptPlayGame(platform)"> 
                         <div  class="img-wrap">
                             <img  alt="" v-lazy="`${ptGameResourceUrl}${platform.code}.jpg`">
@@ -707,7 +713,7 @@
                 this.currentRouter = this.$route.path;
             },
             goback(){
-                this.$router.goBack('/index')
+                this.$router.push('/index')
             },
             changeLottryType(item){
                 if( this.chooseType == 'lottry'){
@@ -1050,6 +1056,7 @@
                     display: inline-block;
                     width: 100%;
                     float: none;
+                     border-radius: 0.08rem;
                 }
             }
             .name{

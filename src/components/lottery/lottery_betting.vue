@@ -103,15 +103,15 @@
                     </div>
                 </li>
             </ul>
-            <ul class="display-flex lottery-betting-nav">
+            <ul class="display-flex-nav lottery-betting-nav">
                 <li class="lottery-machine" @click="randomChoose(1)">
                     <img src="../../assets/images/jixuan.png">
                 </li>
                 <li class="flex-box lottery-betting-money">
-                    <p v-if="user.init==true">已选: <b class="orange">{{areaData.betQty}}</b> 注 <b class="orange">{{areaData.betAmount | fixedMoney }}</b> 元</p>
-                    <p v-if="user.init==true">余额：<b class="orange">{{walletBal}}</b> </p>
-                    <p v-if="user.init==false">已选: <b class="orange">{{areaData.betQty}}</b> 注 </p>
-                    <p v-if="user.init==false">总计：<b class="orange">{{areaData.betAmount | fixedMoney }}</b> 元</p>
+                    <p v-if="user.init==true">已选: <b class="ff4">{{areaData.betQty}}</b> 注 <b class="ff4">{{areaData.betAmount | fixedMoney }}</b> 元</p>
+                    <p v-if="user.init==true">余额：<b class="ff4">{{walletBal}}</b> </p>
+                    <p v-if="user.init==false">已选: <b class="ff4">{{areaData.betQty}}</b> 注 </p>
+                    <p v-if="user.init==false">总计：<b class="ff4">{{areaData.betAmount | fixedMoney }}</b> 元</p>
                 </li>
                 <li class="pr lottery-shopping" @click="addBetCart">
                     <img src="../../assets/images/shoppingCart.png">
@@ -927,5 +927,11 @@
     margin:0 auto;
     font-size: 0.18rem;
     color: antiquewhite;
+}
+.display-flex-nav{
+    box-sizing: border-box;
+    display: flex;
+    align-items: end;
+    justify-content: space-evenly;
 }
 </style>
