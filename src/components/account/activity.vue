@@ -12,8 +12,8 @@
         <div class="wrap-content">
             <section class="flex-box activity-main" v-if="list.length>0">
                 <div v-for="(item,index) in list">
-                    <div class="pr activity-title" @click="showActivity(item,index)">
-                        <img :src="serverUrl+item.wapheadurl"/>
+                    <div class="pr activity-title" :style = "{backgroundImage:'url('+serverUrl+item.wapheadurl+')'}"  @click="showActivity(item,index)">
+                        <!-- <img :src="serverUrl+item.wapheadurl"/> -->
                     </div>
                     <div class="activity-content animated slideInUp"  v-show="item.flag">
                             <div class="labels">
@@ -224,6 +224,8 @@
         margin-top: 0.02rem;
         width: 100%;
         height: 1rem;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
     .activity-title img{
         width: 100%;

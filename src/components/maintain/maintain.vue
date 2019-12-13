@@ -1,22 +1,20 @@
 <template>
     <div class="maintain-bg"
-         :style="'background: url('+require('../../assets/platform/main/images/maintain-bg1.jpg')+') no-repeat center;background-size: cover;'">
-        <div class="maintain-header">
-            <div class="maintain-logo">
-                <img src="../../assets/platform/main/images/logo.png"/>
-            </div>
-        </div>
+         :style="'background: url('+require('../../assets/platform/main/images/maintain-bg1.png')+') no-repeat center;background-size: cover;'">
         <div class="maintain-main">
-            <div class="maintain-photo"
-                 :style="'background: url('+require('../../assets/platform/main/images/maintain-content.png')+') no-repeat center;background-size: contain;'">
-            </div>
+            <div class="maintain-logo-small"></div>
             <div class="maintain-time">
                 距离维护结束:<span>{{countdownDesc}}</span>
             </div>
+            <div class="maintain-photo">
+                <p>网站系统维护中</p>
+                <p>维护只为给您更好的服务</p>
+            </div>
+            <div class="maintain-service" @click="openOnlineService">
+                <img src="../../assets/images/icon13.png">在线客服
+            </div>
         </div>
-        <div class="maintain-service" @click="openOnlineService">
-            <img src="../../assets/images/icon13.png">在线客服
-        </div>
+       
         <div class="maintain-footer">Copyright @ 2015{{platformSetting.name}} 版权所有 ALL Right Reserved</div>
     </div>
 </template>
@@ -103,3 +101,14 @@
         },
     }
 </script>
+<style lang="less" scoped>
+    .maintain-logo-small{
+        width: 100%;
+        height: 1.5rem;
+        margin-top: 1.3rem;
+        background-image: url("../../assets/platform/main/images/maintain-icon.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+</style>

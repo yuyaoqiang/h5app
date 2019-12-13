@@ -7,7 +7,7 @@
             <img class="logo-header" src="../../assets/platform/main/images/logo.png"></img>
             <div class="index-login-to" v-if="user.apiReqFinish==true&&user.init==false"><a @click="toLogin">登录</a></div>
             <div class="index-login-try" v-if="user.apiReqFinish==true&&user.init==false"><a href="javascript:void(0);" @click="loginShiWan">试玩</a></div>
-            <div class="down-load-app" v-if="user.init==true && !isMobeil">
+            <div class="down-load-app" v-if="user.init==true">
                 <a href="javascript:void(0);" @click="toDownloadBanner">APP</a>
                 <i class="download-icon"></i> 
             </div>
@@ -35,11 +35,11 @@
         },
         created(){
             let _this = this;
-            this.isMobeilFun();
             userBusiness.getUser(this,function (user) {
                 _this.user=user;
             });
         },
+
         mounted(){
          this.getCurrent();
         },
@@ -53,6 +53,7 @@
             },
             isMobeilFun(){
                this.isMobeil = validateUtil.judgeMobeil()
+               debugger;
             },
             leftSlide(){
                 this.$parent.$parent.slideFlag=!this.$parent.$parent.slideFlag

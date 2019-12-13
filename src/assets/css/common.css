@@ -280,6 +280,13 @@ textarea {
     display: flex;
     flex-wrap: wrap;
 }
+.flex-none{
+    flex: none;
+}
+.flex-box-xglhc-history {
+    display: flex;
+    flex-wrap: wrap;
+}
 .display-box .lottery-issue{
     flex: none;
     margin-left: 0.15rem;

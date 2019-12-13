@@ -204,6 +204,7 @@
 </template>
 
 <script>
+    import securityApi from '../../assets/js/api/securityApi'
     import userBusiness from '../../assets/js/business/user/userBusiness';
     import lotteryBusiness from '../../assets/js/business/lottery/lotteryBusiness';
     import arrayUtil from '../../assets/js/util/arrayUtil';
@@ -258,6 +259,7 @@
         created() {
             var _this = this;
             this.initTableState();
+            this.isSafe();
             userBusiness.getUser(this, function (user) {
                 _this.user = user;
                 bus.$on('btnBoxMessage',function(val){
@@ -318,6 +320,18 @@
             });   
         },
         methods: {
+            isSafe(){
+                var _this=this;
+                  securityApi.getSafe((res)=>{
+                      if(res.code==200){
+                      var state = res.data.state;
+                      var date = res.data.date;
+                      if(state == 1 && (date-new Date().getTime())>3000){
+                          this.$router.push({path: '/maintain'});
+                      }
+                  }
+              })
+            },
             toGoNotice(){
               this.$router.push('/notice')
             },

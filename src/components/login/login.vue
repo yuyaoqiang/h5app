@@ -215,7 +215,7 @@
                     var state = res.data.state;
                     var date = res.data.date;
                     if(state == 1 && (date-new Date().getTime())>3000){
-                        this.$router.push({path: 'maintain'});
+                        this.$router.push({path: '/maintain'});
                     }
                 }
             })

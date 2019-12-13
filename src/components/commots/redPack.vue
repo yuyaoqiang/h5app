@@ -123,7 +123,7 @@
             recordsRolesVisibleFun(){
                 this.redRecordRolesVisible =!this.redRecordRolesVisible;
             },
-            showHb(val){
+            showHb(val,clickEvent){
                 if(this.user.init == false){
                     this.lalterError('您还没有登录，不能领取红包，请先登录谢谢！');
                     return
@@ -133,7 +133,7 @@
                     return
                 }
                 this.redEnvelope.open = true;
-                this.getDividendAvailable(val);
+                this.getDividendAvailable(val,clickEvent);
             },
             startTime(closeTimes,serverTimes){
                 var _this=this;
@@ -238,7 +238,7 @@
                     }
                 })
             },
-            getDividendAvailable(val){
+            getDividendAvailable(val,clickEvent){
                 userInfo.getDividendAvailable(res =>{
                     if(res.code==203){
                         this.redEnvelope.show = false;
@@ -253,12 +253,15 @@
                     this.remark = data.remark;
                     var closeTimes = data.nexTime;
                     var serverTimes = data.curTime;
-                    if(closeTimes==null&&val){
-                        //this.redEnvelope.show = false;
-                        this.lalterError(res.msg)
+                    if(closeTimes==null){
+                        this.redEnvelope.show = false;
+                        if(clickEvent){
+                             this.lalterError("红包领取时间未到,请查看活动详情")
+                        }
                         this.closeHb();
                         return;
                     }
+
                     if(val==true){
                         
                         this.startTime(closeTimes,serverTimes);

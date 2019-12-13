@@ -155,6 +155,13 @@
                                          </div>
                                          <span class="inner">红包</span>
                                     </li>
+                                     <li  class="bounce-enter-active-top">
+                                        <div class="inner" @click.stop="goToVip()">
+                                             <span class="signDasy-wrap" v-if="signDays!=0">{{signDays}}</span>
+                                            <img :class="sign==1?'disable-img':''" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAMAAACZHrEMAAACkVBMVEUAAADyvEvyvEvyvEvyvEvyvEvyvEvyvEvyvEvyvEvyvEvzvEvyvEvyvEvzvEvzvEvzvEvyvEvyvEvyvEvyvEvyvEvzvEvzvEvzvEvyvEvyvEvyvEvyvUvzvEvyvEvzvEvzu0vzvEvzvEvzvUvzu0vzvEvyvEvyvEvzvUvzvUvyvEvyvEvyvEvzvUv/o07zvUvzu0vyvEv0xUz0ukv+pU7zyUz7q03yvEvzx0z+pE74tEz0wkz0wEzzwUv5tU3/o070xEz9pk31vkz4tkzzw0z+p070xUzzyUz4tk3/o074tU30xUzzyEz2vkz+pE76sk3zx0zzxUz6rU3zw0z1uUv8qk7zx0z2vU37rk39p07+pk78q033uUz0wkz9qE35sU37qk3zwUz6rU38qE32tUz1wkz4uE36s030w0z7rU30w0z7rU32vEz8qE30v0z4s0z6r0z8qk37rE31wEz8rE3zx0z+pE77r039p078qk319fX+pE7zxkz9p070wkz3uk35tE3ysUv0xEz4tU3zx0z/ok7yyEz8q038q071wEz6sE36sU37r032vE34uE38rU36sk34t039qU72vk31wUz2vU31vk3+pk7017P5tU3/o073u03zxYX05NH18uz18er22af31Jv215vytlv26dPyu2r27eP40JvzwHj2xGH16dr0273zzp335tT25MT34MT3yXr169P5zZr2zHr4xnr5w3r6tWH31af41Kf50qf5wHr348716c313ab7vnv27d3z0qjzyZH1z3n28OX316j226f31qf1xFv19PL7tGD7sl304Mf33Lb50KD12p/1y23338b158X02Zj004T7wIL8tmv2wFL147j6vHH6uWj8rVnR2Hs+AAAAenRSTlMAAgcEChUQCwwOISQcKBoSFz0rHzoxQy83TkYZU1U1LTNKSD8qXFBBV2BaJlli9TRMX/ty/PV7XtrNpXptZ/bpw72iion28uvl2NPQysrGw7ydkJBrXvj39vDfyrWqpJWIhGtmZvXv7+bj4drXmpSEblc/3NG2tbOsUif8IDMAAAxSSURBVHjaxNf5b4txHAdw19qu1xrNdEmxhUqIKBFr1Mycc2yuxII4gsWVkCDOp4qiNueYoeg6lLExbG5G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" alt="">
+                                        </div>
+                                        <span class="inner">VIP详情</span>
+                                    </li>
                                     <li  class="bounce-enter-active-right">
                                         <div class="inner" @click.stop="signActivity()">
                                              <span class="signDasy-wrap" v-if="signDays!=0">{{signDays}}</span>
@@ -162,6 +169,7 @@
                                         </div>
                                         <span class="inner">签到</span>
                                     </li>
+                                   
                                 </ul>
                             </div>
                         </div>
@@ -211,6 +219,9 @@ import messageBox from '../../controls/messageBox';
               }
         },
         methods: {
+            goToVip(){
+                this.$router.push("/vip");
+            },
             findSignActivity(){
                 lotteryApi.signActivity(null,res=>{
                    if(res.data){
@@ -290,7 +301,7 @@ import messageBox from '../../controls/messageBox';
                 this.visible = !this.visible;
             },
             myRedPack(){
-               this.$refs.page1.showHb(true);
+               this.$refs.page1.showHb(true,true);
             }
         },
          components: {
@@ -439,7 +450,7 @@ import messageBox from '../../controls/messageBox';
                                     display: flex;
                                     justify-content: center;
                                     align-items: baseline;
-                                    .bounce-enter-active-lfet,.bounce-enter-active-right{
+                                    .bounce-enter-active-lfet,.bounce-enter-active-right,.bounce-enter-active-top{
                                             animation-duration: 1s;
                                         }
                                     .bounce-enter-active-lfet{
@@ -449,6 +460,10 @@ import messageBox from '../../controls/messageBox';
                                      .bounce-enter-active-right{
                                         animation-fill-mode: both;
                                         animation-name: bounceInUp-data-right; 
+                                    }                                                
+                                     .bounce-enter-active-top{
+                                        animation-fill-mode: both;
+                                        animation-name: bounceInUp-data-top; 
                                     }                                                
                                     li{
                                         width: 25%;
@@ -549,6 +564,27 @@ import messageBox from '../../controls/messageBox';
 	100% {
         opacity: 1;
 		transform: translateX(0)
+	}
+}
+@keyframes bounceInUp-data-top {
+	0% {
+		opacity: 0;
+		transform: translateY(500px)
+	}
+
+	60% {
+		opacity: 0.7;
+		transform: translateY(-5px)
+	}
+
+	80% {
+        opacity: 0.9;
+		transform: translateY(10px)
+	}
+
+	100% {
+        opacity: 1;
+		transform: translateY(0)
 	}
 }
 .disable-img{

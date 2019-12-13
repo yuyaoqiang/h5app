@@ -9,7 +9,7 @@
                 <dd v-for="(betType,index) in type.betTypes" v-if="betType.name>=0 == false"
                     @click="toBetChoice(betType,betType.id,type.id)" :class="{'active':betType.active}">
                     <div>
-                        {{betType.name}} <span class="red"> {{betType.odds}}</span>
+                        {{betType.name}} <span :class="{'active':betType.active,'red':'red'}"> {{betType.odds}}</span>
 
                         <!-- <p v-if="betType.active">¥{{kgLottery.totalMoney}}元</p> -->
                     </div>

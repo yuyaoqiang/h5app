@@ -111,10 +111,10 @@
                             <li :class="[lottery.type.numLen===10?'history-alert-issue-10':'',
                                          lottery.type.numLen===8?'history-alert-issue-8':'',
                                          lottery.type.numLen===5?'history-alert-issue':'',
-                                         lottery.type.numLen===5?'history-alert-issue':'']">{{item.issueno}}
+                                         lottery.type.numLen===7?'flex-none':'',]">{{item.issueno}}
                             </li>
 
-                            <li class="flex-box-history"  v-if="lottery.type.name != 'pk10rules'">
+                            <li class="flex-box-history"  v-if="lottery.type.name != 'pk10rules' && lottery.type.name != 'xglhc'">
                                 <b v-for="n in item.nums.split(' ')" :key="n"
                                    :class="[
                                     pcddBallColor.red.indexOf(n)!=-1 && lottery.type.name=='pcdd'?'pcddBall ball-red':
@@ -127,11 +127,13 @@
                                 <b v-if="lottery.type.name == 'k3rules'" class="ball-green">{{item.count}}</b>
                                 <span v-if="lottery.type.name == 'pcdd'">= <b>{{item.nums.split(' ')[0]/1 + item.nums.split(' ')[1]/1 + item.nums.split(' ')[2]/1}}</b></span>
                             </li>
-
+                            <li class="flex-box-xglhc-history"  v-if="lottery.type.name == 'xglhc'">
+                                <p><b :key="n" :class="colorMap.get(n)"  v-for="n in item.nums.split(' ')">{{n}}</b></p>
+                                <p><b :key="n" v-for="n in item.sx">{{n}}</b></p>
+                            </li>
                             <li class="pk10rules-wrap"  v-if="lottery.type.name == 'pk10rules'">
                                 <b :key="n" v-for="n in item.nums.split(' ')"
                                     :class="['square'+n]"></b>
-                                
                                 <b v-if="lottery.type.name == 'k3rules'" :class="item.bs=='大'?'ball-gray':'ball-pink'">{{item.bs}}</b>
                                 <b v-if="lottery.type.name == 'k3rules'" :class="item.sd=='单'?'ball-gray':'ball-pink'">{{item.sd}}</b>
                                 <b v-if="lottery.type.name == 'k3rules'" class="ball-green">{{item.count}}</b>
@@ -216,6 +218,35 @@
                     issueno:'',
                     nums:''
                 },
+                lhcAnimal:{
+                map:{},
+                colorMap:{},
+                year:2019,
+                sx:'猪',
+                bs:{
+                    color:['color-red','color-blue','color-greed'],
+                    colorNums:[
+                        ['01', '02', '07', '08', '12', '13', '18', '19', '23', '24', '29', '30', '34', '35', '40', '45', '46'],
+                        ['03', '04', '09', '10', '14', '15', '20', '25', '26', '31', '36', '37', '41', '42', '47', '48'],
+                        ['05', '06', '11', '16', '17', '21', '22', '27', '28', '32', '33', '38', '39', '43', '44', '49'],
+                    ]
+                },
+                animals:['鼠','牛','虎','兔','龙','蛇','马','羊','猴','鸡','狗','猪'],
+                    data: [
+                        [1, 13, 25, 37, 49],
+                        [2, 14, 26, 38],
+                        [3, 15, 27, 39],
+                        [4, 16, 28, 40],
+                        [5, 17, 29, 41],
+                        [6, 18, 30, 42],
+                        [7, 19, 31, 43],
+                        [8, 20, 32, 44],
+                        [9, 21, 33, 45],
+                        [10, 22, 34, 46],
+                        [11, 23, 35, 47],
+                        [12, 24, 36, 48],
+                    ]
+                },
                 upDown:false,
                 isLotteryBetPage:true,
                 dialogLottery:false,
@@ -283,6 +314,7 @@
         },
         created() {
             appContext.current = this;
+            this.computSx();
             this.loadUser();
             this.lotteryCountdown();
             this.pcddBallColor = baseData.pcddBallColor;
@@ -700,6 +732,9 @@
                 lotteryBusiness.getHistoryNums(params, function (data) {
                     if(lott === "k3rules"){
                         _this.lotteryHistoryList = _this.computeHistoryTypes(data[params.gameIds].reverse());
+                    }else if(lott === "xglhc"){
+                        _this.lotteryHistoryList = _this.computeHistorySX(data[params.gameIds].reverse());
+                        
                     }else{
                         _this.lotteryHistoryList = data[params.gameIds].reverse();
                     }
@@ -709,6 +744,56 @@
                     this.dialogLottery = true;
                 }
                
+            },
+            computeHistorySX(list){
+                list.forEach(item=>{
+                    let arr = item.nums.split(" ");
+                    let sx  =  arr.map(item=>{
+                        return this.lhcAnimal.map.get(item/1);
+                    })
+                    item.sx = sx;
+                }) 
+                 return list;                 
+            },
+            computSx(){
+               let year = this.lhcAnimal.year;
+               let currentSX = this.lhcAnimal.sx;
+               let animals = this.lhcAnimal.animals;
+               let data = this.lhcAnimal.data;
+               let index= 11;
+               let animalsAfter=[];
+               let map = new Map();
+               const years = this.lhcAnimal.year - new Date().getFullYear();
+               for(let i=0;i<years; i++){
+                   if(animals.length-1 <= index){
+                       index = 0;
+                       continue;
+                   }
+                   index++;
+               }
+               
+               for(let i = index;i>=0; i--){
+                   animalsAfter.push(animals[i])
+              }
+               for(let i = animals.length-1;i>index;i--){
+                   if(index === i ){
+                       break;
+                   }
+                   animalsAfter.push(animals[i])
+              }
+              data.map((item,index)=>{
+                  item.map(i=>map.set(i,animalsAfter[index]))
+              })  
+              this.lhcAnimal.map = map;
+              let color = this.lhcAnimal.bs.color;
+              let colorNums = this.lhcAnimal.bs.colorNums;
+              let colorMap = new Map();
+              color.map((color,index)=>{
+                  colorNums[index].map(num=>{
+                      colorMap.set(num,color);
+                  })
+              })
+              this.colorMap = colorMap;
             },
             computeHistoryTypes(list){
                 list.forEach(item=>{
@@ -1004,5 +1089,14 @@
 }
 .betting-header h2{
     color:#fff;
+}
+.color-red{
+    background: #ff464b !important;
+}
+.color-greed{
+    background: rgb(65, 214, 65) !important;
+}
+.color-blue{
+    background: rgb(49, 49, 255) !important;
 }
 </style>

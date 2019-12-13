@@ -163,6 +163,7 @@ const trdAuthSuccessed = () => import("./components/trdPlatform/trdAuthSuccessed
 const createUser = () => import("./components/trdPlatform/createUser.vue")
 // import newCreateUser from './components/trdPlatform/newCreateUser.vue'; //注册绑定登录
 const newCreateUser = () => import("./components/trdPlatform/newCreateUser.vue")
+const vip = () => import("./components/vip/vip.vue")
 
 
 
@@ -227,7 +228,7 @@ const routes = [
     {
         path: '/games',
         component: lottery,
-        name:'indexH5app',
+        name: 'indexH5app',
         meta: {
             title: "HelloWorld",
             show: true,
@@ -245,31 +246,31 @@ const routes = [
         children: [{
             path: '/',
             component: newLottery,
-            name:'indexH5app',
+            name: 'indexH5app',
             meta: {
                 title: "HelloWorld",
                 show: true,
                 index: 1,
             },
         },
-            {
-                path: '/setting',
-                component: setting,
-                meta: {
-                    title: "设置",
-                    show: true,
-                    index: 4,
-                },
+        {
+            path: '/setting',
+            component: setting,
+            meta: {
+                title: "设置",
+                show: true,
+                index: 4,
             },
-            {
-                path: '/lotteryHome',
-                component: lotteryHome,
-                meta: {
-                    title: "HelloWorld",
-                    show: false,
-                    index: 1,
-                },
+        },
+        {
+            path: '/lotteryHome',
+            component: lotteryHome,
+            meta: {
+                title: "HelloWorld",
+                show: false,
+                index: 1,
             },
+        },
         ]
     },
     {
@@ -346,6 +347,7 @@ const routes = [
             index: 2,
         },
     },
+    { path: '/vip', component: vip },
     { path: '/activity', component: activity },
     { path: '/bonusDetails', component: bonusDetails },
     { path: '/lotteryLimited', component: lotteryLimited },
@@ -404,17 +406,17 @@ const routes = [
     { path: '/method', component: method },
     { path: '/explain', component: explain },
     { path: '/download', component: download },
-    { path: "/chatroom", component: chatroom ,meta:{keepAlive:true}},
+    { path: "/chatroom", component: chatroom, meta: { keepAlive: true } },
     { path: '/appTrend', component: appTrend },
-    {path: '/trdPlatformAuth', component: trdPlatformAuth},
-    {path: '/bindUser', component: bindUser},
-    {path: '/newBindUser', component: newBindUser},
-    {path: '/autoRegSuccessed', component: autoRegSuccessed},
-    {path: '/trdAuthSuccessed', component: trdAuthSuccessed},
-    {path: '/createUser', component: createUser},
-    {path: '/newCreateUser', component: newCreateUser},
-    {path: '/mg_elec', component: mgElec},
-    {path: '/pt_elec', component: ptElec},
+    { path: '/trdPlatformAuth', component: trdPlatformAuth },
+    { path: '/bindUser', component: bindUser },
+    { path: '/newBindUser', component: newBindUser },
+    { path: '/autoRegSuccessed', component: autoRegSuccessed },
+    { path: '/trdAuthSuccessed', component: trdAuthSuccessed },
+    { path: '/createUser', component: createUser },
+    { path: '/newCreateUser', component: newCreateUser },
+    { path: '/mg_elec', component: mgElec },
+    { path: '/pt_elec', component: ptElec },
     { path: '/*', component: jumpIndex },
 ]
 export default routes

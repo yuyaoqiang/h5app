@@ -3,28 +3,22 @@
 
 
     <div class="download-bg">
-        <div :class="device!='android'?'down-bg-apple':'down-bg-android'" v-if="isWX==false" @click.self.prevent="downLoad(device)">
+        <div :class="device!='android'?'down-bg-apple':'down-bg-apple'" v-if="isWX==false" >
             <section class="download-main">
-                <!-- <article class="download-btn" v-if="!device"> 
-                    <a :href="item.url[0]" v-for="item in apps" v-if="item.url[0] != null && item.url[0].trim()!=''">
-                        <img :src="require(`../../assets/images/${item.img[0]}`)" alt="">
-                    </a>
-                    <a :href="item.url[1]" v-for="item in apps" v-if="item.url[1] != null && item.url[1].trim()!=''">
-
-                        <img :src="require(`../../assets/images/${item.img[1]}`)" alt="">
+                <article class="download-btn" v-if="!device"> 
+                    <a :href="item.url[0]" v-for="item in apps" v-if="item.url[0] != null && item.url[0].trim()!=''" >
+                        <img :src="require(`../../assets/images/${item.img[0]}`)" @click.self.prevent="downLoad(device)" alt="">
                     </a>
                 </article>
                 <article class="download-btn" v-if="device">
                     <a :href="item.url[0]" v-for="item in apps" v-if="item.device.indexOf(device)!=-1&&item.url[0] != null && item.url[0].trim()!=''">
-                        <img :src="require(`../../assets/images/${item.img[0]}`)" alt="">
+                        <img :src="require(`../../assets/images/${item.img[0]}`)" @click.self.prevent="downLoad(device)"  alt="">
                     </a>
-                    <a :href="item.url[1]" v-for="item in apps" v-if="item.device.indexOf(device)!=-1&&item.url[1] != null && item.url[1].trim()!=''">
-
-                        <img :src="require(`../../assets/images/${item.img[1]}`)" alt="">
-                    </a>
-                </article> -->
+                </article>
             </section>
-               <p class="goback-home" @click="goback">返回首页</p>
+               <p class="goback-home">
+                   <span @click="goback">返回首页</span>
+               </p>
         </div>
         <div class="down-wx" v-if="isWX==true"></div>
     </div>
@@ -145,12 +139,19 @@
     background-size: contain;
 }
 .goback-home{
-    position: absolute;
-    top: 0.2rem;
-    right: 0.2rem;
-    color: #cca869;
-    border: 1px solid #c6a262;
+    color: #fff;
     padding: 0.05rem;
-    border-radius: 0.03rem;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0.4rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.goback-home span{
+    border: 1px solid #fff;
+    display: inline-block;
+    padding: 0.05rem 0.1rem;
+    border-radius: 01rem;
 }
 </style>

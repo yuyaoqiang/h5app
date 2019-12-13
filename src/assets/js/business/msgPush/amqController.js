@@ -2,7 +2,7 @@ import appContext from '../../context/appContext'
 
 export default {
     inited: false,
-    init: function(user, recMsg) {
+    init: function (user, recMsg) {
         var _this = this;
 
 
@@ -13,7 +13,7 @@ export default {
         var platformCode = user.platformCode; //amq的平台名字
         var myDestinationNum = 'topic://' + platformCode + '.nums';
         var myDestination = 'topic://' + platformCode + id;
-        var myDestinationMess = 'topic://' + platformCode +'.notice';
+        var myDestinationMess = 'topic://' + platformCode + '.notice';
 
         var amq = org.activemq.Amq;
         var url = appContext.buildApiUrl("/amq")
@@ -25,14 +25,13 @@ export default {
         });
 
 
-        amq.addListener("num", myDestinationNum, function(message) {
+        amq.addListener("num", myDestinationNum, function (message) {
             recMsg(message)
         });
-        amq.removeListener('num',myDestinationNum);
-        amq.addListener("msg", myDestination, function(message) {
+        amq.addListener("msg", myDestination, function (message) {
             recMsg(message)
         });
-        amq.addListener("message", myDestinationMess, function(message) {
+        amq.addListener("message", myDestinationMess, function (message) {
             recMsg(message)
         });
     },
