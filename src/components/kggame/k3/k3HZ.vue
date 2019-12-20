@@ -1,6 +1,6 @@
 <template>
     <div class="kg-lottery-main">
-        <section class="kg-betting-niu"  v-if="kgLottery.playTypes!=null && type.isHZ==true" v-for="type in kgLottery.playTypes">
+        <section class="kg-betting-niu-hz"  v-if="kgLottery.playTypes!=null && type.isHZ==true" v-for="type in kgLottery.playTypes">
             <h2  class="kg-betting-title">{{type.desc}}</h2>
             <dl  v-for="(betType,index) in  type.betTypes">
                 <dd @click="toBetChoice(betType,betType.id)" :class="{'active':betType.active}">

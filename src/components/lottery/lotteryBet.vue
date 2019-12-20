@@ -105,7 +105,7 @@
                 <div class="cover-bg"></div>
                 <div class="alert-main">
                     <h1 class="alert-title">开奖记录</h1>
-                    <div class="history-content">
+                    <div class="history-content" v-if="lottery.type.name != 'pk10rules'">
                         <span class="loaing-text" v-if="lotteryHistoryList===null">正在加载中....</span>
                         <ul class="display-flex align-items" v-for="item in lotteryHistoryList">
                             <li :class="[lottery.type.numLen===10?'history-alert-issue-10':'',
@@ -131,13 +131,14 @@
                                 <p><b :key="n" :class="colorMap.get(n)"  v-for="n in item.nums.split(' ')">{{n}}</b></p>
                                 <p><b :key="n" v-for="n in item.sx">{{n}}</b></p>
                             </li>
-                            <li class="pk10rules-wrap"  v-if="lottery.type.name == 'pk10rules'">
-                                <b :key="n" v-for="n in item.nums.split(' ')"
-                                    :class="['square'+n]"></b>
-                                <b v-if="lottery.type.name == 'k3rules'" :class="item.bs=='大'?'ball-gray':'ball-pink'">{{item.bs}}</b>
-                                <b v-if="lottery.type.name == 'k3rules'" :class="item.sd=='单'?'ball-gray':'ball-pink'">{{item.sd}}</b>
-                                <b v-if="lottery.type.name == 'k3rules'" class="ball-green">{{item.count}}</b>
-                                <span v-if="lottery.type.name == 'pcdd'">= <b>{{item.nums.split(' ')[0]/1 + item.nums.split(' ')[1]/1 + item.nums.split(' ')[2]/1}}</b></span>
+                        </ul>
+                    </div>
+                    <div class="history-content-pk10"  v-if="lottery.type.name == 'pk10rules'">
+                        <ul class="align-items" v-for="item in lotteryHistoryList">
+                            <li class="history-alert-issue-pk10">{{item.issueno.slice(4)}}
+                            </li>
+                            <li class="pk10rules-wrap">
+                                <span :key="n" :class="'pk10-color-'+n" v-for="n in item.nums.split(' ')">{{n}}</span>
                             </li>
                         </ul>
                     </div>
@@ -1078,11 +1079,21 @@
 .history-content .pk10rules-wrap b{
     display: inline-block;
     text-align: center;
-    width: 0.25rem;
-    height: 0.25rem;
+    width: 0.15rem;
+    height: 0.15rem;
     line-height: 0.9rem;
     margin-left: 0.04rem;
     border-radius:0;
+}
+.history-content-pk10 .pk10rules-wrap span{
+    display: inline-block;
+    text-align: center;
+    width: 0.18rem;
+    height: 0.18rem;
+    line-height: 0.18rem;
+    margin-left: 0.04rem;
+    border-radius:0;
+    color: #fff;
 }
 .align-items{
     align-items: center;
@@ -1099,4 +1110,35 @@
 .color-blue{
     background: rgb(49, 49, 255) !important;
 }
+.pk10-color-01{
+    background: #e6de00;
+}
+.pk10-color-02{
+    background: #0092dd;
+}
+.pk10-color-03{
+    background: #4b4b4b;
+}
+.pk10-color-04{
+    background: #ff7600;
+}
+.pk10-color-05{
+    background: #17e2e5;
+}
+.pk10-color-06{
+    background: #5234ff;
+}
+.pk10-color-07{
+    background: #bfbfbf;
+}
+.pk10-color-08{
+    background: #ff2600;
+}
+.pk10-color-09{
+    background: #780b00;
+}
+.pk10-color-10{
+    background: #07bf00;
+}
+
 </style>

@@ -164,6 +164,7 @@ const createUser = () => import("./components/trdPlatform/createUser.vue")
 // import newCreateUser from './components/trdPlatform/newCreateUser.vue'; //注册绑定登录
 const newCreateUser = () => import("./components/trdPlatform/newCreateUser.vue")
 const vip = () => import("./components/vip/vip.vue")
+const interest = () => import("./components/interest/interest.vue")
 
 
 
@@ -347,6 +348,7 @@ const routes = [
             index: 2,
         },
     },
+    { path: '/interest', component: interest },
     { path: '/vip', component: vip },
     { path: '/activity', component: activity },
     { path: '/bonusDetails', component: bonusDetails },

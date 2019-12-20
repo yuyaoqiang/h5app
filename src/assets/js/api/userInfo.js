@@ -184,5 +184,11 @@ export default {
     },
     findThirdGameStatus(callback) {
         apiUtil.doPost("thirdUserAdd/findThirdGameStatus.mvc", null, callback)
+    },
+    receiveVipAward(param,callback) {
+        apiUtil.doPost("userInfo/receiveVipAward.mvc", param, callback)
+    },
+    getUserGradeList(callback) {
+        apiUtil.doPost("userInfo/getUserGradeList.mvc", null, callback)
     }
 }

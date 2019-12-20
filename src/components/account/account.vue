@@ -3,6 +3,7 @@
         <div class="account-header-wrap">
             <header class="account-header">
                 <div class="account-img">
+                    <!-- <img src="../../assets/images/vip/vip4_x.png"> -->
                     <img src="../../assets/images/icon29.png">
                     <div class="btn_chongzhi" @click="toWyczPage({path:'chongzhi'})"><i class="iconfont icon-zhanghu_chongzhi"></i>充值</div>
                     <div class="btn_tixian" @click="toWytxPage({path:'withdraw'})"><i class="iconfont icon-zhanghu_tixian"></i>提现</div>
@@ -10,6 +11,7 @@
                 <div class="account-name">{{user.isShiWan==true?'试玩用户':user.userName}}
                     <span v-if="levelActive.isopen&&user.isShiWan==false" class="levelActive">({{levelActive.name}})</span>
                 </div>
+                <div class="account-vip"><span>VIP等级:{{user.isShiWan==true?'VIP0':user.userGrade}} </span></div>
                 <ul class="account-money">
                     <li class="account-wallet">¥ {{user.walletBal | fixedTo2}} 元</li>
                     <li class="account-money-icon"  @click="toEdzh()"><i class="iconfont icon-zhanghu_zhuanhuan"></i>额度转换</li>

@@ -78,6 +78,6 @@
 </script>
 <style scoped>
 .kg-betting-niu >.kg-lottery-bzdz div :nth-child(1){
-        font-size: 18px;
+        font-size: 16px;
     }
 </style>
