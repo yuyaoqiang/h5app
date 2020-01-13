@@ -48,12 +48,11 @@
                         <input v-model.trim="data.qq"  placeholder="请输入有效qq号码" type="text"/>
                     </dd>
                 </dl> -->
-                <!-- <dl  class="display-flex pt10 register-box"  v-if="regRestrict.regMobileConfig != -1">
-                    <dt><span class="red"  v-show="regRestrict.regMobileConfig ==1">*</span> 手机号:</dt>
+                <dl  class="display-flex pt10 register-box"  v-if="regRestrict.regMobileConfig != -1">
                     <dd class="flex-box">
                         <input v-model.trim="data.telephone"  placeholder="请输入有效手机号" type="text"/>
                     </dd>
-                </dl> -->
+                </dl>
                 <dl class="display-flex pt10 register-box">
                     <dd class="flex-box">
                         <input v-model.trim="data.regCode"  placeholder="请输入有效的推荐码" type="text"/>
@@ -204,10 +203,7 @@
                         this.lalterError("昵称不能超过16位字符");
                         return;
                     }
-                    if(stringUtil.isBlank(this.data.regCode)){
-                        this.lalterError("推荐码不能为空");
-                        return;
-                    }
+                    
                     // if(this.regRestrict.regEmailConfig == 1 || this.data.email != ""){
                     //     let emailReg = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/;
                     //     if(!emailReg.test(this.data.email)){
@@ -215,19 +211,20 @@
                     //         return;
                     //     }
                     // }
-
-                    // if(this.regRestrict.regMobileConfig == 1  || this.data.telephone != ""){
-                    //     if(stringUtil.isBlank(this.data.telephone)){
-                    //         this.lalterError("手机号不能为空");
-                    //         return;
-                    //     }
-                    //     let telReg =  /^[1][3,4,5,7,8][0-9]{9}$/;
-                    //     if(!telReg.test(this.data.telephone)){
-                    //         this.lalterError("手机号格式不正确");
-                    //         return;
-                    //     }
-                    // }
-
+                    if(stringUtil.isBlank(this.data.username)){
+                        this.lalterError("账号不能为空");
+                        return;
+                    }
+                    if(stringUtil.isBlank(this.data.telephone)){
+                        this.lalterError("手机号不能为空");
+                        return;
+                       
+                    }
+                     let telReg =  /^[1][3,4,5,7,8][0-9]{9}$/;
+                        if(!telReg.test(this.data.telephone)){
+                            this.lalterError("手机号格式不正确");
+                            return;
+                        }
                     // if(this.regRestrict.regQQConfig == 1  || this.data.qq != ""){
                     //     if(stringUtil.isBlank(this.data.qq)){
                     //         this.lalterError("qq号不能为空");
@@ -239,7 +236,10 @@
                     //         return;
                     //     }
                     // }
-
+                    if(stringUtil.isBlank(this.data.regCode)){
+                        this.lalterError("推荐码不能为空");
+                        return;
+                    }
                     if(stringUtil.isBlank(this.data.password)){
                         this.lalterError("密码不能为空");
                         return;
