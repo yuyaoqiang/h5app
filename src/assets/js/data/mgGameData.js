@@ -55,7 +55,7 @@ export default {
         is:true
     },{
         "img": "BTN_BreakAway1.png",
-        "code": "1299%7C1002",
+        "code": "1229%7C1002",
         "name": "摆脱",
         "type": "slot",
         is:true

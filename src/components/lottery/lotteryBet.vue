@@ -204,6 +204,7 @@
     import lotteryBusiness from '../../assets/js/business/lottery/lotteryBusiness';
     import kgBusiness from '../../assets/js/business/lottery/kg/kgBusiness';
     import arrayUtil from  "../../assets/js/util/arrayUtil";
+    import {calendar} from  "../../assets/js/util/lunarUtil";
     import areaInit from '../../assets/js/business/lottery/lotteryAreaInit';
     import lotteryApi from '../../assets/js/api/lotteryApi.js';
     import userInfoApi from "../../assets/js/api/userInfo"
@@ -764,7 +765,8 @@
                let index= 11;
                let animalsAfter=[];
                let map = new Map();
-               const years = this.lhcAnimal.year - new Date().getFullYear();
+               const years = calendar.solar2lunar(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()).lYear - this.lhcAnimal.year;
+            //  const years = calendar.solar2lunar(2020,1,25).lYear - this.lhcAnimal.year;
                for(let i=0;i<years; i++){
                    if(animals.length-1 <= index){
                        index = 0;
